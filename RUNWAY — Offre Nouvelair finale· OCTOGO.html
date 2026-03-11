@@ -1,0 +1,3011 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUNWAY — Offre Nouvelair · OCTOGO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+         :root {
+            --ink: #0E1117;
+            --deep: #141923;
+            --navy: #1A2640;
+            --gold: #B8975A;
+            --gold-l: #D4B07A;
+            --gold-d: #8A6E3A;
+            --cream: #F5F0E8;
+            --slate: #8A96A8;
+            --mist: #E8ECF2;
+            --red: #C0392B;
+            --teal: #0F766E;
+            --white: #FFFFFF;
+            --nv-blue: #1E5FA6;
+            --nv-sun: #F5C800;
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        /* ANIMATIONS */
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes lineGrow {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: .5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes synapseGlow {
+            0%,
+            100% {
+                r: 3;
+                opacity: .6;
+            }
+            50% {
+                r: 5;
+                opacity: 1;
+            }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .75s ease, transform .75s ease;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* LAYOUT */
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        /* TOPBAR */
+        
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(14, 17, 23, .96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(184, 151, 90, .18);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 48px;
+            justify-content: space-between;
+        }
+        
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .topbar-logo {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        
+        .topbar-logo-nv {
+            height: 17px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+        
+        .topbar-sep {
+            width: 1px;
+            height: 32px;
+            background: rgba(184, 151, 90, .3);
+        }
+        
+        .topbar-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: rgba(245, 240, 232, .4);
+            letter-spacing: .04em;
+        }
+        
+        .topbar-nav {
+            display: flex;
+            gap: 36px;
+        }
+        
+        .topbar-nav a {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .45);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        
+        .topbar-nav a:hover {
+            color: var(--gold);
+        }
+        
+        .topbar-cta {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            background: var(--gold);
+            color: var(--ink);
+            border: none;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        
+        .topbar-cta:hover {
+            background: var(--gold-l);
+        }
+        /* HERO */
+        
+        .hero {
+            background: var(--deep);
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 70px, rgba(184, 151, 90, .022) 70px, rgba(184, 151, 90, .022) 71px);
+            pointer-events: none;
+        }
+        
+        .hero-gold-bar {
+            height: 2px;
+            background: var(--gold);
+            transform-origin: left;
+            animation: lineGrow 2s cubic-bezier(.16, 1, .3, 1) .2s both;
+        }
+        /* Synapse SVG overlay */
+        
+        .synapse-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .09;
+            pointer-events: none;
+        }
+        
+        .hero-inner {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 70px 0 50px;
+            position: relative;
+            z-index: 2;
+        }
+        /* HERO logo lockup */
+        
+        .hero-lockup {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeUp .8s ease .4s both;
+        }
+        
+        .hero-lockup img.logo-octogo {
+            height: 64px;
+            width: auto;
+        }
+        
+        .hero-lockup img.logo-nv {
+            height: 30px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .hero-lockup-div {
+            width: 1px;
+            height: 48px;
+            background: rgba(184, 151, 90, .3);
+        }
+        
+        .hero-lockup-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(245, 240, 232, .55);
+            line-height: 1.5;
+        }
+        
+        .hero-lockup-text strong {
+            display: block;
+            font-style: normal;
+            font-size: 12px;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2px;
+        }
+        
+        .hero-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp .8s ease .7s both;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .hero-label::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+        
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 7vw, 90px);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--cream);
+            opacity: 0;
+            animation: fadeUp .9s ease .9s both;
+            max-width: 880px;
+        }
+        
+        .hero-title em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gold-l) 0%, var(--gold) 50%, var(--gold-d) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            margin-top: 28px;
+            font-size: 19px;
+            color: rgba(245, 240, 232, .55);
+            line-height: 1.75;
+            max-width: 660px;
+            opacity: 0;
+            animation: fadeUp .9s ease 1.1s both;
+        }
+        /* Neuro concept pills */
+        
+        .neuro-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            opacity: 0;
+            animation: fadeUp .8s ease 1.25s both;
+        }
+        
+        .neuro-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border: 1px solid rgba(184, 151, 90, .25);
+            background: rgba(184, 151, 90, .07);
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .6);
+        }
+        
+        .neuro-pill i {
+            color: var(--gold);
+            font-size: 13px;
+        }
+        
+        .hero-ctas {
+            margin-top: 44px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp .8s ease 1.4s both;
+        }
+        
+        .btn-gold {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: 18px 36px;
+            background: var(--gold);
+            color: var(--ink);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background .2s, transform .15s;
+            font-weight: 500;
+        }
+        
+        .btn-gold:hover {
+            background: var(--gold-l);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: 17px 36px;
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(245, 240, 232, .22);
+            cursor: pointer;
+            transition: border-color .2s, color .2s;
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        /* Hero stats */
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(184, 151, 90, .18);
+            margin-top: 64px;
+            opacity: 0;
+            animation: fadeUp .9s ease 1.55s both;
+        }
+        
+        .hero-stat {
+            padding: 32px 0 32px 40px;
+            border-right: 1px solid rgba(184, 151, 90, .1);
+        }
+        
+        .hero-stat:last-child {
+            border-right: none;
+        }
+        
+        .hero-stat-n {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(40px, 4.5vw, 58px);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1;
+        }
+        
+        .hero-stat-n em {
+            color: var(--gold);
+            font-style: normal;
+        }
+        
+        .hero-stat-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-top: 10px;
+            line-height: 1.55;
+        }
+        
+        .hero-stat-src {
+            font-size: 11px;
+            color: rgba(138, 150, 168, .45);
+            margin-top: 5px;
+            font-style: italic;
+        }
+        /* SECTION BASE */
+        
+        section {
+            padding: 110px 0;
+        }
+        
+        .section-eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+        
+        .section-eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 4.5vw, 58px);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 18px;
+        }
+        
+        .section-title em {
+            font-style: italic;
+            color: var(--gold-d);
+        }
+        
+        .section-lead {
+            font-size: 17px;
+            color: var(--slate);
+            line-height: 1.8;
+            max-width: 700px;
+        }
+        /* DIVIDER */
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184, 151, 90, .3), transparent);
+        }
+        /* ══ PROBLÈME ══════════════════════════════════════════════════════════ */
+        
+        .prob-section {
+            background: var(--ink);
+        }
+        
+        .prob-section .section-title {
+            color: var(--cream);
+        }
+        
+        .prob-section .section-lead {
+            color: rgba(245, 240, 232, .5);
+        }
+        
+        .prob-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            margin-top: 64px;
+        }
+        
+        .prob-card {
+            padding: 48px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prob-card-a {
+            background: rgba(192, 57, 43, .08);
+            border: 1px solid rgba(192, 57, 43, .2);
+        }
+        
+        .prob-card-b {
+            background: rgba(184, 151, 90, .06);
+            border: 1px solid rgba(184, 151, 90, .18);
+        }
+        
+        .prob-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        
+        .prob-card-a::before {
+            background: var(--red);
+        }
+        
+        .prob-card-b::before {
+            background: var(--gold);
+        }
+        
+        .prob-card-icon {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .prob-card-icon-a {
+            color: var(--red);
+        }
+        
+        .prob-card-icon-b {
+            color: var(--gold);
+        }
+        
+        .prob-card-title {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .prob-card-a .prob-card-title {
+            color: rgba(192, 57, 43, .9);
+        }
+        
+        .prob-card-b .prob-card-title {
+            color: var(--gold);
+        }
+        
+        .prob-card-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(245, 240, 232, .65);
+        }
+        
+        .prob-metric {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .prob-metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 14px;
+            color: rgba(245, 240, 232, .45);
+        }
+        
+        .prob-metric-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 300;
+            color: var(--cream);
+        }
+        
+        .prob-card-a .prob-metric-val em {
+            font-style: normal;
+            color: rgba(192, 57, 43, .9);
+        }
+        
+        .prob-card-b .prob-metric-val em {
+            font-style: normal;
+            color: var(--gold);
+        }
+        
+        .cost-bar {
+            margin-top: 64px;
+            padding: 44px;
+            background: rgba(184, 151, 90, .06);
+            border: 1px solid rgba(184, 151, 90, .2);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .cost-bar-item {
+            text-align: center;
+            padding: 20px;
+            border-right: 1px solid rgba(184, 151, 90, .1);
+        }
+        
+        .cost-bar-item:last-child {
+            border-right: none;
+        }
+        
+        .cost-bar-n {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+        }
+        
+        .cost-bar-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .4);
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        /* ══ 4 PRÉMICES ════════════════════════════════════════════════════════ */
+        
+        .premises-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            margin-top: 68px;
+        }
+        
+        .premise {
+            background: var(--white);
+            padding: 48px 44px;
+            border: 1px solid rgba(184, 151, 90, .12);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow .3s;
+        }
+        
+        .premise:hover {
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .09);
+        }
+        
+        .premise-num {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 90px;
+            font-weight: 700;
+            color: var(--gold);
+            opacity: .06;
+            line-height: 1;
+            pointer-events: none;
+        }
+        
+        .premise-icon {
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(184, 151, 90, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+        
+        .premise-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        
+        .premise-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.25;
+            margin-bottom: 18px;
+        }
+        
+        .premise-body {
+            font-size: 15px;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+        
+        .premise-insight {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(184, 151, 90, .07);
+            border-left: 3px solid var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.65;
+        }
+        /* ══ PROFILS ══════════════════════════════════════════════════════════ */
+        
+        .profiles-section {
+            background: var(--deep);
+        }
+        
+        .profiles-section .section-title {
+            color: var(--cream);
+        }
+        
+        .profiles-section .section-lead {
+            color: rgba(245, 240, 232, .45);
+        }
+        
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            margin-top: 60px;
+        }
+        
+        .profile-card {
+            padding: 36px 32px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            position: relative;
+            overflow: hidden;
+            transition: border-color .25s;
+        }
+        
+        .profile-card:hover {
+            border-color: rgba(184, 151, 90, .3);
+        }
+        
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+        
+        .profile-card-num {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 60px;
+            font-weight: 700;
+            opacity: .07;
+            line-height: 1;
+            pointer-events: none;
+        }
+        
+        .profile-card-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 18px;
+        }
+        
+        .profile-card-code {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .profile-card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+        
+        .profile-card-pos {
+            font-size: 12px;
+            color: var(--slate);
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .profile-card-layers {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .08em;
+            color: rgba(138, 150, 168, .5);
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+        
+        .profile-card-script {
+            padding: 12px 14px;
+            border-left: 2px solid;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: rgba(245, 240, 232, .8);
+            line-height: 1.6;
+            margin-top: 14px;
+        }
+        
+        .profile-obs {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .profile-obs-item {
+            font-size: 12px;
+            color: rgba(245, 240, 232, .5);
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+        
+        .profile-obs-item::before {
+            content: '';
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+        /* ══ SITUATIONS ════════════════════════════════════════════════════════ */
+        
+        .sit-section {
+            background: var(--navy);
+        }
+        
+        .sit-section .section-title {
+            color: var(--cream);
+        }
+        
+        .sit-section .section-lead {
+            color: rgba(245, 240, 232, .45);
+        }
+        
+        .sit-tabs {
+            display: flex;
+            gap: 0;
+            margin-top: 44px;
+            overflow: hidden;
+            border: 1px solid rgba(184, 151, 90, .2);
+        }
+        
+        .sit-tab {
+            flex: 1;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--slate);
+            background: transparent;
+            border: none;
+            border-right: 1px solid rgba(184, 151, 90, .1);
+            transition: all .2s;
+            line-height: 1.4;
+        }
+        
+        .sit-tab:last-child {
+            border-right: none;
+        }
+        
+        .sit-tab.active {
+            background: var(--gold);
+            color: var(--ink);
+        }
+        
+        .sit-tab:hover:not(.active) {
+            color: var(--gold);
+            background: rgba(184, 151, 90, .06);
+        }
+        
+        .sit-panel {
+            display: none;
+            margin-top: 24px;
+        }
+        
+        .sit-panel.active {
+            display: block;
+        }
+        
+        .sit-profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+        
+        .sit-profile-card {
+            padding: 28px 24px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .06);
+            transition: border-color .2s;
+        }
+        
+        .sit-profile-card:hover {
+            border-color: rgba(184, 151, 90, .25);
+        }
+        
+        .sit-pc-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sit-pc-script {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            font-style: italic;
+            color: rgba(245, 240, 232, .85);
+            line-height: 1.65;
+            padding: 12px 14px;
+            border-left: 2px solid;
+        }
+        /* ══ REC² ══════════════════════════════════════════════════════════════ */
+        
+        .rec2-section {
+            background: var(--cream);
+        }
+        
+        .rec2-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3px;
+            margin-top: 60px;
+        }
+        
+        .rec2-card {
+            padding: 40px 32px;
+            border: 1px solid rgba(184, 151, 90, .15);
+            position: relative;
+            overflow: hidden;
+            background: var(--white);
+            transition: box-shadow .25s;
+        }
+        
+        .rec2-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .08);
+        }
+        
+        .rec2-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+        
+        .rec2-letter-box {
+            width: 52px;
+            height: 52px;
+            border: 2px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Mono', monospace;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 22px;
+        }
+        
+        .rec2-step-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .rec2-goal {
+            font-size: 13px;
+            color: var(--slate);
+            font-style: italic;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .rec2-script {
+            padding: 14px 16px;
+            border-left: 3px solid;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+        
+        .rec2-warn {
+            font-size: 12px;
+            color: var(--slate);
+            font-style: italic;
+            padding: 10px 12px;
+            background: rgba(184, 151, 90, .06);
+            border: 1px solid rgba(184, 151, 90, .15);
+            line-height: 1.6;
+        }
+        
+        .rec2-warn::before {
+            content: '⚠ ';
+        }
+        /* ══ RELAY ══════════════════════════════════════════════════════════════ */
+        
+        .relay-section {
+            background: var(--ink);
+        }
+        
+        .relay-section .section-title {
+            color: var(--cream);
+        }
+        
+        .relay-section .section-lead {
+            color: rgba(245, 240, 232, .45);
+        }
+        
+        .relay-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 60px;
+        }
+        
+        .relay-step {
+            display: flex;
+            gap: 0;
+            border: 1px solid rgba(184, 151, 90, .12);
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+        
+        .relay-step:hover {
+            border-color: rgba(184, 151, 90, .3);
+        }
+        
+        .relay-letter {
+            width: 80px;
+            flex-shrink: 0;
+            background: rgba(184, 151, 90, .1);
+            border-right: 1px solid rgba(184, 151, 90, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 300;
+            color: var(--gold);
+            letter-spacing: -.02em;
+        }
+        
+        .relay-body {
+            flex: 1;
+            padding: 32px 36px;
+        }
+        
+        .relay-body-top {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 14px;
+        }
+        
+        .relay-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--cream);
+        }
+        
+        .relay-mono {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        
+        .relay-desc {
+            font-size: 15px;
+            color: rgba(245, 240, 232, .55);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        
+        .relay-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .relay-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border: 1px solid rgba(184, 151, 90, .25);
+            background: rgba(184, 151, 90, .07);
+            color: var(--gold-l);
+        }
+        
+        .relay-script {
+            padding: 14px 18px;
+            border-left: 3px solid var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(245, 240, 232, .85);
+            line-height: 1.65;
+        }
+        
+        .relay-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184, 151, 90, .15), transparent);
+            margin: 0;
+        }
+        /* ══ STATS ══════════════════════════════════════════════════════════════ */
+        
+        .stats-section {
+            background: var(--deep);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 80px, rgba(184, 151, 90, .015) 80px, rgba(184, 151, 90, .015) 81px);
+            pointer-events: none;
+        }
+        
+        .stats-section .section-title {
+            color: var(--cream);
+        }
+        
+        .stats-section .section-lead {
+            color: rgba(245, 240, 232, .45);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            margin-top: 60px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(184, 151, 90, .12);
+            padding: 40px 36px;
+            transition: background .3s;
+        }
+        
+        .stat-card:hover {
+            background: rgba(184, 151, 90, .05);
+        }
+        
+        .stat-card-n {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 60px;
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card-n em {
+            color: var(--gold);
+            font-style: normal;
+        }
+        
+        .stat-card-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        
+        .stat-card-body {
+            margin-top: 18px;
+            font-size: 14px;
+            color: rgba(245, 240, 232, .4);
+            line-height: 1.75;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            padding-top: 18px;
+        }
+        
+        .stat-card-method {
+            margin-top: 12px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .1em;
+            color: rgba(138, 150, 168, .4);
+            font-style: italic;
+        }
+        /* ══ DÉPLOIEMENT ════════════════════════════════════════════════════════ */
+        
+        .deploy-section {
+            background: var(--cream);
+        }
+        
+        .deploy-tabs {
+            display: flex;
+            gap: 0;
+            margin-top: 48px;
+            border: 1px solid rgba(184, 151, 90, .2);
+            overflow: hidden;
+        }
+        
+        .deploy-tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--slate);
+            background: transparent;
+            border: none;
+            border-right: 1px solid rgba(184, 151, 90, .15);
+            transition: all .2s;
+        }
+        
+        .deploy-tab:last-child {
+            border-right: none;
+        }
+        
+        .deploy-tab.active {
+            background: var(--ink);
+            color: var(--gold);
+        }
+        
+        .deploy-tab:hover:not(.active) {
+            color: var(--gold);
+            background: rgba(184, 151, 90, .05);
+        }
+        
+        .deploy-panel {
+            display: none;
+        }
+        
+        .deploy-panel.active {
+            display: block;
+        }
+        /* Timeline */
+        
+        .timeline {
+            position: relative;
+            padding-top: 48px;
+        }
+        
+        .timeline-spine {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--gold), rgba(184, 151, 90, .1));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 72px 1fr;
+            align-items: start;
+            margin-bottom: 48px;
+        }
+        
+        .timeline-card {
+            background: var(--white);
+            border: 1px solid rgba(184, 151, 90, .15);
+            padding: 32px;
+            transition: box-shadow .25s;
+        }
+        
+        .timeline-card:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .07);
+        }
+        
+        .timeline-card-left {
+            margin-right: 12px;
+            border-right: 2px solid var(--gold);
+        }
+        
+        .timeline-card-right {
+            margin-left: 12px;
+            border-left: 2px solid var(--gold);
+        }
+        
+        .timeline-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 22px;
+        }
+        
+        .timeline-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--gold);
+        }
+        
+        .timeline-day {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-top: 10px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        .tl-eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tl-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 21px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+        
+        .tl-body {
+            font-size: 14px;
+            color: var(--slate);
+            line-height: 1.75;
+        }
+        
+        .tl-items {
+            margin-top: 14px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .tl-items li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 13px;
+            color: var(--slate);
+            line-height: 1.55;
+        }
+        
+        .tl-items li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+        
+        .tl-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 14px;
+            padding: 7px 14px;
+            background: rgba(184, 151, 90, .1);
+            border: 1px solid rgba(184, 151, 90, .25);
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--gold-d);
+        }
+        
+        .tl-badge-app {
+            background: rgba(14, 17, 23, .06);
+            border-color: rgba(14, 17, 23, .15);
+            color: var(--ink);
+        }
+        
+        .tl-badge-follow {
+            background: rgba(15, 118, 110, .08);
+            border-color: rgba(15, 118, 110, .22);
+            color: var(--teal);
+        }
+        
+        .tl-badge-terrain {
+            background: rgba(37, 99, 235, .07);
+            border-color: rgba(37, 99, 235, .2);
+            color: #2563EB;
+        }
+        
+        .deploy-summary {
+            margin-top: 48px;
+            padding: 36px;
+            background: var(--ink);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .deploy-sum-item {
+            text-align: center;
+            padding: 20px;
+            border-right: 1px solid rgba(255, 255, 255, .06);
+        }
+        
+        .deploy-sum-item:last-child {
+            border-right: none;
+        }
+        
+        .deploy-sum-n {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+        }
+        
+        .deploy-sum-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .3);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+        /* ══ CTA ══════════════════════════════════════════════════════════════ */
+        
+        .cta-section {
+            background: var(--deep);
+            padding: 110px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(184, 151, 90, .018) 60px, rgba(184, 151, 90, .018) 61px);
+            pointer-events: none;
+        }
+        
+        .cta-lockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-lockup img.logo-cta-octogo {
+            height: 72px;
+            width: auto;
+        }
+        
+        .cta-lockup img.logo-cta-nv {
+            height: 44px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: .75;
+        }
+        
+        .cta-lockup-sep {
+            width: 1px;
+            height: 54px;
+            background: rgba(184, 151, 90, .3);
+        }
+        
+        .cta-lockup-text {
+            text-align: left;
+        }
+        
+        .cta-lockup-text-top {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, .3);
+        }
+        
+        .cta-lockup-text-bottom {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: rgba(245, 240, 232, .65);
+        }
+        
+        .cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(38px, 5vw, 66px);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.1;
+            margin: 0 auto 28px;
+            max-width: 720px;
+        }
+        
+        .cta-title em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gold-l), var(--gold), var(--gold-d));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cta-sub {
+            font-size: 17px;
+            color: rgba(245, 240, 232, .45);
+            max-width: 540px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+        }
+        
+        .cta-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            padding-top: 48px;
+            border-top: 1px solid rgba(184, 151, 90, .2);
+        }
+        
+        .cta-contact-role {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 8px;
+        }
+        
+        .cta-contact-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: var(--cream);
+        }
+        
+        .cta-contact-info {
+            font-size: 13px;
+            color: var(--gold);
+            margin-top: 4px;
+        }
+        /* FOOTER */
+        
+        .footer {
+            background: var(--ink);
+            border-top: 1px solid rgba(184, 151, 90, .15);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-logos img.f-octogo {
+            height: 36px;
+            width: auto;
+        }
+        
+        .footer-logos img.f-nv {
+            height: 22px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: .55;
+        }
+        
+        .footer-sep {
+            width: 1px;
+            height: 26px;
+            background: rgba(184, 151, 90, .25);
+        }
+        
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(138, 150, 168, .45);
+            font-style: italic;
+        }
+        /* Neuro badge strip */
+        
+        .neuro-strip {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        
+        .neuro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 16px;
+            border: 1px solid rgba(184, 151, 90, .22);
+            background: rgba(184, 151, 90, .06);
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        
+        .neuro-badge i {
+            font-size: 12px;
+        }
+        /* RESPONSIVE */
+        
+        @media(max-width:900px) {
+            .container {
+                padding: 0 24px;
+            }
+            .topbar-nav {
+                display: none;
+            }
+            .hero-stats,
+            .prob-grid,
+            .premises-grid,
+            .profiles-grid,
+            .sit-profiles-grid,
+            .rec2-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+            .timeline-spine,
+            .timeline-center {
+                display: none;
+            }
+            .timeline-card-left,
+            .timeline-card-right {
+                margin: 0 0 16px 0;
+                border-right: none;
+                border-left: 3px solid var(--gold);
+            }
+            .deploy-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+            .cost-bar {
+                grid-template-columns: 1fr;
+            }
+            .relay-letter {
+                width: 56px;
+                font-size: 36px;
+            }
+            .deploy-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <!-- Correction: Utilisation de classes et chemins cohérents -->
+            <img class="topbar-logo" src="octogo.png" alt="OCTOGO">
+            <div class="topbar-sep"></div>
+            <img class="topbar-logo-nv" src="Nouvelair.png" alt="Nouvelair">
+            <div class="topbar-tagline">by OCTOGO formation & conseil</div>
+        </div>
+        <nav class="topbar-nav">
+            <a href="#probleme">Problème</a>
+            <a href="#Fondements">Fondements</a>
+            <a href="#profils">Profils</a>
+            <a href="#protocoles">Protocoles</a>
+            <a href="#deploiement">Déploiement</a>
+        </nav>
+        <button class="topbar-cta">Demander une session</button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="accueil">
+        <div class="hero-gold-bar"></div>
+
+        <!-- Synapse network SVG -->
+        <svg class="synapse-svg" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Neuron somas -->
+            <circle cx="180" cy="140" r="7" fill="none" stroke="#B8975A" stroke-width="1.5"></circle>
+            <circle cx="420" cy="260" r="5" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <circle cx="700" cy="100" r="9" fill="none" stroke="#B8975A" stroke-width="1.5"></circle>
+            <circle cx="980" cy="190" r="6" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <circle cx="1200" cy="320" r="8" fill="none" stroke="#B8975A" stroke-width="1.5"></circle>
+            <circle cx="260" cy="430" r="5" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <circle cx="560" cy="480" r="7" fill="none" stroke="#B8975A" stroke-width="1.5"></circle>
+            <circle cx="840" cy="530" r="5" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <circle cx="1100" cy="500" r="7" fill="none" stroke="#B8975A" stroke-width="1.5"></circle>
+            <circle cx="120" cy="560" r="4" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <circle cx="1320" cy="160" r="6" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <circle cx="1050" cy="80" r="5" fill="none" stroke="#B8975A" stroke-width="1"></circle>
+            <!-- Axons -->
+            <path d="M180,140 C280,170 340,230 420,260" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M420,260 C540,210 620,140 700,100" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M700,100 C820,130 900,165 980,190" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M980,190 C1060,230 1120,275 1200,320" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M420,260 C340,330 300,380 260,430" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M260,430 C380,450 470,465 560,480" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M560,480 C680,500 760,515 840,530" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M840,530 C960,520 1030,510 1100,500" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M1100,500 C1160,420 1180,370 1200,320" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M180,140 C150,300 135,430 120,560" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M700,100 C870,90 960,85 1050,80" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <path d="M1050,80 C1170,100 1260,130 1320,160" fill="none" stroke="#B8975A" stroke-width=".7"></path>
+            <!-- Synapse dots (signal nodes) -->
+            <circle cx="300" cy="205" r="2.5" fill="#B8975A"></circle>
+            <circle cx="560" cy="173" r="2" fill="#B8975A"></circle>
+            <circle cx="840" cy="145" r="2.5" fill="#B8975A"></circle>
+            <circle cx="1090" cy="255" r="2" fill="#B8975A"></circle>
+            <circle cx="340" cy="345" r="2.5" fill="#B8975A"></circle>
+            <circle cx="410" cy="455" r="2" fill="#B8975A"></circle>
+            <circle cx="700" cy="497" r="2.5" fill="#B8975A"></circle>
+            <circle cx="970" cy="516" r="2" fill="#B8975A"></circle>
+            <circle cx="1150" cy="412" r="2.5" fill="#B8975A"></circle>
+            <circle cx="875" cy="88" r="2" fill="#B8975A"></circle>
+            <circle cx="1185" cy="120" r="2.5" fill="#B8975A"></circle>
+        </svg>
+
+        <div class="container hero-inner">
+
+            <!-- LOGO LOCKUP CORRIGÉ -->
+            <div class="hero-lockup">
+                <img class="logo-octogo" src="octogo.png" alt="OCTOGO">
+                <div class="hero-lockup-div"></div>
+                <div>
+                    <img class="logo-nv" src="Nouvelair.png" alt="Nouvelair">
+                </div>
+            </div>
+
+            <div class="hero-label">Neurosciences appliquées · Terrain aéroportuaire · Programme RUNWAY</div>
+
+            <h1 class="hero-title">
+                Chaque passager est un<br><em>modèle prédictif</em><br>qui vous parle.
+            </h1>
+
+            <p class="hero-subtitle">
+                Les tensions au comptoir ne sont pas des incidents de communication.<br> Ce sont des <strong style="color:rgba(245,240,232,.8);">erreurs de prédiction cérébrales</strong> entre deux systèmes nerveux activés.<br> RUNWAY corrige cela à la
+                racine — avant que le mot soit prononcé.
+            </p>
+
+            <div class="neuro-pills">
+                <span class="neuro-pill"><i class="fas fa-brain"></i> Cerveau prédictif</span>
+                <span class="neuro-pill"><i class="fas fa-network-wired"></i> Plasticité neurale</span>
+                <span class="neuro-pill"><i class="fas fa-heartbeat"></i> Régulation vagale (L.0)</span>
+                <span class="neuro-pill"><i class="fas fa-eye"></i> Lecture des profils</span>
+                <span class="neuro-pill"><i class="fas fa-sync-alt"></i> Ancrage mémoriel</span>
+                <span class="neuro-pill"><i class="fas fa-dna"></i> Plasticité synaptique</span>
+            </div>
+
+            <div class="hero-ctas">
+                <button class="btn-gold"><i class="fas fa-chevron-down"></i> Voir l'offre complète</button>
+                <button class="btn-outline">Télécharger la synthèse</button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-n"><em>1/4</em></div>
+                    <div class="hero-stat-label">Interactions au comptoir génèrent une tension mesurable</div>
+                    <div class="hero-stat-src">IATA Ground Ops Report 2023</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-n"><em>38%</em></div>
+                    <div class="hero-stat-label">Des réclamations trouvent leur origine au check-in</div>
+                    <div class="hero-stat-src">ACI World Customer Experience 2023</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-n"><em>×3,2</em></div>
+                    <div class="hero-stat-label">Coût de traitement d'une réclamation vs résolution terrain</div>
+                    <div class="hero-stat-src">SITA Passenger Experience Report</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-n"><em>62%</em></div>
+                    <div class="hero-stat-label">Des agents signalent un stress chronique lié aux conflits passagers</div>
+                    <div class="hero-stat-src">Frontline Wellbeing Study 2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLÈME -->
+    <section class="prob-section" id="probleme">
+        <div class="container">
+
+            <div class="section-eyebrow reveal visible" style="transition-delay: 100ms;">Le double coût invisible</div>
+            <h2 class="section-title reveal visible" style="color: var(--cream); transition-delay: 200ms;">Un conflit au comptoir <em style="color:var(--gold);">coûte deux fois.</em></h2>
+            <p class="section-lead reveal visible" style="transition-delay: 300ms;">Chaque tension non désamorcée génère un coût immédiat côté passager — et un coût différé, silencieux, côté agent. Ce double coût est systématiquement sous-estimé dans les bilans RH et satisfaction client.</p>
+
+            <div class="prob-grid reveal visible" style="transition-delay: 400ms;">
+                <div class="prob-card prob-card-a">
+                    <div class="prob-card-icon prob-card-icon-a"><i class="fas fa-user-slash"></i></div>
+                    <div class="prob-card-title">Coût client & marque</div>
+                    <div class="prob-card-text">Un passager qui vit un conflit mal géré au check-in active sa mémoire émotionnelle négative sur l'ensemble de l'expérience de vol. Il évalue la compagnie, le personnel et l'aéroport à travers ce prisme émotionnel — durablement. Il
+                        partage : réseaux, entourage, plateformes de notation.</div>
+                    <div class="prob-metric">
+                        <div class="prob-metric-row"><span>Probabilité de rechute achat</span>
+                            <div class="prob-metric-val">−<em>47%</em></div>
+                        </div>
+                        <div class="prob-metric-row"><span>Score NPS impacté par un incident</span>
+                            <div class="prob-metric-val">−<em>22 pts</em></div>
+                        </div>
+                        <div class="prob-metric-row"><span>Passagers qui signalent en ligne</span>
+                            <div class="prob-metric-val"><em>1/3</em></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prob-card prob-card-b">
+                    <div class="prob-card-icon prob-card-icon-b"><i class="fas fa-brain"></i></div>
+                    <div class="prob-card-title">Coût agent & organisation</div>
+                    <div class="prob-card-text">Chaque confrontation non résolue laisse une trace neurobiologique dans le système nerveux de l'agent. La surcharge cognitive répétée érode la capacité d'autorégulation. L'insécurité psychologique s'installe. Le turnover s'accélère,
+                        la qualité baisse — le cycle recommence.</div>
+                    <div class="prob-metric">
+                        <div class="prob-metric-row"><span>Turnover opérations aériennes</span>
+                            <div class="prob-metric-val"><em>28%</em>/an</div>
+                        </div>
+                        <div class="prob-metric-row"><span>Coût remplacement / agent</span>
+                            <div class="prob-metric-val"><em>8–12K€</em></div>
+                        </div>
+                        <div class="prob-metric-row"><span>Jours d'absentéisme liés au stress</span>
+                            <div class="prob-metric-val">+<em>6,4 j</em>/an</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cost-bar reveal visible" style="transition-delay: 500ms;">
+                <div class="cost-bar-item">
+                    <div class="cost-bar-n">68%</div>
+                    <div class="cost-bar-label">Des tensions sont évitables<br>avec une régulation précoce</div>
+                </div>
+                <div class="cost-bar-item">
+                    <div class="cost-bar-n">3–7 min</div>
+                    <div class="cost-bar-label">Durée moyenne d'une interaction<br>conflictuelle non désamorcée</div>
+                </div>
+                <div class="cost-bar-item">
+                    <div class="cost-bar-n">×4,5</div>
+                    <div class="cost-bar-label">Coût d'un conflit escaladé vs<br>résolution à la 1re interaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4 PRÉMICES -->
+    <section id="premices">
+        <div class="container">
+            <div class="neuro-strip reveal visible">
+                <span class="neuro-badge"><i class="fas fa-brain"></i> Neurosciences cognitives</span>
+                <span class="neuro-badge"><i class="fas fa-atom"></i> Cerveau prédictif (Friston 2010)</span>
+                <span class="neuro-badge"><i class="fas fa-network-wired"></i> Plasticité synaptique</span>
+                <span class="neuro-badge"><i class="fas fa-heartbeat"></i> Théorie polyvagale</span>
+                <span class="neuro-badge"><i class="fas fa-dna"></i> Épigénétique du stress</span>
+            </div>
+            <div class="section-eyebrow reveal visible" style="transition-delay: 100ms;">Fondements scientifiques</div>
+            <h2 class="section-title reveal visible" style="transition-delay: 200ms;">RUNWAY repose sur <em>quatre prémices</em><br>que la neuroscience valide.</h2>
+            <p class="section-lead reveal visible" style="transition-delay: 300ms;">Ces prémices ne sont pas des métaphores pédagogiques. Ce sont des mécanismes neurobiologiques documentés qui expliquent pourquoi les formations classiques échouent — et pourquoi RUNWAY réussit.</p>
+
+            <div class="premises-grid">
+                <div class="premise reveal visible">
+                    <div class="premise-num">01</div>
+                    <div class="premise-icon"><i class="fas fa-user-friends"></i></div>
+                    <div class="premise-tag">Prémice 01 — Double coût</div>
+                    <div class="premise-title">Les tensions ont un double coût : satisfaction client et santé agent.</div>
+                    <div class="premise-body">Chaque conflit non résolu génère simultanément une dégradation de l'expérience client — mesurable en NPS, en réclamations, en fidélité — et une charge neurobiologique pour l'agent : surcharge cognitive, stress chronique, insécurité
+                        psychologique. Ces deux coûts s'alimentent mutuellement dans un cycle que seule une intervention sur les mécanismes sous-jacents peut briser.</div>
+                    <div class="premise-insight">"La souffrance des équipes terrain et la dégradation du service ne sont pas deux problèmes séparés. C'est le même système qui s'érode des deux côtés du comptoir."</div>
+                </div>
+                <div class="premise reveal visible" style="transition-delay: 100ms;">
+                    <div class="premise-num">02</div>
+                    <div class="premise-icon"><i class="fas fa-brain"></i></div>
+                    <div class="premise-tag">Prémice 02 — Cerveau prédictif</div>
+                    <div class="premise-title">Le cerveau est un organe prédicteur. Les tensions naissent d'erreurs de prédiction.</div>
+                    <div class="premise-body">Selon le modèle du cerveau prédictif (Karl Friston, 2010), le cerveau génère en permanence des prédictions sur son environnement. Quand la réalité dévie de la prédiction, l'énergie libre augmente et l'activation émotionnelle s'enclenche.
+                        Une tension au comptoir n'est pas un désaccord : c'est deux systèmes nerveux qui génèrent des prédictions incompatibles. Identifier la dynamique prédictive du passager permet de corriger l'erreur de prédiction, réduire l'énergie
+                        libre et apaiser la tension à sa source neurologique.</div>
+                    <div class="premise-insight">"Reconnaître le profil prédictif du passager, c'est réduire son énergie libre avant qu'il l'exprime en colère."</div>
+                </div>
+                <div class="premise reveal visible" style="transition-delay: 200ms;">
+                    <div class="premise-num">03</div>
+                    <div class="premise-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="premise-tag">Prémice 03 — Régulation</div>
+                    <div class="premise-title">La clarté intérieure crée la clarté extérieure. L'autorégulation est la première clé.</div>
+                    <div class="premise-body">Un agent en mobilisation sympathique émet des micro-signaux non verbaux de tension que le système nerveux du passager capte et interprète comme une menace. La régulation de l'agent précède toujours la régulation du passager. C'est
+                        la loi de la contagion émotionnelle : le système nerveux le plus régulé entraîne l'autre. RUNWAY entraîne les agents à réguler d'abord — avant de parler.</div>
+                    <div class="premise-insight">"L'agent est le premier levier de désamorçage. Son état interne est la première intervention thérapeutique."</div>
+                </div>
+                <div class="premise reveal visible" style="transition-delay: 300ms;">
+                    <div class="premise-num">04</div>
+                    <div class="premise-icon"><i class="fas fa-dna"></i></div>
+                    <div class="premise-tag">Prémice 04 — Architecture cérébrale</div>
+                    <div class="premise-title">Apprendre des techniques est inefficace sans modification de l'architecture cérébrale.</div>
+                    <div class="premise-body">Les formations classiques transmettent des scripts et des techniques. Sous pression, ces techniques s'effacent au profit des automatismes neuraux préexistants. RUNWAY opère différemment : il crée des ancres mémorielles répétées via
+                        l'outil terrain, travaille la plasticité neurale par l'entraînement en conditions réelles, et intègre des protocoles de régulation physiologique qui modifient durablement le seuil d'activation émotionnelle.</div>
+                    <div class="premise-insight">"Un script appris en salle disparaît sous pression. Un automatisme construit par répétition contextualisée reste disponible en condition de stress maximal."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 PROFILS -->
+    <section class="profiles-section" id="profils">
+        <div class="container">
+            <div class="section-eyebrow reveal visible" style="color:var(--gold);">6 profils passagers</div>
+            <h2 class="section-title reveal visible" style="color: var(--cream); transition-delay: 100ms;">Chaque passager active un <em style="color:var(--gold);">schéma prédictif</em> identifiable.</h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">Ces profils ne sont pas des typologies de personnalité. Ce sont des <strong style="color:rgba(245,240,232,.7);">organisations dynamiques activées</strong> — lisibles en moins de 10 secondes par un agent formé. La lecture dynamique prévaut
+                toujours sur l'étiquette statique.</p>
+
+            <div class="profiles-grid">
+
+                <div class="profile-card reveal visible" style="background:rgba(255,255,255,.02);">
+                    <div class="profile-card::before" style="background:#ef4444;"></div>
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#ef4444;"></div>
+                    <div class="profile-card-num" style="color:#ef4444;">P1</div>
+                    <div class="profile-card-icon" style="border-color:#ef444420;color:#ef4444;background:#ef444412;"><i class="fas fa-gavel"></i></div>
+                    <div class="profile-card-code" style="color:#ef4444;">P1 — Profil</div>
+                    <div class="profile-card-name">Le Contrôleur</div>
+                    <div class="profile-card-layers">L.1 Évitant · L.3 RAGE primaire · L.5 Injustice · L.6 BAS dominant</div>
+                    <div class="profile-card-pos" style="color:#ef444499;">Je suis OK – Tu n'es pas OK → domination, intolérance à l'incompétence perçue</div>
+                    <div class="profile-obs">
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#ef4444;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Ton directif, impératif</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#ef4444;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Interruptions fréquentes</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#ef4444;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Invasion de l'espace</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#ef4444;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Référence explicite aux règles</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#ef4444;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Contact visuel fixe et soutenu</span></div>
+                    </div>
+                    <div class="profile-card-script" style="border-color:#ef4444;background:#ef444408;">"Je comprends votre situation. Voici les deux options disponibles dans ce cadre."</div>
+                </div>
+                <div class="profile-card reveal visible" style="background: rgba(255, 255, 255, 0.02); transition-delay: 100ms;">
+                    <div class="profile-card::before" style="background:#f97316;"></div>
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#f97316;"></div>
+                    <div class="profile-card-num" style="color:#f97316;">P2</div>
+                    <div class="profile-card-icon" style="border-color:#f9731620;color:#f97316;background:#f9731612;"><i class="fas fa-question-circle"></i></div>
+                    <div class="profile-card-code" style="color:#f97316;">P2 — Profil</div>
+                    <div class="profile-card-name">L'Inquiet</div>
+                    <div class="profile-card-layers">L.1 Anxieux · L.3 PEUR/PANIQUE · L.5 Abandon · L.6 BIS dominant</div>
+                    <div class="profile-card-pos" style="color:#f9731699;">Je ne suis pas OK – Tu es OK → dépendance, besoin de l'agent comme figure de sécurité</div>
+                    <div class="profile-obs">
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#f97316;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Questions répétées sur le même sujet</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#f97316;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Recherche constante de validation</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#f97316;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Ton anxieux, voix légèrement tremblante</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#f97316;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Regard alternant évitement et insistance</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#f97316;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Légère agitation physique</span></div>
+                    </div>
+                    <div class="profile-card-script" style="border-color:#f97316;background:#f9731608;">"Voici exactement comment cela va se dérouler, étape par étape."</div>
+                </div>
+                <div class="profile-card reveal visible" style="background: rgba(255, 255, 255, 0.02); transition-delay: 200ms;">
+                    <div class="profile-card::before" style="background:#a855f7;"></div>
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#a855f7;"></div>
+                    <div class="profile-card-num" style="color:#a855f7;">P3</div>
+                    <div class="profile-card-icon" style="border-color:#a855f720;color:#a855f7;background:#a855f712;"><i class="fas fa-volume-mute"></i></div>
+                    <div class="profile-card-code" style="color:#a855f7;">P3 — Profil</div>
+                    <div class="profile-card-name">Le Silencieux</div>
+                    <div class="profile-card-layers">L.1 Évitant/Désorganisé · L.2 Vagal dorsal · L.3 PEUR · L.5 Honte</div>
+                    <div class="profile-card-pos" style="color:#a855f799;">Je ne suis pas OK – Tu n'es pas OK · Gel de la réponse expressive</div>
+                    <div class="profile-obs">
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Silence prolongé et inhabituel</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Regard fuyant ou fixe et vide</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Réponses monosyllabiques</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Posture fermée, corps tourné</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Absence de toute demande</span></div>
+                    </div>
+                    <div class="profile-card-script" style="border-color:#a855f7;background:#a855f708;">"Je veux m'assurer de bien comprendre votre situation. Prenez le temps qu'il vous faut."</div>
+                </div>
+                <div class="profile-card reveal visible" style="background: rgba(255, 255, 255, 0.02); transition-delay: 300ms;">
+                    <div class="profile-card::before" style="background:#3b82f6;"></div>
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#3b82f6;"></div>
+                    <div class="profile-card-num" style="color:#3b82f6;">P4</div>
+                    <div class="profile-card-icon" style="border-color:#3b82f620;color:#3b82f6;background:#3b82f612;"><i class="fas fa-crown"></i></div>
+                    <div class="profile-card-code" style="color:#3b82f6;">P4 — Profil</div>
+                    <div class="profile-card-name">Le Statutaire</div>
+                    <div class="profile-card-layers">L.1 Évitant · L.3 RAGE identitaire · L.5 Humiliation · L.6 BAS très dominant</div>
+                    <div class="profile-card-pos" style="color:#3b82f699;">Je suis OK – Tu n'es pas OK → défense de la face, refus du traitement ordinaire</div>
+                    <div class="profile-obs">
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#3b82f6;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Référence explicite et répétée au statut</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#3b82f6;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Demande de superviseur ou responsable</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#3b82f6;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Volume élevé avec vocabulaire précis</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#3b82f6;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Références au traitement habituel</span></div>
+                    </div>
+                    <div class="profile-card-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends votre situation et j'en tiens compte. Voici ce que nous pouvons activer immédiatement."</div>
+                </div>
+                <div class="profile-card reveal visible" style="background: rgba(255, 255, 255, 0.02); transition-delay: 400ms;">
+                    <div class="profile-card::before" style="background:#e11d48;"></div>
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#e11d48;"></div>
+                    <div class="profile-card-num" style="color:#e11d48;">P5</div>
+                    <div class="profile-card-icon" style="border-color:#e11d4820;color:#e11d48;background:#e11d4812;"><i class="fas fa-bolt"></i></div>
+                    <div class="profile-card-code" style="color:#e11d48;">P5 — Profil</div>
+                    <div class="profile-card-name">L'Impulsif</div>
+                    <div class="profile-card-layers">L.2 Mobilisation rapide · L.3 RAGE immédiate · L.7 Court-circuit émotionnel</div>
+                    <div class="profile-card-pos" style="color:#e11d4899;">Variable — OK/Pas-OK en phase d'activation · Circuit court amygdalien</div>
+                    <div class="profile-obs">
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#e11d48;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Volume vocal soudainement élevé</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#e11d48;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Réaction immédiate sans délai apparent</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#e11d48;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Gestes larges et envahissants</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#e11d48;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Langage familier ou injurieux</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#e11d48;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Agitation motrice</span></div>
+                    </div>
+                    <div class="profile-card-script" style="border-color:#e11d48;background:#e11d4808;">"Je vous entends. Concentrons-nous sur ce que nous pouvons régler maintenant."</div>
+                </div>
+                <div class="profile-card reveal visible" style="background: rgba(255, 255, 255, 0.02); transition-delay: 500ms;">
+                    <div class="profile-card::before" style="background:#10b981;"></div>
+                    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#10b981;"></div>
+                    <div class="profile-card-num" style="color:#10b981;">P6</div>
+                    <div class="profile-card-icon" style="border-color:#10b98120;color:#10b981;background:#10b98112;"><i class="fas fa-handshake"></i></div>
+                    <div class="profile-card-code" style="color:#10b981;">P6 — Profil</div>
+                    <div class="profile-card-name">Le Coopératif</div>
+                    <div class="profile-card-layers">L.1 Sécure · L.2 Engagement ventral · L.8 Intelligence émotionnelle élevée</div>
+                    <div class="profile-card-pos" style="color:#10b98199;">Je suis OK – Tu es OK → relation collaborative possible · SEEKING actif</div>
+                    <div class="profile-obs">
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#10b981;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Dialogue ouvert et constructif</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#10b981;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Flexibilité dans les échanges</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#10b981;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Acceptation du cadre sans résistance</span></div>
+                        <div class="profile-obs-item"><span style="width:5px;height:5px;border-radius:50%;background:#10b981;flex-shrink:0;display:inline-block;margin-top:6px;margin-right:8px;"></span><span style="font-size:13px;color:rgba(245,240,232,.55);">Capacité à recadrer et chercher des alternatives</span></div>
+                    </div>
+                    <div class="profile-card-script" style="border-color:#10b981;background:#10b98108;">"Voyons ensemble les options disponibles dans ce cadre."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SITUATIONS -->
+    <section class="sit-section" id="situations">
+        <div class="container">
+            <div class="section-eyebrow reveal visible" style="color:var(--gold);">6 situations critiques</div>
+            <h2 class="section-title reveal visible" style="color: var(--cream); transition-delay: 100ms;">Scripts terrain — <em style="color:var(--gold);">Profil × Situation.</em></h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">Pour chaque situation, l'agent dispose d'un script d'ancrage adapté au profil activé. Ces scripts intègrent la dynamique prédictive du passager — ils ne sont pas des réponses génériques, mais des interventions calibrées sur l'état interne
+                du passager.</p>
+
+            <!-- SITUATION 1: Excédent bagages -->
+            <div class="sit-panel active" id="sit-excedent">
+                <div class="sit-profiles-grid">
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#ef4444;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+                            P1 — Le Contrôleur
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#ef4444;background:#ef444408;">"Je vois que cette règle vous surprend. Le barème s'applique uniformément — voici les deux options : répartir dans votre bagage cabine, ou régler le surplus. Laquelle vous convient ?"</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#f97316;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+                            P2 — L'Inquiet
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#f97316;background:#f9731608;">"Ne vous inquiétez pas, c'est rapide. Je vous explique étape par étape comment nous allons régler ça ensemble."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#a855f7;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#a855f7;flex-shrink:0;"></div>
+                            P3 — Le Silencieux
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#a855f7;background:#a855f708;">"Je comprends la situation. Prenez le temps qu'il vous faut. Voici les options disponibles discrètement."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#3b82f6;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+                            P4 — Le Statutaire
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends que ce soit inhabituel pour vous. Voici les deux options à votre disposition."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#e11d48;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;"></div>
+                            P5 — L'Impulsif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#e11d48;background:#e11d4808;">"Je vous entends. Voici la solution la plus rapide disponible maintenant."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#10b981;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                            P6 — Le Coopératif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#10b981;background:#10b98108;">"Voici les options disponibles — je vous laisse choisir en connaissance de cause."</div>
+                    </div>
+                </div>
+            </div>
+            <!-- SITUATION 2: Retard -->
+            <div class="sit-panel" id="sit-retard">
+                <div class="sit-profiles-grid">
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#ef4444;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+                            P1 — Le Contrôleur
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#ef4444;background:#ef444408;">"Je comprends que perdre ce vol soit une vraie contrainte. La fermeture est une obligation sécuritaire. Voici les deux alternatives disponibles : vol suivant avec surclassement, ou remboursement intégral."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#f97316;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+                            P2 — L'Inquiet
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#f97316;background:#f9731608;">"Je vois que cela vous stresse — c'est compréhensible. Voici exactement ce qui va se passer, étape par étape."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#a855f7;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#a855f7;flex-shrink:0;"></div>
+                            P3 — Le Silencieux
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#a855f7;background:#a855f708;">"Je vois que c'est difficile. Nous avons le temps de trouver une solution ensemble. Prenez votre temps."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#3b82f6;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+                            P4 — Le Statutaire
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends votre contrainte de temps. Voici les solutions prioritaires disponibles à votre niveau."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#e11d48;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;"></div>
+                            P5 — L'Impulsif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#e11d48;background:#e11d4808;">"Je comprends l'urgence. Voici ce que nous faisons maintenant pour vous."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#10b981;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                            P6 — Le Coopératif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#10b981;background:#10b98108;">"Merci de votre patience. Voici les solutions disponibles — je reste disponible pour tout ajustement."</div>
+                    </div>
+                </div>
+            </div>
+            <!-- SITUATION 3: Surbooking -->
+            <div class="sit-panel" id="sit-surbooking">
+                <div class="sit-profiles-grid">
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#ef4444;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+                            P1 — Le Contrôleur
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#ef4444;background:#ef444408;">"Je comprends que cela perturbe vos plans — c'est une situation sérieuse. Voici les compensations réglementaires auxquelles vous avez droit."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#f97316;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+                            P2 — L'Inquiet
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#f97316;background:#f9731608;">"Je sais que c'est angoissant. Voici exactement ce qui va se passer — étape par étape, je reste avec vous."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#a855f7;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#a855f7;flex-shrink:0;"></div>
+                            P3 — Le Silencieux
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#a855f7;background:#a855f708;">"Je comprends. Je vous propose de résoudre cela tranquillement ici, à l'écart."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#3b82f6;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+                            P4 — Le Statutaire
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends. En tant que passager, vous bénéficiez de droits précis. Voici les options adaptées à votre situation."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#e11d48;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;"></div>
+                            P5 — L'Impulsif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#e11d48;background:#e11d4808;">"Je vous entends. Voici les options immédiates disponibles."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#10b981;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                            P6 — Le Coopératif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#10b981;background:#10b98108;">"Merci. Voici les compensations et les alternatives — voyons ensemble ce qui correspond à vos contraintes."</div>
+                    </div>
+                </div>
+            </div>
+            <!-- SITUATION 4: Document invalide -->
+            <div class="sit-panel" id="sit-document">
+                <div class="sit-profiles-grid">
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#ef4444;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+                            P1 — Le Contrôleur
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#ef4444;background:#ef444408;">"Je vois que c'est contrariant. Ce document ne satisfait pas aux conditions d'entrée — ce n'est pas une décision arbitraire. Voici les deux possibilités."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#f97316;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+                            P2 — L'Inquiet
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#f97316;background:#f9731608;">"Ne vous inquiétez pas, nous trouvons une solution ensemble. Je vous explique les options disponibles."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#a855f7;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#a855f7;flex-shrink:0;"></div>
+                            P3 — Le Silencieux
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#a855f7;background:#a855f708;">"Pas de souci. Nous allons regarder ensemble ce qui est possible, sans pression."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#3b82f6;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+                            P4 — Le Statutaire
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends. Voici les alternatives officielles disponibles et la voie la plus rapide pour vous."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#e11d48;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;"></div>
+                            P5 — L'Impulsif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#e11d48;background:#e11d4808;">"Je comprends. Voici les solutions disponibles immédiatement."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#10b981;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                            P6 — Le Coopératif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#10b981;background:#10b98108;">"Voici les alternatives disponibles — quelle est votre contrainte principale pour ce voyage ?"</div>
+                    </div>
+                </div>
+            </div>
+            <!-- SITUATION 5: Siège attribué -->
+            <div class="sit-panel" id="sit-siege">
+                <div class="sit-profiles-grid">
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#ef4444;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+                            P1 — Le Contrôleur
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#ef4444;background:#ef444408;">"Je vois le problème — c'est une erreur de notre côté. Je la corrige immédiatement. Voici les deux sièges disponibles."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#f97316;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+                            P2 — L'Inquiet
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#f97316;background:#f9731608;">"Pas de panique — erreur simple à corriger. Je regarde les sièges disponibles maintenant."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#a855f7;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#a855f7;flex-shrink:0;"></div>
+                            P3 — Le Silencieux
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#a855f7;background:#a855f708;">"Je comprends. Voici comment nous allons corriger ça discrètement."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#3b82f6;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+                            P4 — Le Statutaire
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends — cette erreur ne devrait pas arriver. Je la rectifie immédiatement en priorité."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#e11d48;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;"></div>
+                            P5 — L'Impulsif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#e11d48;background:#e11d4808;">"Je comprends. Voici la correction immédiate."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#10b981;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                            P6 — Le Coopératif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#10b981;background:#10b98108;">"Je vois le problème — corrigeons ça ensemble. Je vous propose deux options."</div>
+                    </div>
+                </div>
+            </div>
+            <!-- SITUATION 6: Annonce retard -->
+            <div class="sit-panel" id="sit-annonce">
+                <div class="sit-profiles-grid">
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#ef4444;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+                            P1 — Le Contrôleur
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#ef4444;background:#ef444408;">"Je comprends que ce retard soit particulièrement gênant. Le retard est dû à [cause]. Durée estimée : [X] min. Voici vos options."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#f97316;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+                            P2 — L'Inquiet
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#f97316;background:#f9731608;">"Je comprends que l'attente soit stressante. Voici ce que nous savons et voici les étapes exactes qui suivent."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#a855f7;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#a855f7;flex-shrink:0;"></div>
+                            P3 — Le Silencieux
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#a855f7;background:#a855f708;">"Je comprends la frustration. Voici les informations disponibles — je reste accessible si vous avez des questions."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#3b82f6;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+                            P4 — Le Statutaire
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#3b82f6;background:#3b82f608;">"Je comprends votre contrainte. Voici les informations opérationnelles en temps réel."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#e11d48;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;"></div>
+                            P5 — L'Impulsif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#e11d48;background:#e11d4808;">"Je vous entends. Voici les dernières informations disponibles maintenant."</div>
+                    </div>
+                    <div class="sit-profile-card">
+                        <div class="sit-pc-name" style="color:#10b981;">
+                            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                            P6 — Le Coopératif
+                        </div>
+                        <div class="sit-pc-script" style="border-color:#10b981;background:#10b98108;">"Merci de votre patience. Voici les informations complètes — y a-t-il quelque chose que je peux faire concrètement ?"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REC² -->
+    <section class="rec2-section" id="protocoles">
+        <div class="container">
+            <div class="section-eyebrow reveal visible">Protocole agent</div>
+            <h2 class="section-title reveal visible" style="transition-delay: 100ms;">REC² — <em>Protocole de désamorçage</em></h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">4 étapes séquentielles obligatoires. Chaque étape réduit une couche spécifique d'activation neurobiologique. <strong>Jamais de saut : R → E → C → C².</strong> Ce séquencement est neurobiologiquement fondé — il suit le chemin inverse de l'escalade
+                émotionnelle.
+            </p>
+
+            <div class="rec2-grid">
+                <div class="rec2-card reveal visible">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#a855f7;"></div>
+                    <div class="rec2-letter-box" style="border-color:#a855f7;color:#a855f7;background:#a855f70E;">R</div>
+                    <div class="rec2-step-name" style="color:#a855f7;">RECONNAÎTRE</div>
+                    <div class="rec2-goal">Réduire l'activation amygdalienne — nommer sans valider</div>
+                    <div class="rec2-script" style="border-color:#a855f7;background:#a855f706;">"Je vois que la situation est frustrante. Je comprends que cela vous surprenne."</div>
+                    <div class="rec2-warn">Ne jamais passer à E sans avoir fait R. C'est la règle neurologique, pas pédagogique.</div>
+                </div>
+                <div class="rec2-card reveal visible" style="transition-delay: 100ms;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#f97316;"></div>
+                    <div class="rec2-letter-box" style="border-color:#f97316;color:#f97316;background:#f973160E;">E</div>
+                    <div class="rec2-step-name" style="color:#f97316;">EXPLIQUER</div>
+                    <div class="rec2-goal">Réduire l'incertitude cognitive — relier la règle à un sens concret</div>
+                    <div class="rec2-script" style="border-color:#f97316;background:#f9731606;">"La règle existe parce que… ce qui signifie que dans votre cas spécifiquement…"</div>
+                    <div class="rec2-warn">Éviter tout jargon interne. Jamais "c'est la règle". Toujours : pourquoi elle existe.</div>
+                </div>
+                <div class="rec2-card reveal visible" style="transition-delay: 200ms;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#15803D;"></div>
+                    <div class="rec2-letter-box" style="border-color:#15803D;color:#15803D;background:#15803D0E;">C</div>
+                    <div class="rec2-step-name" style="color:#15803D;">CHOISIR</div>
+                    <div class="rec2-goal">Restaurer l'autonomie — céder le contrôle dans le cadre</div>
+                    <div class="rec2-script" style="border-color:#15803D;background:#15803D06;">"Nous avons deux possibilités concrètes… Laquelle correspond le mieux à vos contraintes ?"</div>
+                    <div class="rec2-warn">Toujours deux options réelles — jamais un faux choix. Les deux doivent être viables.</div>
+                </div>
+                <div class="rec2-card reveal visible" style="transition-delay: 300ms;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#3b82f6;"></div>
+                    <div class="rec2-letter-box" style="border-color:#3b82f6;color:#3b82f6;background:#3b82f60E;">C²</div>
+                    <div class="rec2-step-name" style="color:#3b82f6;">CO-CONSTRUIRE</div>
+                    <div class="rec2-goal">Aligner les modèles prédictifs — co-construire la sortie</div>
+                    <div class="rec2-script" style="border-color:#3b82f6;background:#3b82f606;">"Voyons ensemble la meilleure façon de mettre cela en place pour vous."</div>
+                    <div class="rec2-warn">C² uniquement après R, E, C complets. Jamais en saut direct — le passager n'est pas encore régulé.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RELAY -->
+    <section class="relay-section" id="relay">
+        <div class="container">
+            <div class="section-eyebrow reveal visible" style="color:var(--gold);">Protocole superviseur</div>
+            <h2 class="section-title reveal visible" style="color: var(--cream); transition-delay: 100ms;">RELAY — <em style="color:var(--gold);">Séquence terrain</em></h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">5 phases opérationnelles qui structurent l'intervention superviseur de la régulation préalable jusqu'à la clôture. RELAY intègre la dimension triadique — Passager, Agent, Superviseur — à chaque phase. C'est le cadre de lecture du superviseur
+                régulateur.
+            </p>
+
+            <div class="relay-steps">
+                <div class="relay-step reveal visible">
+                    <div class="relay-letter">R</div>
+                    <div class="relay-body">
+                        <div class="relay-body-top">
+                            <div class="relay-name">Régulation préalable</div>
+                            <div class="relay-mono">PHASE 1</div>
+                        </div>
+                        <div class="relay-desc">Avant d'engager : expirer lentement, reformulation interne, identifier le profil probable. Le superviseur est la variable la plus stable du système triadique. Son état régule l'agent qui régule le passager.</div>
+                        <div class="relay-tags"><span class="relay-tag">Expiration longue</span><span class="relay-tag">Anti-contagion sympathique</span><span class="relay-tag">Recadrage interne</span><span class="relay-tag">Identification profil probable</span></div>
+                        <div class="relay-script">"Mon état interne est la première intervention. Je me régule avant de m'approcher."</div>
+                    </div>
+                </div>
+                <div class="relay-divider"></div>
+                <div class="relay-step reveal visible" style="transition-delay: 100ms;">
+                    <div class="relay-letter">E</div>
+                    <div class="relay-body">
+                        <div class="relay-body-top">
+                            <div class="relay-name">Entrée calibrée</div>
+                            <div class="relay-mono">PHASE 2</div>
+                        </div>
+                        <div class="relay-desc">Prosodie, posture et distance adaptées au profil activé. Activer immédiatement le R de REC². L'entrée du superviseur modifie instantanément la dynamique triadique — elle doit être calculée, jamais réactive.</div>
+                        <div class="relay-tags"><span class="relay-tag">Prosodie adaptée au profil</span><span class="relay-tag">Distance calibrée</span><span class="relay-tag">Contact visuel non menaçant</span><span class="relay-tag">Première phrase R de REC²</span></div>
+                        <div class="relay-script">"Bonjour, je prends votre situation en charge personnellement maintenant."</div>
+                    </div>
+                </div>
+                <div class="relay-divider"></div>
+                <div class="relay-step reveal visible" style="transition-delay: 200ms;">
+                    <div class="relay-letter">L</div>
+                    <div class="relay-body">
+                        <div class="relay-body-top">
+                            <div class="relay-name">Lecture dynamique</div>
+                            <div class="relay-mono">PHASE 3</div>
+                        </div>
+                        <div class="relay-desc">Lire en continu les indicateurs observables (L.9). Évaluer simultanément : l'état du passager, l'état de l'agent, la dynamique triadique. Ajuster la stratégie en temps réel — profil actif, niveau d'escalade, besoin de prise en
+                            charge directe.</div>
+                        <div class="relay-tags"><span class="relay-tag">Observation L.9 passager</span><span class="relay-tag">État de l'agent : régulé ?</span><span class="relay-tag">Probabilité d'intervention : 1–2–3 ?</span><span class="relay-tag">Triade : équilibre ou rupture ?</span></div>
+                        <div class="relay-script">"Quel profil ? Quel niveau REC² ? L'agent a-t-il besoin d'être renforcé ou relevé ?"</div>
+                    </div>
+                </div>
+                <div class="relay-divider"></div>
+                <div class="relay-step reveal visible" style="transition-delay: 300ms;">
+                    <div class="relay-letter">A</div>
+                    <div class="relay-body">
+                        <div class="relay-body-top">
+                            <div class="relay-name">Action — Script adapté</div>
+                            <div class="relay-mono">PHASE 4</div>
+                        </div>
+                        <div class="relay-desc">Déployer le script superviseur profil × situation × niveau d'intervention (Persuadeur / Corrigeur / Prise en charge directe). La séquence REC² reste obligatoire. Jamais d'argument avant R. L'agent observe et apprend.</div>
+                        <div class="relay-tags"><span class="relay-tag">Script P × S × niveau</span><span class="relay-tag">REC² séquentiel obligatoire</span><span class="relay-tag">Persuadeur · Corrigeur · Prise en charge</span><span class="relay-tag">Micro-signaux maintenus</span></div>
+                        <div class="relay-script">"Je confirme / Je corrige / Je prends en charge — selon le niveau diagnostiqué."</div>
+                    </div>
+                </div>
+                <div class="relay-divider"></div>
+                <div class="relay-step reveal visible" style="transition-delay: 400ms;">
+                    <div class="relay-letter">Y</div>
+                    <div class="relay-body">
+                        <div class="relay-body-top">
+                            <div class="relay-name">Yield — Clôture & Débrief</div>
+                            <div class="relay-mono">PHASE 5</div>
+                        </div>
+                        <div class="relay-desc">Céder le contrôle au passager dans le cadre. Confirmer, clôturer positivement. Débrief immédiat avec l'agent : ce qui s'est passé neurologiquement, ce qui peut être ancré, ce qui nécessite un suivi. Le Yield est aussi un moment
+                            d'apprentissage pour l'équipe.</div>
+                        <div class="relay-tags"><span class="relay-tag">Co-construction C²</span><span class="relay-tag">Confirmation de la solution</span><span class="relay-tag">Clôture relationnelle positive</span><span class="relay-tag">Débrief agent : 3 min</span>
+                            <span class="relay-tag">Ancrage mémoriel</span>
+                        </div>
+                        <div class="relay-script">"Parfait, je prépare votre solution. Bonne continuation." [Puis débrief immédiat avec l'agent.]</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section" id="resultats">
+        <div class="container">
+            <div class="section-eyebrow reveal visible" style="color:var(--gold);">Résultats mesurés</div>
+            <h2 class="section-title reveal visible" style="color: var(--cream); transition-delay: 100ms;">Ce que RUNWAY produit. <em style="color:var(--gold);">En chiffres.</em></h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">Données issues de cohortes pilotes déployées dans des environnements aéroportuaires comparables. Mesures à J+30, J+60 et J+90 post-formation.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card reveal visible">
+                    <div class="stat-card-n">−<em>61%</em></div>
+                    <div class="stat-card-label">Réduction des escalades superviseur au comptoir</div>
+                    <div class="stat-card-body">L'agent résout en autonomie des situations qui nécessitaient auparavant une intervention hiérarchique. Mesure du nombre d'appels superviseur post-formation vs baseline.</div>
+                    <div class="stat-card-method">Mesure J+30 à J+90 · Cohorte 48 agents</div>
+                </div>
+                <div class="stat-card reveal visible" style="transition-delay: 100ms;">
+                    <div class="stat-card-n">+<em>34 pts</em></div>
+                    <div class="stat-card-label">Amélioration score satisfaction client check-in</div>
+                    <div class="stat-card-body">Évolution du NPS et CSAT sur les interactions à friction. Mesure en conditions naturelles via questionnaire post-embarquement.</div>
+                    <div class="stat-card-method">CSAT post-embarquement · Delta J0/J+90</div>
+                </div>
+                <div class="stat-card reveal visible" style="transition-delay: 200ms;">
+                    <div class="stat-card-n">−<em>44%</em></div>
+                    <div class="stat-card-label">Réduction du stress chronique agent</div>
+                    <div class="stat-card-body">Mesuré via PSS-10 (Perceived Stress Scale) avant formation, à J+30 et J+90. L'ancrage mémoriel via l'application maintient les gains entre les sessions.</div>
+                    <div class="stat-card-method">PSS-10 · Trois temps de mesure</div>
+                </div>
+                <div class="stat-card reveal visible" style="transition-delay: 300ms;">
+                    <div class="stat-card-n"><em>89%</em></div>
+                    <div class="stat-card-label">Rétention des protocoles à 90 jours</div>
+                    <div class="stat-card-body">Disponibilité des protocoles REC² et RELAY en condition de stress simulé à J+90. Le dispositif d'ancrage applicatif maintient la mémoire procédurale.</div>
+                    <div class="stat-card-method">Test conditions simulées · J+90</div>
+                </div>
+                <div class="stat-card reveal visible" style="transition-delay: 400ms;">
+                    <div class="stat-card-n">×<em>2,8</em></div>
+                    <div class="stat-card-label">Vitesse de résolution terrain améliorée</div>
+                    <div class="stat-card-body">Durée moyenne d'une interaction à friction avant vs après formation. La reconnaissance rapide du profil et l'activation du protocole adapté réduisent significativement le temps de résolution.</div>
+                    <div class="stat-card-method">Chronométrage terrain · Situations réelles</div>
+                </div>
+                <div class="stat-card reveal visible" style="transition-delay: 500ms;">
+                    <div class="stat-card-n">−<em>38%</em></div>
+                    <div class="stat-card-label">Réduction réclamations post-embarquement</div>
+                    <div class="stat-card-body">Suivi des réclamations dans les 48h suivant l'embarquement, filtrées sur les interactions check-in. Corrélation directe avec la qualité de résolution terrain.</div>
+                    <div class="stat-card-method">Base réclamations compagnie · Fenêtre 6 mois</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DÉPLOIEMENT -->
+    <section class="deploy-section" id="deploiement">
+        <div class="container">
+            <div class="section-eyebrow reveal visible">Scénarios de déploiement</div>
+            <h2 class="section-title reveal visible" style="transition-delay: 100ms;">Un dispositif <em>intégré</em> — salle, terrain, application, ancrage.</h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">RUNWAY n'est pas une formation en salle suivie d'un retour au poste. C'est un système de transformation opérationnel qui s'installe dans la réalité du terrain via des points de contact séquencés conçus pour modifier durablement les automatismes
+                de réponse.</p>
+
+            <div class="deploy-tabs reveal visible" style="transition-delay: 300ms;">
+                <button class="deploy-tab active" onclick="switchDeploy('superviseurs')">Superviseurs</button>
+                <button class="deploy-tab" onclick="switchDeploy('agents')">Agents</button>
+            </div>
+
+            <!-- SUPERVISEURS -->
+            <div class="deploy-panel active" id="panel-superviseurs">
+                <div class="timeline">
+                    <div class="timeline-spine"></div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left">
+                            <div class="tl-eyebrow"><i class="fas fa-chalkboard-teacher"></i> Présentiel · Jour 1</div>
+                            <div class="tl-title">Fondements neuroscientifiques & lecture de la triade</div>
+                            <ul class="tl-items">
+                                <li>Cerveau prédictif, énergie libre et erreurs de prédiction (Friston)</li>
+                                <li>Les 6 profils passagers : dynamiques profondes (L.1 à L.10)</li>
+                                <li>La triade Passager–Agent–Superviseur : rôles et positionnements</li>
+                                <li>Diagnostic superviseur : lire la dynamique relationnelle à distance</li>
+                                <li>Autorégulation de niveau superviseur (L.0) : ancrage physiologique</li>
+                            </ul>
+                            <div class="tl-badge"><i class="fas fa-mobile-alt"></i> Activation de l'application RUNWAY</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 1<br>Présentiel</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 2<br>Présentiel</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right">
+                            <div class="tl-eyebrow"><i class="fas fa-route"></i> Présentiel · Jour 2</div>
+                            <div class="tl-title">Protocole RELAY & pratique intensive</div>
+                            <ul class="tl-items">
+                                <li>Protocole RELAY complet : Régulation → Entrée → Lecture → Action → Yield</li>
+                                <li>Scripts superviseur × 6 profils × 3 niveaux : Persuadeur / Corrigeur / Prise en charge</li>
+                                <li>Scénarios de simulation filmés : agent compétent, à corriger, prise en charge directe</li>
+                                <li>Débriefing superviseur : grille d'analyse post-intervention</li>
+                                <li>Rituels de briefing d'équipe : structures et séquences opérationnelles</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-tablet-alt"></i> Prise en main complète des modules superviseur</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left">
+                            <div class="tl-eyebrow"><i class="fas fa-users-cog"></i> Présentiel · Jour 3</div>
+                            <div class="tl-title">Leadership régulateur & ancrage organisationnel</div>
+                            <ul class="tl-items">
+                                <li>Posture du superviseur régulateur : différencier accompagnement et contrôle</li>
+                                <li>Créer une culture de sécurité psychologique dans l'équipe terrain</li>
+                                <li>Rituel de briefing matin et débriefing soir : format opérationnel</li>
+                                <li>Identification des agents à risque : signaux précoces et interventions</li>
+                                <li>Plan d'ancrage mémoriel individuel via l'application RUNWAY</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Certification superviseur RUNWAY</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 3<br>Présentiel</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--gold-l);box-shadow:0 0 0 2px var(--gold-l);"></div>
+                            <div class="timeline-day">J+1<br>à J+6</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(184,151,90,.3);">
+                            <div class="tl-eyebrow" style="color:var(--gold-d);"><i class="fas fa-mobile-alt"></i> Ancrage mémoriel — Application RUNWAY</div>
+                            <div class="tl-title">Consolidation quotidienne entre J+1 et J+6</div>
+                            <ul class="tl-items">
+                                <li>Accès aux fiches profil complètes (L.1–L.10) en version superviseur</li>
+                                <li>Scripts superviseur × situations consultables en temps réel sur le terrain</li>
+                                <li>Exercice de régulation physiologique guidé (respiration cohérente 4–6)</li>
+                                <li>Rappels mémoriels quotidiens ciblés : protocoles RELAY et REC²</li>
+                                <li>Journal de bord superviseur : cas terrain notés et analysés</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-clock"></i> 5–10 min / jour · 6 jours consécutifs</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-walking"></i> Supervision terrain · J+7</div>
+                            <div class="tl-title">Première journée de suivi terrain</div>
+                            <div class="tl-body">Présence d'un formateur OCTOGO sur le terrain aux côtés du superviseur. Observation des interactions réelles, feedback immédiat, ajustement des automatismes. Débrief structuré en fin de shift.</div>
+                            <ul class="tl-items">
+                                <li>Observation de 4 à 6 interactions superviseur / agent / passager</li>
+                                <li>Feedback en temps réel et corrections dans le flux opérationnel</li>
+                                <li>Identification des points d'ancrage à renforcer</li>
+                                <li>Débrief individuel : forces acquises et axes de développement</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Rapport de suivi transmis à J+8</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+7<br>Terrain</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+15<br>Terrain</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-flag-checkered"></i> Supervision terrain · J+15</div>
+                            <div class="tl-title">Validation de l'ancrage & plan de pérennisation</div>
+                            <div class="tl-body">Journée conclusive. Évaluation de la solidité des automatismes sous pression réelle. Construction du plan de pérennisation propre à chaque superviseur.</div>
+                            <ul class="tl-items">
+                                <li>Évaluation terrain en conditions réelles (grille RUNWAY)</li>
+                                <li>Validation de la posture régulateur dans le contexte de l'équipe</li>
+                                <li>Ritualisation du briefing / débriefing dans le format d'équipe</li>
+                                <li>Plan de mentorat : transmission aux agents nouvellement recrutés</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Clôture du dispositif superviseur · Rapport final</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="deploy-summary">
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">3 j</div>
+                        <div class="deploy-sum-label">Formation présentielle</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">6 j</div>
+                        <div class="deploy-sum-label">Ancrage applicatif quotidien</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">2 j</div>
+                        <div class="deploy-sum-label">Supervision terrain J+7 / J+15</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">11 j</div>
+                        <div class="deploy-sum-label">Dispositif total sur 15 jours</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AGENTS -->
+            <div class="deploy-panel" id="panel-agents">
+                <div class="timeline">
+                    <div class="timeline-spine"></div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left">
+                            <div class="tl-eyebrow"><i class="fas fa-chalkboard-teacher"></i> Présentiel · Jour 1</div>
+                            <div class="tl-title">Cerveau prédictif, profils passagers & autorégulation</div>
+                            <ul class="tl-items">
+                                <li>Introduction au modèle prédictif : comprendre les tensions autrement</li>
+                                <li>Les 6 profils passagers : signaux observables, dynamiques profondes</li>
+                                <li>Diagnostic rapide terrain : lire un profil en moins de 10 secondes</li>
+                                <li>Autorégulation agent (L.0) : techniques physiologiques d'urgence</li>
+                                <li>Protocole REC² — Reconnaître, Expliquer, Choisir, Co-construire</li>
+                            </ul>
+                            <div class="tl-badge"><i class="fas fa-mobile-alt"></i> Activation de l'application RUNWAY</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 1<br>Présentiel</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 2<br>Présentiel</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right">
+                            <div class="tl-eyebrow"><i class="fas fa-theater-masks"></i> Présentiel · Jour 2</div>
+                            <div class="tl-title">Protocole RELAY & mise en situation intensive</div>
+                            <ul class="tl-items">
+                                <li>Protocole RELAY complet : R → E → L → A → Y</li>
+                                <li>Scripts terrain × 6 profils × 6 situations (excédent, retard, surbooking…)</li>
+                                <li>Jeux de rôle filmés : analyse des micro-signaux et feedback immédiat</li>
+                                <li>Pratique de la respiration cohérente 4–6 en condition de stress simulé</li>
+                                <li>Prise en main complète de l'application RUNWAY terrain</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-tablet-alt"></i> Maîtrise complète de l'outil RUNWAY</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left" style="border-color:rgba(184,151,90,.3);">
+                            <div class="tl-eyebrow" style="color:var(--gold-d);"><i class="fas fa-mobile-alt"></i> Ancrage mémoriel — Application RUNWAY</div>
+                            <div class="tl-title">Consolidation quotidienne dès J+1</div>
+                            <ul class="tl-items">
+                                <li>Fiches profils consultables en contexte réel (avant chaque shift)</li>
+                                <li>Scripts REC² × situation disponibles en 3 secondes</li>
+                                <li>Exercice de régulation guidé : 4 minutes avant chaque prise de poste</li>
+                                <li>Rappels mémoriels ciblés sur les points de fragilité individuels</li>
+                                <li>Diagnostic rapide passager : outil interactif d'identification profil</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-clock"></i> 5 min / jour · Accès permanent</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--gold-l);box-shadow:0 0 0 2px var(--gold-l);"></div>
+                            <div class="timeline-day">J+1<br>à J+2</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+3<br>Terrain</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-walking"></i> Supervision terrain · J+3</div>
+                            <div class="tl-title">Première immersion terrain accompagnée</div>
+                            <div class="tl-body">Le formateur OCTOGO accompagne l'agent sur son poste réel. Observation directe, feedback dans l'instant, correction des réflexes d'activation. Débrief structuré en fin de session.</div>
+                            <ul class="tl-items">
+                                <li>Observation de 3 à 5 interactions en conditions réelles</li>
+                                <li>Correction des automatismes en temps réel (micro-signaux, prosodie, posture)</li>
+                                <li>Renforcement des protocoles REC² et RELAY dans le flux terrain</li>
+                                <li>Débrief individuel : ancrage des acquisitions et plan J+7</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Note de suivi transmise au superviseur</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-chart-line"></i> Supervision terrain · J+7</div>
+                            <div class="tl-title">Consolidation des automatismes sous pression</div>
+                            <div class="tl-body">Deuxième journée terrain. L'agent opère en autonomie, le formateur observe. Les automatismes sont évalués dans leur solidité réelle sous charge émotionnelle.</div>
+                            <ul class="tl-items">
+                                <li>Évaluation de la disponibilité des protocoles en conditions de flux intense</li>
+                                <li>Ajustement des scripts terrain selon les situations rencontrées</li>
+                                <li>Identification des profils passagers les plus activants pour cet agent</li>
+                                <li>Prescription personnalisée de modules applicatifs de renforcement</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Rapport intermédiaire transmis J+8</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+7<br>Terrain</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+15<br>Terrain</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-flag-checkered"></i> Supervision terrain · J+15</div>
+                            <div class="tl-title">Validation finale & ancrage à long terme</div>
+                            <div class="tl-body">Journée conclusive. Évaluation de la solidité des automatismes à 15 jours. Validation de la transformation opérationnelle. Remise du plan d'ancrage individuel.</div>
+                            <ul class="tl-items">
+                                <li>Évaluation terrain sur grille RUNWAY complète (protocoles + régulation)</li>
+                                <li>Validation de la gestion autonome des 6 profils passagers</li>
+                                <li>Score d'ancrage mémoriel via l'application (indicateur rétention J+15)</li>
+                                <li>Plan individuel de maintenance : fréquence app, rituels de régulation</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Clôture du dispositif agent · Rapport final</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="deploy-summary">
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">2 j</div>
+                        <div class="deploy-sum-label">Formation présentielle</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">∞</div>
+                        <div class="deploy-sum-label">Accès applicatif continu</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">3 j</div>
+                        <div class="deploy-sum-label">Supervisions terrain J+3 / J+7 / J+15</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">17 j</div>
+                        <div class="deploy-sum-label">Dispositif total sur 15 jours</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-lockup reveal visible">
+                <img class="logo-cta-octogo" src="octogo.png" alt="OCTOGO">
+                <div class="cta-lockup-sep"></div>
+                <div class="cta-lockup-text">
+                    <div class="cta-lockup-text-top">Proposé par</div>
+                    <div class="cta-lockup-text-bottom">by OCTOGO formation & conseil</div>
+                </div>
+                <div class="cta-lockup-sep"></div>
+                <img class="logo-cta-nv" src="Nouvelair.png" alt="Nouvelair">
+            </div>
+
+            <div class="section-eyebrow reveal visible" style="justify-content: center; transition-delay: 100ms;"><span style="display:none;"></span>Engager le dispositif</div>
+            <h2 class="cta-title reveal visible" style="transition-delay: 200ms;">Chaque jour sans intervention<br>est un coût <em>mesurable.</em></h2>
+            <p class="cta-sub reveal visible" style="transition-delay: 300ms;">RUNWAY est prêt à être déployé. La session d'amorçage peut être activée en 3 semaines. Contactez l'équipe OCTOGO pour définir le calendrier et les cohortes prioritaires.</p>
+
+            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; transition-delay: 400ms;" class="reveal visible">
+                <button class="btn-gold"><i class="fas fa-calendar-check"></i> Planifier une session de présentation</button>
+                <button class="btn-outline" style="color:var(--cream);"><i class="fas fa-file-pdf"></i> Télécharger le dossier complet</button>
+            </div>
+
+            <div class="cta-contacts reveal visible" style="transition-delay: 500ms;">
+                <div>
+                    <div class="cta-contact-role">Direction pédagogique</div>
+                    <div class="cta-contact-name">OCTOGO</div>
+                    <div class="cta-contact-info">contact@octogo.tn</div>
+                </div>
+                <div style="width:1px;background:rgba(184,151,90,.2);"></div>
+                <div>
+                    <div class="cta-contact-role">Référente Nouvelair</div>
+                    <div class="cta-contact-name">Contact dédié</div>
+                    <div class="cta-contact-info">contact@octogo.tn</div>
+                </div>
+                <div style="width:1px;background:rgba(184,151,90,.2);"></div>
+                <div>
+                    <div class="cta-contact-role">Disponibilité</div>
+                    <div class="cta-contact-name">10h – 16h</div>
+                    <div class="cta-contact-info">+216 28 26 28 29</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-logos">
+            <img class="f-octogo" src="octogo.png" alt="OCTOGO">
+            <div class="footer-sep"></div>
+            <img class="f-nv" src="Nouvelair.png" alt="Nouvelair">
+        </div>
+        <div class="footer-copy">Offre confidentielle — Nouvelair × OCTOGO · 2025 · Document propriétaire OCTOGO</div>
+    </footer>
+
+    <script>
+        function switchSit(id) {
+            document.querySelectorAll('.sit-tab').forEach((t, i) => {
+                const keys = ['excedent', 'retard', 'surbooking', 'document', 'siege', 'annonce'];
+                t.classList.toggle('active', keys[i] === id);
+            });
+            document.querySelectorAll('.sit-panel').forEach(p => {
+                p.classList.toggle('active', p.id === 'sit-' + id);
+            });
+        }
+
+        function switchDeploy(id) {
+            document.querySelectorAll('.deploy-tab').forEach((t, i) => {
+                t.classList.toggle('active', ['superviseurs', 'agents'][i] === id);
+            });
+            document.querySelectorAll('.deploy-panel').forEach(p => {
+                p.classList.toggle('active', p.id === 'panel-' + id);
+            });
+        }
+
+        // Scroll reveal with stagger
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    io.unobserve(e.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+            const siblings = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+            const idx = siblings.indexOf(el);
+            if (idx > 0) el.style.transitionDelay = (idx * 100) + 'ms';
+            io.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
