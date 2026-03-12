@@ -1882,7 +1882,367 @@
             </div>
         </div>
     </section>
+    <!-- 6 PROFILS - Version élégante avec 2 images par profil -->
+    <section class="profiles-section" id="profils" style="padding-top: 40px;">
+        <div class="container">
+            <div class="section-eyebrow reveal visible" style="color:var(--gold);">6 profils passagers</div>
+            <h2 class="section-title reveal visible" style="color: var(--cream); transition-delay: 100ms;">Chaque passager active un <em style="color:var(--gold);">schéma prédictif</em> identifiable.</h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms; margin-bottom: 20px; color: rgba(245,240,232,0.7);">Ces profils ne sont pas des typologies de personnalité. Ce sont des organisations dynamiques activées — lisibles en moins de 10 secondes par un agent formé.</p>
 
+            <!-- BOUTONS PROFILS -->
+            <div class="profiles-buttons-container reveal visible" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 40px 0; padding: 10px;">
+                <button class="profile-btn" data-profile="1" onclick="showProfile(1, event)" style="background: transparent; color: #ffffff; border: 1px solid rgba(239,68,68,0.5); padding: 12px 28px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                P1 · Contrôleur
+            </button>
+                <button class="profile-btn" data-profile="2" onclick="showProfile(2, event)" style="background: transparent; color: #ffffff; border: 1px solid rgba(249,115,22,0.5); padding: 12px 28px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                P2 · Inquiet
+            </button>
+                <button class="profile-btn" data-profile="3" onclick="showProfile(3, event)" style="background: transparent; color: #ffffff; border: 1px solid rgba(168,85,247,0.5); padding: 12px 28px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                P3 · Silencieux
+            </button>
+                <button class="profile-btn" data-profile="4" onclick="showProfile(4, event)" style="background: transparent; color: #ffffff; border: 1px solid rgba(59,130,246,0.5); padding: 12px 28px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                P4 · Statutaire
+            </button>
+                <button class="profile-btn" data-profile="5" onclick="showProfile(5, event)" style="background: transparent; color: #ffffff; border: 1px solid rgba(225,29,72,0.5); padding: 12px 28px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                P5 · Impulsif
+            </button>
+                <button class="profile-btn" data-profile="6" onclick="showProfile(6, event)" style="background: transparent; color: #ffffff; border: 1px solid rgba(16,185,129,0.5); padding: 12px 28px; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                P6 · Coopératif
+            </button>
+            </div>
+
+            <!-- ZONE D'AFFICHAGE DES IMAGES -->
+            <div id="profile-display-area" class="reveal visible" style="margin: 30px 0 50px;">
+                <!-- Message par défaut -->
+                <div id="default-message" style="text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px dashed rgba(184,151,90,0.3);">
+                    <div style="font-size: 48px; color: var(--gold); opacity: 0.5; margin-bottom: 20px;">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <p style="color: var(--cream); font-family: 'Cormorant Garamond'; font-size: 22px; font-style: italic;">Sélectionnez un profil pour découvrir ses deux représentations</p>
+                    <p style="color: rgba(245,240,232,0.4); font-size: 14px; margin-top: 10px;">vue synthétique · fiche détaillée</p>
+                </div>
+
+                <!-- PROFIL 1 - Contrôleur -->
+                <div id="profile-1-content" class="profile-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(239,68,68,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #ef4444; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-gavel" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #ef4444; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">P1 · CONTRÔLEUR</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Vue d'ensemble</p>
+                                </div>
+                            </div>
+                            <img src="p/p1.jpeg" alt="Profil 1 - Vue simple" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(239,68,68,0.2); border: 2px solid rgba(239,68,68,0.3); cursor: pointer; transition: transform 0.3s;">
+                        </div>
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(239,68,68,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #ef4444; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-file-alt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #ef4444; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">FICHE DÉTAILLÉE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Format A4</p>
+                                </div>
+                            </div>
+                            <img src="p/p11.jpeg" alt="Profil 1 - Fiche détaillée" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(239,68,68,0.2); border: 2px solid rgba(239,68,68,0.3); cursor: pointer; transition: transform 0.3s;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFIL 2 - Inquiet -->
+                <div id="profile-2-content" class="profile-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(249,115,22,0.1), rgba(249,115,22,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(249,115,22,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #f97316; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-question-circle" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #f97316; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">P2 · INQUIET</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Vue d'ensemble</p>
+                                </div>
+                            </div>
+                            <img src="p/p2.jpeg" alt="Profil 2 - Vue simple" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(249,115,22,0.2); border: 2px solid rgba(249,115,22,0.3); cursor: pointer;">
+                        </div>
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(249,115,22,0.1), rgba(249,115,22,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(249,115,22,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #f97316; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-file-alt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #f97316; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">FICHE DÉTAILLÉE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Format A4</p>
+                                </div>
+                            </div>
+                            <img src="p/p22.jpeg" alt="Profil 2 - Fiche détaillée" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(249,115,22,0.2); border: 2px solid rgba(249,115,22,0.3); cursor: pointer;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFIL 3 - Silencieux -->
+                <div id="profile-3-content" class="profile-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(168,85,247,0.1), rgba(168,85,247,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(168,85,247,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-volume-mute" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #a855f7; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">P3 · SILENCIEUX</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Vue d'ensemble</p>
+                                </div>
+                            </div>
+                            <img src="p/p3.jpeg" alt="Profil 3 - Vue simple" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(168,85,247,0.2); border: 2px solid rgba(168,85,247,0.3); cursor: pointer;">
+                        </div>
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(168,85,247,0.1), rgba(168,85,247,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(168,85,247,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #a855f7; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-file-alt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #a855f7; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">FICHE DÉTAILLÉE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Format A4</p>
+                                </div>
+                            </div>
+                            <img src="p/p33.jpeg" alt="Profil 3 - Fiche détaillée" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(168,85,247,0.2); border: 2px solid rgba(168,85,247,0.3); cursor: pointer;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFIL 4 - Statutaire -->
+                <div id="profile-4-content" class="profile-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(59,130,246,0.1), rgba(59,130,246,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(59,130,246,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-crown" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #3b82f6; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">P4 · STATUTAIRE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Vue d'ensemble</p>
+                                </div>
+                            </div>
+                            <img src="p/p4.jpeg" alt="Profil 4 - Vue simple" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(59,130,246,0.2); border: 2px solid rgba(59,130,246,0.3); cursor: pointer;">
+                        </div>
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(59,130,246,0.1), rgba(59,130,246,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(59,130,246,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-file-alt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #3b82f6; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">FICHE DÉTAILLÉE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Format A4</p>
+                                </div>
+                            </div>
+                            <img src="p/p44.jpeg" alt="Profil 4 - Fiche détaillée" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(59,130,246,0.2); border: 2px solid rgba(59,130,246,0.3); cursor: pointer;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFIL 5 - Impulsif -->
+                <div id="profile-5-content" class="profile-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(225,29,72,0.1), rgba(225,29,72,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(225,29,72,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #e11d48; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-bolt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e11d48; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">P5 · IMPULSIF</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Vue d'ensemble</p>
+                                </div>
+                            </div>
+                            <img src="p/p5.jpeg" alt="Profil 5 - Vue simple" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(225,29,72,0.2); border: 2px solid rgba(225,29,72,0.3); cursor: pointer;">
+                        </div>
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(225,29,72,0.1), rgba(225,29,72,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(225,29,72,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #e11d48; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-file-alt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e11d48; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">FICHE DÉTAILLÉE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Format A4</p>
+                                </div>
+                            </div>
+                            <img src="p/p55.jpeg" alt="Profil 5 - Fiche détaillée" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(225,29,72,0.2); border: 2px solid rgba(225,29,72,0.3); cursor: pointer;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFIL 6 - Coopératif -->
+                <div id="profile-6-content" class="profile-content" style="display: none;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(16,185,129,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #10b981; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-handshake" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #10b981; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">P6 · COOPÉRATIF</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Vue d'ensemble</p>
+                                </div>
+                            </div>
+                            <img src="p/p6.jpeg" alt="Profil 6 - Vue simple" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(16,185,129,0.2); border: 2px solid rgba(16,185,129,0.3); cursor: pointer;">
+                        </div>
+                        <div class="profile-image-card" style="background: linear-gradient(145deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05)); border-radius: 24px; padding: 25px; border: 1px solid rgba(16,185,129,0.3);">
+                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                                <div style="width: 50px; height: 50px; background: #10b981; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-file-alt" style="color: white; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #10b981; font-family: 'DM Mono'; font-size: 14px; letter-spacing: 1px;">FICHE DÉTAILLÉE</h3>
+                                    <p style="color: var(--cream); font-size: 12px; opacity: 0.7;">Format A4</p>
+                                </div>
+                            </div>
+                            <img src="p/p66.jpeg" alt="Profil 6 - Fiche détaillée" onclick="openFullscreen(this)" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 30px rgba(16,185,129,0.2); border: 2px solid rgba(16,185,129,0.3); cursor: pointer;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SÉPARATEUR ÉLÉGANT -->
+            <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 30px 0;"></div>
+
+            <!-- TEXTE D'ANNONCE -->
+            <div class="training-announce reveal visible" style="text-align: center; margin: 40px 0; padding: 20px;">
+                <span style="font-family: 'Cormorant Garamond'; font-size: 28px; font-style: italic; color: var(--cream); letter-spacing: 0.5px;">
+                ✦ Voici comment nous allons entraîner vos équipes ✦
+            </span>
+            </div>
+
+            <!-- BOUTONS PROTOCOLES -->
+            <div class="protocol-toggle reveal visible" style="display: flex; justify-content: center; gap: 20px; margin: 40px 0;">
+                <button id="btn-agent" onclick="switchProtocol('agent')" style="padding: 16px 40px; background: var(--gold); color: var(--ink); border: none; border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; box-shadow: 0 5px 15px rgba(184,151,90,0.3);">
+                <i class="fas fa-user" style="margin-right: 10px;"></i> AGENT · REC²
+            </button>
+                <button id="btn-supervisor" onclick="switchProtocol('supervisor')" style="padding: 16px 40px; background: transparent; color: var(--cream); border: 2px solid var(--gold); border-radius: 50px; font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s;">
+                <i class="fas fa-users" style="margin-right: 10px;"></i> SUPERVISEUR · RELAY
+            </button>
+            </div>
+
+            <!-- PROTOCOLE AGENT (REC²) -->
+            <div id="protocol-agent" class="protocol-container" style="display: block;">
+                <div style="background: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 50px rgba(0,0,0,0.2);">
+                    <div style="background: linear-gradient(135deg, #B8975A, #D4B07A); padding: 30px 40px;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div style="font-size: 48px; color: var(--ink);"><i class="fas fa-bolt"></i></div>
+                            <div>
+                                <h3 style="font-family: 'Cormorant Garamond'; font-size: 36px; color: var(--ink); margin: 0;">REC²</h3>
+                                <p style="color: var(--ink); opacity: 0.8; font-size: 16px;">Protocole de désamorçage · 4 étapes séquentielles</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px; background: #F8F5F0;">
+                        <div style="background: white; border-radius: 16px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                            <div style="font-size: 42px; font-weight: 300; color: #A78BFA; margin-bottom: 15px;">R</div>
+                            <h4 style="font-family: 'DM Sans'; font-size: 16px; font-weight: 600; color: #1F2937; margin-bottom: 10px;">RECONNAÎTRE</h4>
+                            <p style="color: #6B7280; font-size: 14px; line-height: 1.6;">Nommer l'émotion sans la valider · Amygdale ↓</p>
+                            <div style="margin-top: 20px; padding: 15px; background: #F3F4F6; border-radius: 8px; font-style: italic; color: #4B5563; font-size: 13px;">
+                                "Je comprends que cette situation soit frustrante"
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 16px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                            <div style="font-size: 42px; font-weight: 300; color: #FBBF24; margin-bottom: 15px;">E</div>
+                            <h4 style="font-family: 'DM Sans'; font-size: 16px; font-weight: 600; color: #1F2937; margin-bottom: 10px;">EXPLIQUER</h4>
+                            <p style="color: #6B7280; font-size: 14px; line-height: 1.6;">Donner du sens à la règle · Énergie libre ↓</p>
+                            <div style="margin-top: 20px; padding: 15px; background: #F3F4F6; border-radius: 8px; font-style: italic; color: #4B5563; font-size: 13px;">
+                                "Cette règle existe pour votre sécurité"
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 16px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                            <div style="font-size: 42px; font-weight: 300; color: #34D399; margin-bottom: 15px;">C</div>
+                            <h4 style="font-family: 'DM Sans'; font-size: 16px; font-weight: 600; color: #1F2937; margin-bottom: 10px;">CHOISIR</h4>
+                            <p style="color: #6B7280; font-size: 14px; line-height: 1.6;">Offrir deux options réelles · Contrôle ↑</p>
+                            <div style="margin-top: 20px; padding: 15px; background: #F3F4F6; border-radius: 8px; font-style: italic; color: #4B5563; font-size: 13px;">
+                                "Nous avons deux possibilités"
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 16px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                            <div style="font-size: 42px; font-weight: 300; color: #60A5FA; margin-bottom: 15px;">C²</div>
+                            <h4 style="font-family: 'DM Sans'; font-size: 16px; font-weight: 600; color: #1F2937; margin-bottom: 10px;">CO-CONSTRUIRE</h4>
+                            <p style="color: #6B7280; font-size: 14px; line-height: 1.6;">Aligner les modèles prédictifs · Confiance ↑</p>
+                            <div style="margin-top: 20px; padding: 15px; background: #F3F4F6; border-radius: 8px; font-style: italic; color: #4B5563; font-size: 13px;">
+                                "Voyons ensemble la meilleure solution"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROTOCOLE SUPERVISEUR (RELAY) -->
+            <div id="protocol-supervisor" class="protocol-container" style="display: none;">
+                <div style="background: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 50px rgba(0,0,0,0.2);">
+                    <div style="background: linear-gradient(135deg, #B8975A, #D4B07A); padding: 30px 40px;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div style="font-size: 48px; color: var(--ink);"><i class="fas fa-sitemap"></i></div>
+                            <div>
+                                <h3 style="font-family: 'Cormorant Garamond'; font-size: 36px; color: var(--ink); margin: 0;">RELAY</h3>
+                                <p style="color: var(--ink); opacity: 0.8; font-size: 16px;">Séquence superviseur · 5 phases</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 40px; background: #F8F5F0;">
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <div style="background: white; border-radius: 16px; padding: 25px; border-left: 5px solid #B8975A;">
+                                <div style="display: flex; gap: 25px; align-items: flex-start;">
+                                    <div style="font-size: 36px; font-weight: 300; color: #B8975A; min-width: 60px;">R</div>
+                                    <div>
+                                        <h4 style="font-family: 'DM Sans'; font-size: 18px; font-weight: 600; color: #1F2937;">Régulation préalable</h4>
+                                        <p style="color: #6B7280; margin: 10px 0;">Le superviseur régule son système nerveux avant d'intervenir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 16px; padding: 25px; border-left: 5px solid #B8975A;">
+                                <div style="display: flex; gap: 25px; align-items: flex-start;">
+                                    <div style="font-size: 36px; font-weight: 300; color: #B8975A; min-width: 60px;">E</div>
+                                    <div>
+                                        <h4 style="font-family: 'DM Sans'; font-size: 18px; font-weight: 600; color: #1F2937;">Entrée calibrée</h4>
+                                        <p style="color: #6B7280; margin: 10px 0;">Prosodie, posture et distance adaptées au profil activé.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 16px; padding: 25px; border-left: 5px solid #B8975A;">
+                                <div style="display: flex; gap: 25px; align-items: flex-start;">
+                                    <div style="font-size: 36px; font-weight: 300; color: #B8975A; min-width: 60px;">L</div>
+                                    <div>
+                                        <h4 style="font-family: 'DM Sans'; font-size: 18px; font-weight: 600; color: #1F2937;">Lecture dynamique</h4>
+                                        <p style="color: #6B7280; margin: 10px 0;">Évaluer l'état du passager, de l'agent et la dynamique triadique.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 16px; padding: 25px; border-left: 5px solid #B8975A;">
+                                <div style="display: flex; gap: 25px; align-items: flex-start;">
+                                    <div style="font-size: 36px; font-weight: 300; color: #B8975A; min-width: 60px;">A</div>
+                                    <div>
+                                        <h4 style="font-family: 'DM Sans'; font-size: 18px; font-weight: 600; color: #1F2937;">Action adaptée</h4>
+                                        <p style="color: #6B7280; margin: 10px 0;">3 niveaux d'intervention : Persuadeur, Corrigeur, Prise en charge.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: white; border-radius: 16px; padding: 25px; border-left: 5px solid #B8975A;">
+                                <div style="display: flex; gap: 25px; align-items: flex-start;">
+                                    <div style="font-size: 36px; font-weight: 300; color: #B8975A; min-width: 60px;">Y</div>
+                                    <div>
+                                        <h4 style="font-family: 'DM Sans'; font-size: 18px; font-weight: 600; color: #1F2937;">Yield — Clôture</h4>
+                                        <p style="color: #6B7280; margin: 10px 0;">Céder le contrôle au passager. Débrief immédiat avec l'agent.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL POUR AGRANDIR LES IMAGES -->
+    <div id="image-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: pointer;">
+        <span onclick="closeModal()" style="position: absolute; top: 30px; right: 50px; color: white; font-size: 50px; cursor: pointer; z-index: 1001;">&times;</span>
+        <img id="modal-image" src="" style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px;">
+    </div>
     <!-- PROBLÈME -->
     <section class="prob-section" id="probleme">
         <div class="container">
@@ -3003,6 +3363,90 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        // Fonction pour afficher les images d'un profil
+        function showProfile(profileNumber, event) {
+            // Cacher tous les contenus
+            document.querySelectorAll('.profile-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById('default-message').style.display = 'none';
+
+            // Afficher le contenu du profil sélectionné
+            document.getElementById('profile-' + profileNumber + '-content').style.display = 'block';
+
+            // Style des boutons
+            document.querySelectorAll('.profile-btn').forEach(btn => {
+                btn.style.background = 'transparent';
+                btn.style.color = '#ffffff';
+                btn.style.transform = 'scale(1)';
+                btn.style.borderColor = '';
+            });
+
+            // Mettre en valeur le bouton actif
+            event.target.style.background = 'rgba(184,151,90,0.2)';
+            event.target.style.color = 'var(--gold)';
+            event.target.style.transform = 'scale(1.05)';
+            event.target.style.borderColor = 'var(--gold)';
+        }
+
+        // Fonction pour basculer entre les protocoles
+        function switchProtocol(type) {
+            const btnAgent = document.getElementById('btn-agent');
+            const btnSupervisor = document.getElementById('btn-supervisor');
+            const protocolAgent = document.getElementById('protocol-agent');
+            const protocolSupervisor = document.getElementById('protocol-supervisor');
+
+            if (type === 'agent') {
+                protocolAgent.style.display = 'block';
+                protocolSupervisor.style.display = 'none';
+                btnAgent.style.background = 'var(--gold)';
+                btnAgent.style.color = 'var(--ink)';
+                btnAgent.style.border = 'none';
+                btnSupervisor.style.background = 'transparent';
+                btnSupervisor.style.color = 'var(--cream)';
+                btnSupervisor.style.border = '2px solid var(--gold)';
+            } else {
+                protocolAgent.style.display = 'none';
+                protocolSupervisor.style.display = 'block';
+                btnSupervisor.style.background = 'var(--gold)';
+                btnSupervisor.style.color = 'var(--ink)';
+                btnSupervisor.style.border = 'none';
+                btnAgent.style.background = 'transparent';
+                btnAgent.style.color = 'var(--cream)';
+                btnAgent.style.border = '2px solid var(--gold)';
+            }
+        }
+
+        // Fonction pour ouvrir l'image en grand
+        function openFullscreen(img) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+        }
+
+        // Fonction pour fermer le modal
+        function closeModal() {
+            document.getElementById('image-modal').style.display = 'none';
+        }
+
+        // Fermer le modal avec la touche Échap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('default-message').style.display = 'block';
+
+            // Cacher tous les profils au chargement
+            for (let i = 1; i <= 6; i++) {
+                const elem = document.getElementById('profile-' + i + '-content');
+                if (elem) elem.style.display = 'none';
+            }
         });
     </script>
 
