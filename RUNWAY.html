@@ -1274,6 +1274,36 @@
             color: rgba(138, 150, 168, .4);
             font-style: italic;
         }
+        /* NUDGE TERRAIN */
+.nudge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.nudge-body {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.55;
+    font-style: italic;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+@keyframes nudgePop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+.pf-sb-pop {
+    animation: nudgePop .18s ease !important;
+}
         /* ══ DÉPLOIEMENT ════════════════════════════════════════════════════════ */
         
         .deploy-section {
@@ -3191,7 +3221,78 @@
 
         </div>
     </section>
+    <!-- CARTOGRAPHIE T0 -->
+<section id="cartographie" style="background:var(--navy);padding:80px 0 60px;border-top:1px solid rgba(184,151,90,.15);">
+  <div class="container">
+    <div class="section-eyebrow reveal" style="justify-content:center;"><span></span>Le Seuil <span style="font-size:10px;font-family:'DM Mono',monospace;opacity:.6;">· Protocole T0 · TRIVIUM</span></div>
+    <h2 class="reveal visible" style="text-align:center;font-size:clamp(28px,4vw,42px);color:var(--cream);margin-bottom:16px;">Avant le Jour 1, <em style="color:var(--gold);">cartographier le réel.</em></h2>
+    <p class="reveal visible" style="text-align:center;color:var(--slate);max-width:640px;margin:0 auto 48px;font-size:16px;line-height:1.8;">RUNWAY ne démarre pas le Jour 1 avec des hypothèses. Il démarre avec une cartographie précise de l'état de départ — trois voies simultanées, un point de convergence, une baseline qui permettra de mesurer la transformation réelle.</p>
 
+    <div class="reveal visible" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;">
+      <div style="background:rgba(24,95,165,.12);border:1px solid rgba(24,95,165,.3);border-radius:16px;padding:24px;text-align:center;">
+        <div style="font-size:32px;margin-bottom:12px;">👤</div>
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#378ADD;font-weight:600;margin-bottom:8px;">Voie 1</div>
+        <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Agents</div>
+        <div style="font-size:13px;color:var(--slate);line-height:1.6;">Le Souffle · Robustesse · Savoir à quoi s'attendre · Lire le passager · Sens</div>
+        <div style="margin-top:12px;font-size:11px;color:#378ADD;">13 questions · 6 min</div>
+      </div>
+      <div style="background:rgba(15,110,86,.12);border:1px solid rgba(15,110,86,.3);border-radius:16px;padding:24px;text-align:center;">
+        <div style="font-size:32px;margin-bottom:12px;">👥</div>
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#1D9E75;font-weight:600;margin-bottom:8px;">Voie 2</div>
+        <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Superviseurs</div>
+        <div style="font-size:13px;color:var(--slate);line-height:1.6;">Dimensions agents + posture RELAY · Variable de stabilité de la triade</div>
+        <div style="margin-top:12px;font-size:11px;color:#1D9E75;">16 questions · 8 min</div>
+      </div>
+      <div style="background:rgba(133,79,11,.12);border:1px solid rgba(133,79,11,.3);border-radius:16px;padding:24px;text-align:center;">
+        <div style="font-size:32px;margin-bottom:12px;">🏛</div>
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#BA7517;font-weight:600;margin-bottom:8px;">Voie 3</div>
+        <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Management</div>
+        <div style="font-size:13px;color:var(--slate);line-height:1.6;">Direction générale · Management intermédiaire · Management de proximité</div>
+        <div style="margin-top:12px;font-size:11px;color:#BA7517;">10 questions · 7 min</div>
+      </div>
+    </div>
+
+    <div class="reveal visible" style="background:rgba(184,151,90,.06);border:1px solid rgba(184,151,90,.2);border-radius:16px;padding:28px;margin-bottom:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:240px;">
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:8px;">Ce que votre environnement fait de vos efforts <span style="font-size:11px;font-family:'DM Mono',monospace;opacity:.6;">IEP</span></div>
+        <p style="color:var(--slate);font-size:14px;margin:0;line-height:1.7;">Mesure la qualité des conditions organisationnelles créées à chaque niveau. Un programme de formation produit des effets durables uniquement si l'environnement soutient leur application. L'IEP est calculé simultanément pour les trois voies.</p>
+      </div>
+      <div style="text-align:center;min-width:120px;">
+        <div style="font-size:48px;font-weight:700;color:var(--gold);line-height:1;">Ω</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px;">Élan collectif<br><span style="font-size:10px;font-family:'DM Mono',monospace;opacity:.6;">Conatus Collectif Ω · Point TRIVIUM</span></div>
+      </div>
+    </div>
+
+    <div class="reveal visible" style="text-align:center;">
+      <button onclick="openPlatform()" style="background:var(--gold);color:var(--ink);border:none;border-radius:12px;padding:16px 36px;font-size:16px;font-weight:600;cursor:pointer;letter-spacing:.02em;">Démarrer la cartographie T0 →</button>
+      <p style="color:var(--slate);font-size:12px;margin-top:12px;">Accès sécurisé · Données confidentielles · Résultats instantanés</p>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY PLATEFORME T0 -->
+<div id="platform-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(14,17,23,.97);z-index:9999;overflow-y:auto;">
+  <div style="max-width:720px;margin:0 auto;padding:1rem 1rem 4rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 0 1rem;border-bottom:1px solid rgba(184,151,90,.2);margin-bottom:1.5rem;">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--cream);">RUNWAY · Nouvelair — <span style="font-size:11px;opacity:.75;">Le Seuil</span></div>
+        <div style="font-size:11px;color:var(--slate);margin-top:2px;">Les trois voies qui convergent · Cartographie TRIVIUM</div>
+      </div>
+      <button onclick="closePlatform()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--cream);border-radius:8px;padding:6px 14px;cursor:pointer;font-size:13px;">✕ Fermer</button>
+    </div>
+
+    <!-- PLATEFORME INTÉGRÉE -->
+    <div id="platform-app" style="background:white;border-radius:16px;overflow:hidden;">
+      <div style="padding:1.5rem 1.5rem 3rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;" id="pf-root">
+        <!-- SCREENS - Le contenu sera injecté par JavaScript -->
+        <div id="pf-sc-intro" class="pf-screen pf-active">
+          <!-- Le contenu de l'intro sera généré par JS -->
+        </div>
+        <!-- Les autres écrans sont gérés dynamiquement -->
+      </div>
+    </div>
+  </div>
+</div>
     <!-- CTA -->
     <section class="cta-section">
         <div class="container">
@@ -3380,6 +3481,1021 @@
                 if (elem) elem.style.display = 'none';
             }
         });
+
+// ── PLATFORM OVERLAY ─────────────────────────────
+function openPlatform(){
+  document.getElementById('platform-overlay').style.display='block';
+  document.body.style.overflow='hidden';
+  // Initialiser la plateforme si pas encore fait
+  if(!window._pfInitialized) initPlatform();
+}
+
+function closePlatform(){
+  document.getElementById('platform-overlay').style.display='none';
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closePlatform();
+});
+
+// ── DONNÉES PLATEFORME ─────────────────────────
+const PF_RC={
+  agent:{m:'#185FA5',bg:'#E6F1FB'},
+  superviseur:{m:'#0F6E56',bg:'#E1F5EE'},
+  'mgt-strat':{m:'#6B3FA0',bg:'#EEEDFE'},
+  'mgt-inter':{m:'#854F0B',bg:'#FAEEDA'},
+  'mgt-prox':{m:'#8B1A1A',bg:'#FCEBEB'}
+};
+
+const PF_ROLE_LBL={
+  agent:'Agent · Voie 1',
+  superviseur:'Superviseur · Voie 2',
+  'mgt-strat':'Direction générale · Voie 3',
+  'mgt-inter':'Management intermédiaire · Voie 3',
+  'mgt-prox':'Management de proximité · Voie 3'
+};
+
+const PF_IPA_LBL={
+  agent:'Ce qui vous porte sous pression',
+  superviseur:'Ce qui vous porte sous pression',
+  'mgt-strat':'Ce qui vous porte sous pression',
+  'mgt-inter':'Ce qui vous porte sous pression',
+  'mgt-prox':'Ce qui vous porte sous pression'
+};
+
+const PF_ROLE_INFO={
+  agent:{ctx:"Voie 1 — Corps Humain. Ce questionnaire mesure vos ressources actuelles — pas votre performance. Il calibre le programme sur votre réalité et votre capacité de départ.",triv:"Votre contribution forme le vecteur ΨH — l'état réel de la ligne frontière au moment T0."},
+  superviseur:{ctx:"Voie 2 — Variable de stabilité. Mesure votre propre capacité d'agir et votre posture dans la triade agent–superviseur–passager.",triv:"Votre contribution forme le vecteur ΨE triade — la stabilité du lien entre les agents et l'organisation."},
+  'mgt-strat':{ctx:"Voie 3 · Direction générale. Vos prédictions et les conditions organisationnelles que vous créez déterminent si les acquis de la formation persisteront. Cette évaluation vous concerne directement.",triv:"Votre contribution forme le vecteur ΨE stratégique — la qualité de l'environnement organisationnel supérieur."},
+  'mgt-inter':{ctx:"Voie 3 · Management intermédiaire. Votre lecture du programme et votre soutien aux superviseurs sont des leviers déterminants pour la durabilité des acquis.",triv:"Votre contribution forme le vecteur ΨE médiateur — le relais entre la stratégie et le terrain."},
+  'mgt-prox':{ctx:"Voie 3 · Management de proximité. Votre relation au programme détermine ce que vos équipes en feront au quotidien.",triv:"Votre contribution forme le vecteur ΨE terrain — l'environnement immédiat des agents et superviseurs."}
+};
+
+const PF_DIMS={
+  L0:{l:'Le Souffle — Régulation physiologique',c:'#534AB7',bg:'#EEEDFE',n:"Capacité à retrouver le calme avant d'agir. Fondement de tout protocole de désamorçage."},
+  B:{l:'B — Robustesse',c:'#185FA5',bg:'#E6F1FB',n:"Capacité d'absorption des chocs et de récupération entre les interactions."},
+  A:{l:'A — Savoir à quoi s\'attendre',c:'#BA7517',bg:'#FAEEDA',n:"Lisibilité du quotidien et confiance dans la capacité à faire face."},
+  N:{l:'N — Lire le passager avant qu\'il parle',c:'#0F6E56',bg:'#E1F5EE',n:"Capacité d'adaptation aux comportements changeants — liée aux 6 profils RUNWAY."},
+  I:{l:'I — Sens et ancrage',c:'#A32D2D',bg:'#FCEBEB',n:"Sentiment que le travail a du sens et que le soutien de la triade est réel."},
+  S:{l:'RELAY — Posture de régulation',c:'#3B6D11',bg:'#EAF3DE',n:"Capacité à se réguler en premier et à soutenir l'apprentissage de l'équipe."},
+  P:{l:'Prédictions',c:'#6B3FA0',bg:'#EEEDFE',n:"Représentation de ce que ce programme va produire."},
+  C:{l:'Critères de succès',c:'#854F0B',bg:'#FAEEDA',n:"Indicateurs utilisés pour évaluer l'efficacité."},
+  E:{l:'Environnement porteur',c:'#0F6E56',bg:'#E1F5EE',n:"Qualité des conditions organisationnelles. Détermine si les acquis se consolident ou s'érodent."},
+  T:{l:'Soutien à la triade',c:'#185FA5',bg:'#E6F1FB',n:"Capacité à soutenir activement les équipes dans leur rôle post-formation."},
+  V:{l:'Vision terrain',c:'#534AB7',bg:'#EEEDFE',n:"Compréhension précise des réalités vécues par les équipes."}
+};
+
+const PF_INTERP={
+  L0:{h:"Régulation disponible — peut activer le protocole avant de répondre.",m:"Partielle — efficace en situation modérée.",l:"Déficitaire — priorité absolue du Jour 1."},
+  B:{h:"Réserves solides — absorption et récupération rapide.",m:"Partielle — vulnérable en cumul de tensions.",l:"Zone de fragilité — les conditions épuisent les réserves."},
+  A:{h:"Clarté intacte.",m:"Incertitude partielle.",l:"Surcharge prédictive — REC² difficile à activer séquentiellement."},
+  N:{h:"Lecture disponible — base pour les 6 profils RUNWAY.",m:"Partielle — escalades rapides difficiles.",l:"Désorientation — répond au contenu, pas au profil activé."},
+  I:{h:"Sens fort et soutien triadique réel.",m:"Fragile — le débrief Y déterminant.",l:"Déficitaire — risque désengagement silencieux."},
+  S:{h:"Posture solide — variable stable dans la triade.",m:"Partielle — efficace en situations préparées.",l:"Fragilité — risque d'amplification de l'escalade."},
+  P:{h:"Prédictions alignées.",m:"Partiellement alignées.",l:"En décalage — risque de déception."},
+  C:{h:"Critères cohérents.",m:"Partiellement définis.",l:"Critères implicites dominants."},
+  E:{h:"Environnement porteur — les acquis peuvent se consolider.",m:"Partiellement porteur.",l:"Contraignant — les acquis risquent de disparaître en 30–60 jours."},
+  T:{h:"Soutien actif structuré.",m:"Présent mais non structuré.",l:"Absent — RELAY restera théorique."},
+  V:{h:"Vision précise.",m:"Partielle.",l:"Décalage terrain-décision."}
+};
+
+const PF_DIM_BY={
+  agent:['L0','B','A','N','I'],
+  superviseur:['L0','B','A','N','I','S'],
+  'mgt-strat':['P','C','E','V','T'],
+  'mgt-inter':['V','T','P','C','E'],
+  'mgt-prox':['T','V','E','P','C']
+};
+
+const PF_FREQ=['Jamais','Rarement','Parfois','Souvent','Toujours'];
+const PF_AGMT=['Pas du tout','Plutôt non','Neutre','Plutôt oui','Tout à fait'];
+
+const PF_QA=[
+  {d:'L0',s:'Le Souffle',t:"Quand vous sentez votre tension monter face à un passager difficile, vous arrivez à récupérer votre calme avant de répondre.",sc:'f'},
+  {d:'B',s:'Robustesse',t:"Quand votre journée prend un tournant inattendu, vous arrivez à maintenir votre équilibre.",sc:'f'},
+  {d:'A',s:'Savoir à quoi s\'attendre',t:"Vous savez à quoi vous attendre dans votre journée de travail avant de commencer.",sc:'f'},
+  {d:'N',s:'Lire le passager',t:"Face à un passager dont le comportement change brusquement, vous arrivez à vous adapter rapidement.",sc:'f'},
+  {d:'I',s:'Sens et ancrage',t:"Quand une situation difficile se produit au comptoir, vous savez que vous ne serez pas seul pour la gérer.",sc:'f'},
+  {d:'B',s:'Robustesse',t:"Après une interaction difficile avec un passager, vous arrivez à récupérer rapidement avant l'interaction suivante.",sc:'f'},
+  {d:'A',s:'Savoir à quoi s\'attendre',t:"En dehors du travail, vous arrivez à déconnecter suffisamment pour vous reposer.",sc:'f'},
+  {d:'N',s:'Lire le passager',t:"Vous comprenez ce qui se passe dans le comportement d'un passager mécontent avant même qu'il le verbalise.",sc:'f'},
+  {d:'I',s:'Sens et ancrage',t:"Vous voyez un avenir possible dans ce que vous faites ici.",sc:'f'},
+  {d:'B',s:'Robustesse',t:"Vous avez les ressources suffisantes pour faire votre travail correctement.",sc:'f'},
+  {d:'A',s:'Savoir à quoi s\'attendre',t:"Vous vous sentez en confiance pour gérer les situations difficiles qui peuvent surgir.",sc:'f'},
+  {d:'N',s:'Lire le passager',t:"Quand les décisions qui vous concernent changent sans explication, vous arrivez à maintenir votre cap.",sc:'f'},
+  {d:'I',s:'Sens et ancrage',t:"Vous comprenez en quoi votre rôle contribue à l'expérience du passager et à la réputation de Nouvelair.",sc:'f'}
+];
+
+const PF_QR=[
+  {d:'S',s:'Posture RELAY',t:"Avant d'intervenir dans une situation tendue, vous prenez le temps de vous réguler vous-même.",sc:'f'},
+  {d:'S',s:'Posture RELAY',t:"Vous arrivez à lire l'état émotionnel de vos agents à distance — sans qu'ils vous le disent.",sc:'f'},
+  {d:'S',s:'Posture RELAY',t:"Après une intervention difficile, vous prenez le temps de débriefer avec l'agent pour ancrer l'apprentissage.",sc:'f'}
+];
+
+const PF_QMS=[
+  {d:'P',s:'Prédictions',t:"Ce programme va produire des changements visibles dans les 30 à 60 jours suivant la formation.",sc:'a'},
+  {d:'P',s:'Prédictions',t:"Les tensions actuelles ont principalement une origine dans le manque de formation — davantage que dans les conditions de travail.",sc:'a'},
+  {d:'C',s:'Critères de succès',t:"Dans 6 mois, je saurai que ce programme a fonctionné parce que des indicateurs mesurables auront évolué.",sc:'a'},
+  {d:'C',s:'Critères de succès',t:"Je suis prêt à faire évoluer certaines pratiques organisationnelles si le programme montre que l'environnement impacte les résultats.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Les conditions actuelles de travail permettent à un agent bien formé d'appliquer ce qu'il a appris.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Notre organisation est en mesure de soutenir structurellement les superviseurs dans leur nouveau rôle.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Les tensions entre les différentes catégories de personnel ne compromettront pas les acquis de la formation.",sc:'a'},
+  {d:'V',s:'Vision terrain',t:"J'ai une vision précise de ce que vivent quotidiennement les agents au comptoir.",sc:'a'},
+  {d:'P',s:'Prédictions',t:"Ce programme s'inscrit dans une démarche plus large d'amélioration des conditions — pas seulement de formation technique.",sc:'a'},
+  {d:'T',s:'Soutien à la triade',t:"Je vais activement communiquer mon soutien à ce programme aux équipes.",sc:'a'}
+];
+
+const PF_QMI=[
+  {d:'V',s:'Vision terrain',t:"J'ai une vision précise de ce que vivent quotidiennement les agents — pas seulement les chiffres.",sc:'a'},
+  {d:'T',s:'Soutien à la triade',t:"Je vais activer un soutien structuré à mes superviseurs dans leur nouveau rôle.",sc:'a'},
+  {d:'P',s:'Prédictions',t:"Je pense que ce programme va changer quelque chose de réel dans l'atmosphère de travail.",sc:'a'},
+  {d:'C',s:'Critères de succès',t:"Je sais précisément ce que je vais observer pour dire que la formation a produit ses effets.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Dans ma zone de responsabilité, les conditions que je crée permettent aux agents d'appliquer ce qu'ils apprennent.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Les tensions dans ma zone n'interfèrent pas avec ma capacité à soutenir ce programme.",sc:'a'},
+  {d:'T',s:'Soutien à la triade',t:"Je me sens concerné et impliqué dans ce programme — pas seulement informé.",sc:'a'},
+  {d:'V',s:'Vision terrain',t:"Je comprends pourquoi les agents réagissent parfois de façon défensive ou épuisée.",sc:'a'},
+  {d:'P',s:'Prédictions',t:"Je suis prêt à faire évoluer certaines pratiques si la formation montre qu'elles contribuent aux tensions.",sc:'a'},
+  {d:'C',s:'Critères de succès',t:"Dans 6 mois, je vais mesurer l'évolution de la dynamique — pas seulement les réclamations.",sc:'a'}
+];
+
+const PF_QMP=[
+  {d:'T',s:'Soutien à la triade',t:"Je me sens prêt à jouer un rôle actif dans le soutien aux agents et superviseurs pendant et après la formation.",sc:'a'},
+  {d:'V',s:'Vision terrain',t:"Je comprends précisément les tensions que vivent mes équipes au comptoir.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Les conditions que je crée au quotidien permettent à mes équipes d'appliquer ce qu'elles apprennent.",sc:'a'},
+  {d:'T',s:'Soutien à la triade',t:"Je vais trouver des occasions concrètes de renforcer ce que mes équipes apprennent — dans les briefings et moments informels.",sc:'a'},
+  {d:'P',s:'Prédictions',t:"Je pense que ce programme va apporter quelque chose d'utile — pas juste des techniques supplémentaires.",sc:'a'},
+  {d:'E',s:'Environnement porteur',t:"Je me sens reconnu et inclus dans ce programme — pas seulement comme intermédiaire.",sc:'a'},
+  {d:'C',s:'Critères de succès',t:"Dans 30 jours, je saurai que quelque chose a changé parce que j'observerai des comportements précis.",sc:'a'},
+  {d:'V',s:'Vision terrain',t:"Je suis capable de nommer les 2 ou 3 situations qui génèrent le plus de tension dans mon équipe.",sc:'a'},
+  {d:'T',s:'Soutien à la triade',t:"Je me sens à l'aise pour donner un retour positif à un agent quand il applique ce qu'il a appris.",sc:'a'},
+  {d:'P',s:'Prédictions',t:"Ce programme s'adresse à mes équipes, mais je vais en tirer quelque chose pour ma propre façon de manager.",sc:'a'}
+];
+
+const PF_QB={
+  agent:PF_QA,
+  superviseur:[...PF_QA,...PF_QR],
+  'mgt-strat':PF_QMS,
+  'mgt-inter':PF_QMI,
+  'mgt-prox':PF_QMP
+};
+
+const PF_ANCHOR = {
+  L0: "Avant de répondre — respirez. C'est déjà le protocole.",
+  B:  "Vous avez des réserves. RUNWAY va apprendre à les protéger.",
+  A:  "La clarté se construit. Vous avez déjà commencé.",
+  N:  "Vous lisez les gens. RUNWAY va rendre cette lecture opérationnelle.",
+  I:  "Le sens est votre force. Ne le laissez pas s'éroder.",
+  S:  "Votre régulation précède celle de votre équipe. C'est déjà du RELAY.",
+  P:  "Vos prédictions guident vos équipes. Calibrez-les avec soin.",
+  C:  "Ce que vous mesurez, vous pouvez le transformer.",
+  E:  "Un environnement porteur se construit. Vous en êtes l'architecte.",
+  T:  "Votre soutien est la variable de durabilité du programme.",
+  V:  "Vous voyez le terrain. Rapprochez les décisions de ce que vous voyez."
+};
+
+const PF_CHUNKS = {
+  agent: [
+    {end:3, icon:'🌬️', msg:'Vous venez de mesurer votre socle. Ce qui tient en vous quand ça turbule.', sub:'Bloc 1 / 3 · Le Souffle & la Robustesse', prog:1},
+    {end:8, icon:'👁️', msg:'Votre système nerveux commence à se révéler. Encore quelques questions.', sub:'Bloc 2 / 3 · Clarté & Lecture', prog:2}
+  ],
+  superviseur: [
+    {end:4, icon:'🌬️', msg:'Vous venez de mesurer votre socle. Ce qui tient en vous quand ça turbule.', sub:'Bloc 1 / 3 · Le Souffle & la Robustesse', prog:1},
+    {end:9, icon:'👁️', msg:'Votre capacité de lecture se précise. La triade commence à prendre forme.', sub:'Bloc 2 / 3 · Clarté & Lecture', prog:2}
+  ]
+};
+
+const PF_CHUNKS_DEFAULT = [
+  {end:3, icon:'🌬️', msg:'Premier bloc complété. Votre positionnement prend forme.', sub:'Bloc 1 / 3', prog:1},
+  {end:6, icon:'🔍', msg:'À mi-chemin. Vos dimensions managériales se précisent.', sub:'Bloc 2 / 3', prog:2}
+];
+
+const PF_TRANS = [
+  "Ce que vous venez de révéler — c'est votre point de départ réel.",
+  "Pas une évaluation. Une cartographie. Voici ce qui vous appartient.",
+  "Votre système nerveux vient de parler. Écoutez ce qu'il dit.",
+  "Le questionnaire est terminé. Ce qui suit vous appartient."
+];
+
+// Variables d'état
+let pfRole='', pfAInfo={}, pfQList=[], pfAnswers=[], pfCur=0;
+
+function pfGo(id){
+  document.querySelectorAll('.pf-screen').forEach(s=>s.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+function pfShowAccess(){
+  pfGo('pf-sc-access');
+}
+
+function pfSelRole(r){
+  pfRole=r;
+  const c=PF_RC[r]||{m:'#185FA5',bg:'#E6F1FB'};
+  ['agent','superviseur','mgt-strat','mgt-inter','mgt-prox'].forEach(x=>{
+    const el=document.getElementById('pf-rc-'+x);
+    if(!el) return;
+    el.style.border='1px solid #eee';
+    el.style.background='white';
+  });
+  const el=document.getElementById('pf-rc-'+r);
+  if(el){
+    el.style.border='2px solid '+c.m;
+    el.style.background=c.bg;
+  }
+  const info=PF_ROLE_INFO[r];
+  const ctx=document.getElementById('pf-role-ctx');
+  ctx.style.display='block';
+  ctx.style.borderLeftColor=c.m;
+  ctx.style.background=c.bg.replace('FB','F0').replace('EE','E8');
+  ctx.textContent=info.ctx;
+  const btn=document.getElementById('pf-btn-to-info');
+  btn.disabled=false;
+  btn.style.opacity='1';
+  document.getElementById('pf-info-title').textContent=PF_ROLE_LBL[r]||r;
+  const aw=document.getElementById('pf-anc-wrap');
+  if(r==='agent'){
+    aw.innerHTML='<label style="font-size:12px;color:#666;display:block;margin-bottom:4px;">Ancienneté au poste</label><select id="pf-inp-anc" onchange="pfChkInfo()" style="width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;display:block;background:white;"><option value="">Sélectionner</option><option value="lt1">Moins de 1 an</option><option value="1to3">1 à 3 ans</option><option value="3to7">3 à 7 ans</option><option value="gt7">Plus de 7 ans</option></select>';
+  } else if(r.startsWith('mgt')){
+    aw.innerHTML='<label style="font-size:12px;color:#666;display:block;margin-bottom:4px;">Fonction précise</label><input type="text" id="pf-inp-anc" placeholder="ex. Chef de département opérations" oninput="pfChkInfo()" style="width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;"/>';
+  } else {
+    aw.innerHTML='';
+  }
+  pfChkInfo();
+}
+
+function pfChkInfo(){
+  const n=document.getElementById('pf-inp-name')?document.getElementById('pf-inp-name').value.trim():'';
+  const a=document.getElementById('pf-inp-airport')?document.getElementById('pf-inp-airport').value:'';
+  const el=document.getElementById('pf-inp-anc');
+  const anc=el?el.value.trim():'ok';
+  const btn=document.getElementById('pf-btn-start');
+  if(btn){
+    const ok=!!(n&&a&&anc);
+    btn.disabled=!ok;
+    btn.style.opacity=ok?'1':'.35';
+  }
+}
+
+function pfStart(){
+  const el=document.getElementById('pf-inp-anc');
+  pfAInfo={
+    name:document.getElementById('pf-inp-name').value.trim(),
+    airport:document.getElementById('pf-inp-airport').value,
+    role:pfRole,
+    anc:el?el.value.trim():'',
+    date:new Date().toISOString()
+  };
+  pfQList=PF_QB[pfRole]||[];
+  pfAnswers=new Array(pfQList.length).fill(null);
+  pfCur=0;
+  const firstName = pfAInfo.name.split(' ')[0] || pfAInfo.name;
+  const roleCtx = {
+    agent: 'Voie 1 — Corps Humain · '+pfQList.length+' questions · ~6 min',
+    superviseur: 'Voie 2 — Variable de stabilité · '+pfQList.length+' questions · ~8 min',
+    'mgt-strat': 'Voie 3 — Direction générale · '+pfQList.length+' questions · ~7 min',
+    'mgt-inter': 'Voie 3 — Management intermédiaire · '+pfQList.length+' questions · ~7 min',
+    'mgt-prox': 'Voie 3 — Management de proximité · '+pfQList.length+' questions · ~7 min'
+  };
+  document.getElementById('pf-welcome-msg').innerHTML =
+    `<strong style="font-size:20px;display:block;margin-bottom:1rem;">${firstName},</strong>` +
+    `avant tout décollage, on vérifie ce qui propulse et ce qui résiste.<br><br>` +
+    `Vous venez de faire exactement ça — mesurer votre puissance d'agir au point zéro.<br><br>` +
+    `Ce n'est pas ce que vous valez. C'est <strong style="color:#B8975A;">ce qui vous porte aujourd'hui</strong>, ` +
+    `et ce qui attend encore d'être libéré.<br><br>` +
+    `<em style="color:rgba(255,255,255,.65);">RUNWAY commence ici.</em>`;
+  document.getElementById('pf-welcome-sub').textContent = roleCtx[pfRole] || '';
+  pfGo('pf-sc-welcome');
+}
+
+function pfLaunchQ(){
+  pfRenderQ();
+  pfGo('pf-sc-q');
+}
+
+function pfRenderQ(){
+  const q=pfQList[pfCur];
+  const tot=pfQList.length;
+  const c=PF_RC[pfRole]||{m:'#185FA5',bg:'#E6F1FB'};
+  const dm=PF_DIMS[q.d]||{};
+  document.getElementById('pf-q-name').textContent=pfAInfo.name;
+  document.getElementById('pf-q-voie').textContent=PF_ROLE_LBL[pfRole];
+  document.getElementById('pf-prog-lbl').textContent=`${pfCur+1} / ${tot}`;
+  document.getElementById('pf-prog-sec').textContent=q.s||'';
+  document.getElementById('pf-prog-fill').style.width=Math.round(((pfCur+1)/tot)*100)+'%';
+  document.getElementById('pf-prog-fill').style.background=c.m;
+  const badge=document.getElementById('pf-q-badge');
+  badge.textContent=dm.l||q.s;
+  badge.style.background=dm.bg||c.bg;
+  badge.style.color=dm.c||c.m;
+  document.getElementById('pf-q-txt').textContent=q.t;
+  document.getElementById('pf-q-note').textContent=dm.n||'';
+  const isA=q.sc==='a';
+  [1,2,3,4,5].forEach(i=>{
+    document.getElementById('pf-sl'+i).textContent=isA?PF_AGMT[i-1]:PF_FREQ[i-1];
+  });
+  document.querySelectorAll('.pf-sb').forEach((btn,i)=>{
+    if(pfAnswers[pfCur]===i+1){
+      btn.style.borderColor=c.m;
+      btn.style.background=dm.bg||c.bg;
+    } else {
+      btn.style.borderColor='#eee';
+      btn.style.background='white';
+    }
+  });
+  const nb=document.getElementById('pf-btn-next');
+  nb.disabled=pfAnswers[pfCur]===null;
+  nb.style.opacity=pfAnswers[pfCur]===null?'.35':'1';
+  nb.textContent=pfCur===tot-1?'Finaliser →':'Suivant';
+}
+
+function pfSelAns(v){
+  pfAnswers[pfCur]=v;
+  const c=PF_RC[pfRole]||{m:'#185FA5',bg:'#E6F1FB'};
+  const dm=PF_DIMS[pfQList[pfCur].d]||{};
+  document.querySelectorAll('.pf-sb').forEach((btn,i)=>{
+    if(i+1===v){
+      btn.style.borderColor=c.m;
+      btn.style.background=dm.bg||c.bg;
+      btn.classList.remove('pf-sb-pop');
+      void btn.offsetWidth;
+      btn.classList.add('pf-sb-pop');
+    } else {
+      btn.style.borderColor='#eee';
+      btn.style.background='white';
+    }
+  });
+  const nb=document.getElementById('pf-btn-next');
+  nb.disabled=false;
+  nb.style.opacity='1';
+  const chunks = PF_CHUNKS[pfRole] || PF_CHUNKS_DEFAULT;
+  const isChunkBreak = chunks.some(b => pfCur === b.end);
+  if(pfCur < pfQList.length-1 && !isChunkBreak){
+    clearTimeout(window._pfAutoNext);
+    window._pfAutoNext = setTimeout(()=>{
+      if(pfAnswers[pfCur]!==null){
+        pfCur++;
+        pfRenderQ();
+      }
+    }, 620);
+  }
+}
+
+function pfNextQ(){
+  const chunks = PF_CHUNKS[pfRole] || PF_CHUNKS_DEFAULT;
+  const breakPoint = chunks.find(b => pfCur === b.end);
+  if(breakPoint && pfAnswers[pfCur] !== null){
+    pfCur++;
+    pfShowChunkPause(breakPoint);
+  } else if(pfCur < pfQList.length-1){
+    pfCur++;
+    pfRenderQ();
+  } else {
+    pfShowTransition();
+  }
+}
+
+function pfShowChunkPause(bp){
+  document.getElementById('pf-chunk-msg').textContent = bp.msg;
+  document.getElementById('pf-chunk-sub').textContent = bp.sub;
+  document.getElementById('pf-chunk-icon').textContent = bp.icon;
+  ['pf-cp1','pf-cp2','pf-cp3'].forEach((id,i) => {
+    document.getElementById(id).style.background = i < bp.prog ? '#B8975A' : 'rgba(255,255,255,.2)';
+  });
+  pfGo('pf-sc-chunk');
+}
+
+function pfResumeQ(){
+  pfRenderQ();
+  pfGo('pf-sc-q');
+}
+
+function pfShowTransition(){
+  const msg = PF_TRANS[Math.floor(Math.random()*PF_TRANS.length)];
+  document.getElementById('pf-trans-msg').textContent = msg;
+  pfGo('pf-sc-transition');
+  setTimeout(()=>pfSaveRes(), 2800);
+}
+
+function pfCalcSc(){
+  const dims=PF_DIM_BY[pfRole]||[];
+  const sc={};
+  dims.forEach(d=>{
+    const idx=pfQList.map((q,i)=>q.d===d?i:-1).filter(i=>i>=0);
+    sc[d]=idx.length?Math.round(idx.reduce((s,i)=>s+(pfAnswers[i]||3),0)/(idx.length*5)*100):50;
+  });
+  sc.IPA=Math.round(Object.values(sc).reduce((a,b)=>a+b,0)/Math.max(Object.keys(sc).length,1));
+  return sc;
+}
+
+function pfGetCfg(ipa,r){
+  const m=r&&r.startsWith('mgt');
+  if(ipa>=67){
+    return {
+      l:m?'Alignement fort':'Zone de performance',
+      c:'#0F6E56',
+      bg:'#E1F5EE',
+      desc:m?'Votre positionnement favorise la convergence TRIVIUM.':'Capacité d\'agir disponible. RUNWAY peut viser la maîtrise complète des protocoles.'
+    };
+  }
+  if(ipa>=40){
+    return {
+      l:m?'Alignement partiel':'Zone de tension productive',
+      c:'#BA7517',
+      bg:'#FAEEDA',
+      desc:m?'Des ajustements sont recommandés avant le démarrage.':'Des ressources existent mais partiellement contraintes. Le Souffle (L.0) en priorité.'
+    };
+  }
+  return {
+    l:m?'Décalage à traiter':'Zone de fragilité',
+    c:'#A32D2D',
+    bg:'#FCEBEB',
+    desc:m?'Un travail d\'alignement préalable est nécessaire.':'Capacité d\'agir contrainte. Le Souffle (L.0) et sécurité psychologique sont prioritaires.'
+  };
+}
+
+function pfGetPrio(sc,r){
+  const dims=PF_DIM_BY[r]||[];
+  if(!dims.length) return '';
+  const lbl={
+    L0:'Le Souffle (L.0)',
+    B:'Robustesse',
+    A:'Savoir à quoi s\'attendre',
+    N:'Lire le passager avant qu\'il parle',
+    I:'Sens et ancrage',
+    S:'Posture RELAY',
+    P:'Prédictions',
+    C:'Critères',
+    E:'Ce que votre environnement fait de vos efforts',
+    T:'Soutien triade',
+    V:'Vision terrain'
+  };
+  const low=dims.reduce((a,b)=>sc[a]<sc[b]?a:b);
+  const v=sc[low];
+  if(v<40) return `Priorité — ${lbl[low]} : ${v}/100. ${PF_INTERP[low]?.l||''} À adresser dès le début du programme.`;
+  if(v<67) return `À renforcer — ${lbl[low]} : ${v}/100. ${PF_INTERP[low]?.m||''}`;
+  return `Toutes les dimensions fonctionnelles (min : ${lbl[low]} = ${v}/100).`;
+}
+
+function pfDrawRadar(sc, dims, canvasId){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W/2, cy = H/2;
+  const R = Math.min(W,H)/2 - 48;
+  const n = dims.length;
+  ctx.clearRect(0,0,W,H);
+  const levels = [20,40,60,80,100];
+  levels.forEach(lv => {
+    ctx.beginPath();
+    for(let i=0;i<n;i++){
+      const a = (i/n)*Math.PI*2 - Math.PI/2;
+      const r = R*(lv/100);
+      const x = cx + r*Math.cos(a), y = cy + r*Math.sin(a);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = lv===60 ? 'rgba(184,151,90,.25)' : 'rgba(180,180,180,.18)';
+    ctx.lineWidth = lv===60 ? 1.5 : 1;
+    ctx.stroke();
+  });
+  for(let i=0;i<n;i++){
+    const a=(i/n)*Math.PI*2-Math.PI/2;
+    ctx.beginPath();ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));
+    ctx.strokeStyle='rgba(180,180,180,.25)';ctx.lineWidth=1;ctx.stroke();
+  }
+  const dimColors = {
+    L0:'#534AB7',B:'#185FA5',A:'#BA7517',N:'#0F6E56',I:'#A32D2D',
+    S:'#3B6D11',P:'#6B3FA0',C:'#854F0B',E:'#0F6E56',T:'#185FA5',V:'#534AB7'
+  };
+  ctx.beginPath();
+  dims.forEach((d,i)=>{
+    const a=(i/n)*Math.PI*2-Math.PI/2;
+    const v=(sc[d]||0)/100;
+    const x=cx+R*v*Math.cos(a),y=cy+R*v*Math.sin(a);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.closePath();
+  ctx.fillStyle='rgba(30,60,114,.15)';ctx.fill();
+  dims.forEach((d,i)=>{
+    const next=(i+1)%n;
+    const a1=(i/n)*Math.PI*2-Math.PI/2,a2=(next/n)*Math.PI*2-Math.PI/2;
+    const v1=(sc[d]||0)/100,v2=(sc[dims[next]]||0)/100;
+    ctx.beginPath();
+    ctx.moveTo(cx+R*v1*Math.cos(a1),cy+R*v1*Math.sin(a1));
+    ctx.lineTo(cx+R*v2*Math.cos(a2),cy+R*v2*Math.sin(a2));
+    ctx.strokeStyle=dimColors[d]||'#185FA5';ctx.lineWidth=2.5;ctx.stroke();
+  });
+  dims.forEach((d,i)=>{
+    const a=(i/n)*Math.PI*2-Math.PI/2;
+    const v=(sc[d]||0)/100;
+    const px=cx+R*v*Math.cos(a),py=cy+R*v*Math.sin(a);
+    ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);
+    ctx.fillStyle=dimColors[d]||'#185FA5';ctx.fill();
+    ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+  });
+  const shortLbl={L0:'Régul.',B:'Robust.',A:'Clarté',N:'Lecture',I:'Sens',S:'RELAY',P:'Prédict.',C:'Critères',E:'Envir.',T:'Soutien',V:'Vision'};
+  ctx.font='bold 10px -apple-system,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  dims.forEach((d,i)=>{
+    const a=(i/n)*Math.PI*2-Math.PI/2;
+    const lx=cx+(R+26)*Math.cos(a),ly=cy+(R+26)*Math.sin(a);
+    const v=sc[d]||0;
+    ctx.fillStyle=dimColors[d]||'#185FA5';
+    ctx.font='bold 11px -apple-system,sans-serif';
+    ctx.fillText(v+'%',lx,ly-7);
+    ctx.fillStyle='#555';
+    ctx.font='9px -apple-system,sans-serif';
+    ctx.fillText(shortLbl[d]||d,lx,ly+6);
+  });
+}
+
+function pfSaveRes(){
+  const sc=pfCalcSc();
+  const cfg=pfGetCfg(sc.IPA,pfRole);
+  const c=PF_RC[pfRole]||{m:'#185FA5',bg:'#E6F1FB'};
+  const aM={
+    tunis:'Tunis-Carthage',
+    monastir:'Monastir',
+    djerba:'Djerba',
+    handling:'Nouvelair Handling',
+    dt:'Direction Technique',
+    dg:'Direction Générale',
+    siege:'Siège'
+  };
+  document.getElementById('pf-res-name').textContent=pfAInfo.name;
+  document.getElementById('pf-res-meta').textContent=PF_ROLE_LBL[pfRole]+' · '+(aM[pfAInfo.airport]||pfAInfo.airport)+' · '+new Date().toLocaleDateString('fr-FR');
+  document.getElementById('pf-ipa-lbl').textContent=PF_IPA_LBL[pfRole]||'Indice';
+  document.getElementById('pf-ipa-val').textContent=sc.IPA;
+  document.getElementById('pf-ipa-val').style.color=cfg.c;
+  const blk=document.getElementById('pf-ipa-blk');
+  blk.style.background=cfg.bg;
+  blk.style.borderColor=cfg.c;
+  const pill=document.getElementById('pf-cfg-pill');
+  pill.textContent=cfg.l;
+  pill.style.color=cfg.c;
+  pill.style.borderColor=cfg.c;
+  document.getElementById('pf-cfg-desc').textContent=cfg.desc;
+  document.getElementById('pf-cfg-desc').style.color=cfg.c;
+  const dims=PF_DIM_BY[pfRole]||[];
+  document.getElementById('pf-dims-lbl').textContent=pfRole.startsWith('mgt')?'Profil managérial':'Votre profil de capacité';
+  const anchorDim = [...dims].sort((a,b)=>(sc[b]||0)-(sc[a]||0))[0];
+  const anchorTxt = PF_ANCHOR[anchorDim] || "Votre point de départ est posé. RUNWAY commence ici.";
+  document.getElementById('pf-anchor-txt').textContent = anchorTxt;
+  setTimeout(()=>pfDrawRadar(sc,dims,'pf-radar-canvas'),80);
+  const shortLbl={L0:'Le Souffle',B:'Robustesse',A:'Savoir à quoi s\'attendre',N:'Lire le passager',I:'Sens et ancrage',S:'Posture RELAY',P:'Prédictions',C:'Critères',E:'Ce que votre environnement fait de vos efforts',T:'Soutien triade',V:'Vision terrain'};
+  const sorted=[...dims].sort((a,b)=>(sc[b]||0)-(sc[a]||0));
+  const top=sorted.slice(0,Math.min(2,sorted.length));
+  const bot=sorted.slice(-Math.min(2,sorted.length));
+  document.getElementById('pf-ancres').innerHTML=top.map(d=>`<div style="margin-bottom:6px;">✓ <strong>${shortLbl[d]||d}</strong><br><span style="font-size:11px;opacity:.8;">${sc[d]}/100 — ${PF_INTERP[d]?.h||''}</span></div>`).join('');
+  document.getElementById('pf-axes').innerHTML=bot.map(d=>`<div style="margin-bottom:6px;">→ <strong>${shortLbl[d]||d}</strong><br><span style="font-size:11px;opacity:.8;">${sc[d]}/100 — ${PF_INTERP[d]?.l||PF_INTERP[d]?.m||''}</span></div>`).join('');
+  const trivMini=document.getElementById('pf-triv-mini');
+  const voieStyle=(v,active)=>`display:inline-block;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border:1px solid ${active?c.m:'#ddd'};background:${active?c.bg:'transparent'};color:${active?c.m:'#bbb'};`;
+  trivMini.innerHTML=`<span style="${voieStyle('1',pfRole==='agent')}">Voie 1</span><span style="font-size:14px;color:#ddd;">→</span><span style="${voieStyle('2',pfRole==='superviseur')}">Voie 2</span><span style="font-size:14px;color:#ddd;">→</span><span style="${voieStyle('3',pfRole.startsWith('mgt'))}">Voie 3</span><span style="font-size:14px;color:#ddd;">→</span><span style="display:inline-block;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;border:1.5px solid #1E3C72;color:#1E3C72;letter-spacing:.05em;">TRIVIUM</span>`;
+  document.getElementById('pf-contrib').textContent=PF_ROLE_INFO[pfRole]?.triv||'';
+  const iepSrc=pfRole.startsWith('mgt')?sc.E:sc.I;
+  const iepDirect=pfRole.startsWith('mgt');
+  if(iepSrc!==undefined){
+    const iepC=iepSrc>=67?{c:'#0F6E56',bg:'#E1F5EE'}:iepSrc>=40?{c:'#BA7517',bg:'#FAEEDA'}:{c:'#A32D2D',bg:'#FCEBEB'};
+    document.getElementById('pf-iep-wrap').innerHTML=`<div style="border-radius:10px;padding:12px 14px;margin:10px 0;background:${iepC.bg};border:.5px solid ${iepC.c};"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:${iepC.c};margin-bottom:4px;">Ce que votre environnement fait de vos efforts<span style="display:block;font-size:9px;opacity:.6;margin-top:2px;">IEP — Indice d'Environnement Porteur${iepDirect?'':' (estimation)'}</span></div><div style="font-size:24px;font-weight:600;color:${iepC.c};">${iepSrc}/100</div><p style="font-size:12px;margin-top:4px;margin-bottom:0;color:#555;line-height:1.5;">${iepDirect?PF_INTERP.E[iepSrc>=67?'h':iepSrc>=40?'m':'l']:PF_INTERP.I[iepSrc>=67?'h':iepSrc>=40?'m':'l']}</p></div>`;
+  } else document.getElementById('pf-iep-wrap').innerHTML='';
+  document.getElementById('pf-prio').textContent=pfGetPrio(sc,pfRole);
+  const rec={id:Date.now().toString(),agent:pfAInfo,scores:sc,role:pfRole,timestamp:new Date().toISOString()};
+  const local = localStorage.getItem('runway_platform_v1');
+  const recs = local ? JSON.parse(local) : [];
+  recs.push(rec);
+  localStorage.setItem('runway_platform_v1', JSON.stringify(recs));
+  pfGo('pf-sc-res');
+}
+
+function initPlatform(){
+  if(window._pfInitialized) return;
+  window._pfInitialized = true;
+  
+  const root = document.getElementById('pf-root');
+  root.innerHTML = `
+    <div id="pf-sc-intro" class="pf-screen pf-active">
+      <div style="background:linear-gradient(160deg,#0D1520,#1E3C72,#0D2040);padding:2.5rem 1.5rem;border-radius:12px;margin-bottom:1.5rem;">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.75rem;">OCTOGO · Programme RUNWAY · Nouvelair</div>
+        <div style="font-size:24px;font-weight:600;color:white;line-height:1.3;margin-bottom:.75rem;">Vous faites partie<br>d'une cartographie collective.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:1.5rem;">Ce n'est pas un questionnaire de satisfaction. C'est la mesure de l'état de départ — trois voies simultanées — pour calibrer RUNWAY sur la réalité de votre terrain.</div>
+        <div style="display:flex;justify-content:center;margin:1.2rem 0;">
+          <svg viewBox="0 0 280 260" width="280" height="260" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="140" cy="122" r="108" fill="none" stroke="rgba(184,151,90,0.2)" stroke-width="1" stroke-dasharray="4 6"/>
+            <circle cx="140" cy="122" r="78" fill="none" stroke="rgba(184,151,90,0.1)" stroke-width="0.8"/>
+            <path d="M140,30 C118,55 92,85 80,148" fill="none" stroke="#B8975A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+            <path d="M140,30 C162,55 188,85 200,148" fill="none" stroke="#B8975A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+            <path d="M80,148 C100,128 120,122 200,148" fill="none" stroke="#B8975A" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+            <circle cx="140" cy="28" r="22" fill="rgba(133,79,11,0.25)" stroke="#BA7517" stroke-width="1.8"/>
+            <circle cx="140" cy="28" r="4" fill="#D4B07A"/>
+            <circle cx="80" cy="153" r="22" fill="rgba(24,95,165,0.25)" stroke="#378ADD" stroke-width="1.8"/>
+            <circle cx="80" cy="153" r="4" fill="#60A9E8"/>
+            <circle cx="200" cy="153" r="22" fill="rgba(15,110,86,0.25)" stroke="#1D9E75" stroke-width="1.8"/>
+            <circle cx="200" cy="153" r="4" fill="#5DCAA5"/>
+            <circle cx="140" cy="112" r="22" fill="rgba(14,17,23,0.8)" stroke="rgba(184,151,90,0.6)" stroke-width="1.5"/>
+            <circle cx="140" cy="112" r="5" fill="#B8975A" opacity="0.9"/>
+          </svg>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:1rem;">
+          <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:18px;font-weight:600;color:white;">3</div><div style="font-size:10px;color:rgba(255,255,255,.5);">voies qui convergent</div></div>
+          <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:18px;font-weight:600;color:white;">1</div><div style="font-size:10px;color:rgba(255,255,255,.5);">cartographie collective</div></div>
+          <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:18px;font-weight:600;color:white;">T0</div><div style="font-size:10px;color:rgba(255,255,255,.5);">baseline de transformation</div></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;margin-top:1.5rem;">
+          <div style="display:flex;gap:-4px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#378ADD;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:10px;">👤</div>
+            <div style="width:22px;height:22px;border-radius:50%;background:#1D9E75;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:10px;margin-left:-6px;">👤</div>
+            <div style="width:22px;height:22px;border-radius:50%;background:#BA7517;border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:10px;margin-left:-6px;">👤</div>
+          </div>
+          <span id="pf-social-count" style="font-size:12px;color:rgba(255,255,255,.65);">Chargement...</span>
+        </div>
+        <button onclick="pfGo('pf-sc-role')" style="background:white;color:#1E3C72;border:none;border-radius:10px;padding:13px 24px;font-size:15px;font-weight:600;cursor:pointer;width:100%;">Je contribue à la cartographie →</button>
+      </div>
+      <div style="background:#EEF4FF;border:1px solid rgba(30,60,114,.2);border-left:4px solid #1E3C72;border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;display:flex;align-items:flex-start;gap:12px;">
+        <span style="font-size:20px;flex-shrink:0;margin-top:1px;">🔒</span>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#1E3C72;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;">Confidentialité garantie</div>
+          <p style="font-size:13px;color:#334;margin:0;line-height:1.65;">Vos réponses individuelles ne seront <strong>jamais communiquées à votre hiérarchie</strong>. Seules les données agrégées et anonymisées sont utilisées dans la cartographie collective.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="pf-sc-role" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div><div style="font-size:14px;font-weight:600;color:#1E3C72;">RUNWAY · Nouvelair</div><div style="font-size:11px;color:#999;margin-top:2px;">Identification de votre voie</div></div>
+        <span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">Étape 1/3</span>
+      </div>
+      <div style="background:white;border:1px solid #eee;border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-size:15px;font-weight:600;color:#1E3C72;margin-bottom:8px;">Quelle est votre voie ?</div>
+        <p style="font-size:13px;color:#666;margin-bottom:14px;">Votre questionnaire sera calibré précisément sur votre réalité et votre contribution au point de convergence.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+          <div class="pf-rc" id="pf-rc-agent" onclick="pfSelRole('agent')" style="border:1px solid #185FA5;border-radius:12px;padding:12px;cursor:pointer;text-align:center;background:#E6F1FB;">
+            <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#185FA5;color:white;font-size:9px;padding:2px 10px;border-radius:20px;white-space:nowrap;font-weight:600;">Le plus fréquent</div>
+            <div style="font-size:24px;margin-bottom:6px;margin-top:6px;">👤</div>
+            <div style="font-size:13px;font-weight:600;color:#185FA5;">Agent</div>
+            <div style="font-size:11px;color:#378ADD;margin-top:3px;">Accueil · Enregistrement</div>
+            <div style="font-size:10px;color:#378ADD;margin-top:5px;">Voie 1 · 13 questions</div>
+          </div>
+          <div class="pf-rc" id="pf-rc-superviseur" onclick="pfSelRole('superviseur')" style="border:1px solid #eee;border-radius:12px;padding:12px;cursor:pointer;text-align:center;">
+            <div style="font-size:24px;margin-bottom:6px;">👥</div>
+            <div style="font-size:13px;font-weight:600;color:#333;">Superviseur</div>
+            <div style="font-size:11px;color:#999;margin-top:3px;">Responsable d'équipe</div>
+            <div style="font-size:10px;color:#bbb;margin-top:5px;">Voie 2 · 16 questions</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #eee;padding-top:12px;">
+          <p style="font-size:12px;color:#999;margin-bottom:10px;">Voie 3 — Management · Choisissez votre niveau</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div class="pf-rc" id="pf-rc-mgt-strat" onclick="pfSelRole('mgt-strat')" style="border:1px solid #eee;border-radius:12px;padding:10px;cursor:pointer;text-align:center;">
+              <div style="font-size:20px;margin-bottom:5px;">🏛</div>
+              <div style="font-size:12px;font-weight:600;color:#333;">Direction générale</div>
+              <div style="font-size:10px;color:#bbb;margin-top:5px;">10 questions</div>
+            </div>
+            <div class="pf-rc" id="pf-rc-mgt-inter" onclick="pfSelRole('mgt-inter')" style="border:1px solid #eee;border-radius:12px;padding:10px;cursor:pointer;text-align:center;">
+              <div style="font-size:20px;margin-bottom:5px;">🔗</div>
+              <div style="font-size:12px;font-weight:600;color:#333;">Mgt intermédiaire</div>
+              <div style="font-size:10px;color:#bbb;margin-top:5px;">10 questions</div>
+            </div>
+            <div class="pf-rc" id="pf-rc-mgt-prox" onclick="pfSelRole('mgt-prox')" style="border:1px solid #eee;border-radius:12px;padding:10px;cursor:pointer;text-align:center;">
+              <div style="font-size:20px;margin-bottom:5px;">🤝</div>
+              <div style="font-size:12px;font-weight:600;color:#333;">Mgt de proximité</div>
+              <div style="font-size:10px;color:#bbb;margin-top:5px;">10 questions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pf-role-ctx" style="display:none;border-radius:10px;padding:14px;margin-bottom:1rem;border-left:3px solid #1E3C72;background:#f0f4ff;font-size:13px;color:#555;line-height:1.65;"></div>
+      <button id="pf-btn-to-info" onclick="pfGo('pf-sc-info')" disabled style="width:100%;padding:11px;background:#1E3C72;color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;opacity:.35;">Continuer →</button>
+      <button onclick="pfGo('pf-sc-intro')" style="width:100%;padding:10px;background:transparent;color:#666;border:1px solid #ddd;border-radius:10px;font-size:14px;cursor:pointer;margin-top:8px;">Retour</button>
+    </div>
+    
+    <div id="pf-sc-info" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div><div style="font-size:14px;font-weight:600;color:#1E3C72;" id="pf-info-title">—</div><div style="font-size:11px;color:#999;margin-top:2px;">Vos informations</div></div>
+        <span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">Étape 2/3</span>
+      </div>
+      <div style="background:white;border:1px solid #eee;border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-size:15px;font-weight:600;color:#1E3C72;margin-bottom:14px;">Quelques informations</div>
+        <label style="font-size:12px;color:#666;display:block;margin-bottom:4px;">Prénom et nom</label>
+        <input type="text" id="pf-inp-name" placeholder="ex. Mohamed Ben Ali" oninput="pfChkInfo()" style="width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:12px;font-family:inherit;"/>
+        <label style="font-size:12px;color:#666;display:block;margin-bottom:4px;">Entité / Aéroport</label>
+        <select id="pf-inp-airport" onchange="pfChkInfo()" style="width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:12px;font-family:inherit;display:block;background:white;">
+          <option value="">Sélectionner</option>
+          <option value="tunis">Tunis-Carthage</option>
+          <option value="monastir">Monastir</option>
+          <option value="djerba">Djerba</option>
+          <option value="handling">Nouvelair Handling</option>
+          <option value="dt">Direction Technique</option>
+          <option value="dg">Direction Générale</option>
+          <option value="siege">Siège / Transversal</option>
+        </select>
+        <div id="pf-anc-wrap"></div>
+      </div>
+      <button id="pf-btn-start" onclick="pfStart()" disabled style="width:100%;padding:11px;background:#1E3C72;color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;opacity:.35;">Commencer le questionnaire →</button>
+      <button onclick="pfGo('pf-sc-role')" style="width:100%;padding:10px;background:transparent;color:#666;border:1px solid #ddd;border-radius:10px;font-size:14px;cursor:pointer;margin-top:8px;">Retour</button>
+    </div>
+    
+    <div id="pf-sc-welcome" class="pf-screen" style="display:none;">
+      <div style="background:linear-gradient(160deg,#0D1520,#1E3C72,#0D2040);border-radius:16px;padding:2.5rem 2rem;text-align:center;">
+        <div style="font-size:28px;margin-bottom:1.25rem;">✈️</div>
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.5rem;">RUNWAY · Protocole T0</div>
+        <div id="pf-welcome-msg" style="font-size:17px;font-weight:500;color:white;line-height:1.8;margin-bottom:2rem;"></div>
+        <div style="width:48px;height:1px;background:rgba(184,151,90,.5);margin:0 auto 2rem;"></div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:1.75rem;" id="pf-welcome-sub"></div>
+        <button onclick="pfLaunchQ()" style="background:#B8975A;color:#0D1520;border:none;border-radius:10px;padding:14px 32px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em;width:100%;">Démarrer le questionnaire →</button>
+      </div>
+    </div>
+    
+    <div id="pf-sc-chunk" class="pf-screen" style="display:none;">
+      <div style="background:linear-gradient(160deg,#0D1520,#1E3C72);border-radius:16px;padding:3rem 2rem;text-align:center;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;">
+        <div id="pf-chunk-icon" style="font-size:36px;"></div>
+        <div id="pf-chunk-progress" style="display:flex;gap:8px;justify-content:center;">
+          <div id="pf-cp1" style="width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,.2);"></div>
+          <div id="pf-cp2" style="width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,.2);"></div>
+          <div id="pf-cp3" style="width:32px;height:3px;border-radius:2px;background:rgba(255,255,255,.2);"></div>
+        </div>
+        <p id="pf-chunk-msg" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:white;line-height:1.7;max-width:400px;margin:0;"></p>
+        <p id="pf-chunk-sub" style="font-size:12px;color:rgba(255,255,255,.5);font-family:'DM Mono',monospace;letter-spacing:.08em;margin:0;"></p>
+        <button onclick="pfResumeQ()" style="background:var(--gold);color:#0D1520;border:none;border-radius:10px;padding:12px 28px;font-size:14px;font-weight:700;cursor:pointer;margin-top:.5rem;">Continuer →</button>
+      </div>
+    </div>
+    
+    <div id="pf-sc-q" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div><div style="font-size:14px;font-weight:600;color:#1E3C72;" id="pf-q-name">—</div><div style="font-size:11px;color:#999;margin-top:2px;" id="pf-q-voie">—</div></div>
+        <span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">Étape 3/3</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#999;margin-bottom:6px;"><span id="pf-prog-lbl">1/13</span><span id="pf-prog-sec" style="font-weight:600;color:#333;"></span></div>
+      <div style="height:3px;background:#eee;border-radius:2px;margin-bottom:1.5rem;"><div id="pf-prog-fill" style="height:3px;border-radius:2px;background:#1E3C72;transition:width .3s;width:7%;"></div></div>
+      <div style="background:white;border:1px solid #eee;border-radius:12px;padding:1.25rem;">
+        <div id="pf-q-badge" style="display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;margin-bottom:12px;background:#E6F1FB;color:#185FA5;">—</div>
+        <div id="pf-q-txt" style="font-size:15px;font-weight:600;color:#1E3C72;line-height:1.65;margin-bottom:18px;">—</div>
+        <div style="display:flex;gap:6px;" id="pf-scale">
+          <div class="pf-sb" onclick="pfSelAns(1)" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:1px solid #eee;border-radius:10px;padding:10px 3px;"><span style="font-size:17px;font-weight:600;color:#999;">1</span><span id="pf-sl1" style="font-size:10px;color:#bbb;text-align:center;">Jamais</span></div>
+          <div class="pf-sb" onclick="pfSelAns(2)" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:1px solid #eee;border-radius:10px;padding:10px 3px;"><span style="font-size:17px;font-weight:600;color:#999;">2</span><span id="pf-sl2" style="font-size:10px;color:#bbb;text-align:center;">Rarement</span></div>
+          <div class="pf-sb" onclick="pfSelAns(3)" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:1px solid #eee;border-radius:10px;padding:10px 3px;"><span style="font-size:17px;font-weight:600;color:#999;">3</span><span id="pf-sl3" style="font-size:10px;color:#bbb;text-align:center;">Parfois</span></div>
+          <div class="pf-sb" onclick="pfSelAns(4)" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:1px solid #eee;border-radius:10px;padding:10px 3px;"><span style="font-size:17px;font-weight:600;color:#999;">4</span><span id="pf-sl4" style="font-size:10px;color:#bbb;text-align:center;">Souvent</span></div>
+          <div class="pf-sb" onclick="pfSelAns(5)" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border:1px solid #eee;border-radius:10px;padding:10px 3px;"><span style="font-size:17px;font-weight:600;color:#999;">5</span><span id="pf-sl5" style="font-size:10px;color:#bbb;text-align:center;">Toujours</span></div>
+        </div>
+        <button id="pf-btn-next" onclick="pfNextQ()" disabled style="width:100%;padding:11px;background:#1E3C72;color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:16px;opacity:.35;">Suivant</button>
+      </div>
+      <div style="background:#f8f9fa;border-radius:8px;padding:10px 14px;margin-top:10px;"><p style="font-size:12px;color:#888;margin:0;line-height:1.6;" id="pf-q-note">—</p></div>
+    </div>
+    
+    <div id="pf-sc-transition" class="pf-screen" style="display:none;">
+      <div style="background:linear-gradient(160deg,#0A0F18,#0D1520);border-radius:16px;padding:4rem 2rem;text-align:center;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;">
+        <div style="width:1px;height:48px;background:linear-gradient(transparent,rgba(184,151,90,.6),transparent);margin:0 auto;"></div>
+        <p id="pf-trans-msg" style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,28px);font-style:italic;color:rgba(245,240,232,.9);line-height:1.7;max-width:460px;margin:0;"></p>
+        <div style="width:1px;height:32px;background:linear-gradient(rgba(184,151,90,.4),transparent);margin:0 auto;"></div>
+        <p style="font-size:11px;color:rgba(245,240,232,.35);font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin:0;">Votre profil se révèle</p>
+      </div>
+    </div>
+    
+    <div id="pf-sc-res" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div><div style="font-size:14px;font-weight:600;color:#1E3C72;" id="pf-res-name">—</div><div style="font-size:11px;color:#999;margin-top:2px;" id="pf-res-meta">—</div></div>
+        <span style="background:#E1F5EE;color:#0F6E56;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">Le Seuil <span style="font-size:9px;opacity:.65;">· T0</span></span>
+      </div>
+      <div id="pf-ipa-blk" style="text-align:center;padding:1.25rem 1rem;border-radius:12px;margin-bottom:1rem;background:#E6F1FB;border:1px solid #185FA5;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#185FA5;margin-bottom:4px;" id="pf-ipa-lbl">Indice de Capacité d'Agir</div>
+        <div style="font-size:52px;font-weight:700;line-height:1;color:#185FA5;" id="pf-ipa-val">—</div>
+        <div style="font-size:12px;color:#185FA5;opacity:.7;">/100</div>
+        <div id="pf-cfg-pill" style="display:inline-block;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-top:10px;background:white;color:#185FA5;border:1px solid #185FA5;">—</div>
+        <p style="margin-top:10px;margin-bottom:0;font-size:13px;line-height:1.65;color:#185FA5;" id="pf-cfg-desc"></p>
+      </div>
+      <div style="background:white;border:1px solid #eee;border-radius:14px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:12px;" id="pf-dims-lbl">Votre profil de capacité</div>
+        <div style="display:flex;justify-content:center;">
+          <canvas id="pf-radar-canvas" width="300" height="300" style="max-width:100%;"></canvas>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+        <div style="background:#E1F5EE;border:1px solid rgba(15,110,86,.25);border-radius:12px;padding:1rem;">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#0F6E56;font-weight:700;margin-bottom:10px;">⚓ Vos ancres</div>
+          <div id="pf-ancres" style="font-size:13px;color:#0F6E56;line-height:1.7;"></div>
+        </div>
+        <div style="background:#FAEEDA;border:1px solid rgba(186,117,23,.25);border-radius:12px;padding:1rem;">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#BA7517;font-weight:700;margin-bottom:10px;">🚀 Ce qui veut monter</div>
+          <div id="pf-axes" style="font-size:13px;color:#BA7517;line-height:1.7;"></div>
+        </div>
+      </div>
+      <div id="pf-iep-wrap"></div>
+      <div style="background:white;border:1px solid #eee;border-radius:12px;padding:1rem;margin-bottom:1rem;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:10px;">Votre place dans le point TRIVIUM</div>
+        <div id="pf-triv-mini" style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:8px 0;"></div>
+        <p style="font-size:13px;color:#555;margin:8px 0 0;line-height:1.65;" id="pf-contrib"></p>
+      </div>
+      <div style="background:linear-gradient(135deg,#0D1520,#1E3C72);border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(184,151,90,.8);margin-bottom:8px;">Ce que RUNWAY va libérer</div>
+        <p style="margin:0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.88);" id="pf-prio"></p>
+      </div>
+      <div id="pf-anchor-wrap" style="background:linear-gradient(135deg,#0D1520,#1A2640);border-radius:12px;padding:1.5rem;margin-bottom:1rem;text-align:center;">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:rgba(184,151,90,.7);margin-bottom:12px;font-family:'DM Mono',monospace;">Ce que vous emportez au comptoir</div>
+        <p id="pf-anchor-txt" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(245,240,232,.9);line-height:1.7;margin:0;"></p>
+      </div>
+      <div style="text-align:center;margin-bottom:8px;">
+        <span id="pf-sync-status" style="font-size:11px;font-family:'DM Mono',monospace;color:#BA7517;">● Enregistrement local</span>
+      </div>
+      <button onclick="pfGo('pf-sc-intro')" style="width:100%;padding:11px;background:#1E3C72;color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;">Terminer</button>
+    </div>
+    
+    <div id="pf-sc-access" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div style="font-size:14px;font-weight:600;color:#1E3C72;">Espace d'analyse</div>
+        <span style="background:#1E3C72;color:white;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">OCTOGO</span>
+      </div>
+      <div style="background:white;border:1px solid #eee;border-radius:12px;padding:1.25rem;margin-bottom:1rem;">
+        <div style="font-size:15px;font-weight:600;color:#1E3C72;margin-bottom:8px;">Code d'accès</div>
+        <p style="font-size:13px;color:#666;margin-bottom:14px;">Chaque niveau d'accès dispose d'un code spécifique communiqué par OCTOGO.</p>
+        <div style="display:flex;gap:8px;">
+          <input type="password" id="pf-access-code" placeholder="Entrez votre code" onkeydown="if(event.key==='Enter')pfCheckAccess()" style="flex:1;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;"/>
+          <button onclick="pfCheckAccess()" style="padding:9px 16px;background:#1E3C72;color:white;border:none;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap;">Accéder</button>
+        </div>
+        <div id="pf-access-error" style="font-size:12px;color:#A32D2D;margin-top:8px;display:none;">Code incorrect. Contactez OCTOGO.</div>
+      </div>
+      <div style="background:#f8f9fa;border-radius:10px;padding:12px 14px;margin-bottom:1rem;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:8px;">Niveaux disponibles</div>
+        <div style="font-size:12px;color:#555;line-height:2.2;">
+          <div>🟢 <strong style="color:#333;">Espace Équipe</strong> — Superviseurs · Vue équipe agrégée</div>
+          <div>🔵 <strong style="color:#333;">Espace Pilotage</strong> — Management · Vue collective par voie</div>
+          <div>🟡 <strong style="color:#333;">Espace OCTOGO</strong> — Accès complet · Point TRIVIUM · Export</div>
+        </div>
+      </div>
+      <button onclick="pfGo('pf-sc-intro')" style="width:100%;padding:10px;background:transparent;color:#666;border:1px solid #ddd;border-radius:10px;font-size:14px;cursor:pointer;">Retour</button>
+    </div>
+    
+    <div id="pf-sc-equipe" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div><div style="font-size:14px;font-weight:600;color:#0F6E56;">Espace Équipe</div><div style="font-size:11px;color:#999;margin-top:2px;">Vue agrégée anonymisée</div></div>
+        <span style="background:#E1F5EE;color:#0F6E56;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">RELAY</span>
+      </div>
+      <div id="pf-dash-equipe"><div style="text-align:center;padding:2rem;color:#999;font-size:13px;">Chargement...</div></div>
+      <button onclick="pfGo('pf-sc-intro')" style="width:100%;padding:10px;background:transparent;color:#666;border:1px solid #ddd;border-radius:10px;font-size:14px;cursor:pointer;margin-top:12px;">Fermer</button>
+    </div>
+    
+    <div id="pf-sc-pilotage" class="pf-screen" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #eee;">
+        <div><div style="font-size:14px;font-weight:600;color:#854F0B;">Espace Pilotage</div><div style="font-size:11px;color:#999;margin-top:2px;">Cartographie collective · Trois voies</div></div>
+        <span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;">TRIVIUM</span>
+      </div>
+      <div id="pf-dash-pilotage"><div style="text-align:center;padding:2rem;color:#999;font-size:13px;">Chargement...</div></div>
+      <button onclick="pfGo('pf-sc-intro')" style="width:100%;padding:10px;background:transparent;color:#666;border:1px solid #ddd;border-radius:10px;font-size:14px;cursor:pointer;margin-top:12px;">Fermer</button>
+    </div>
+  `;
+  
+  // Mettre à jour le compteur social
+  try {
+    const d = localStorage.getItem('runway_platform_v1');
+    const recs = d ? JSON.parse(d) : [];
+    const n = recs.length;
+    const el = document.getElementById('pf-social-count');
+    if(el){
+      if(n === 0) el.textContent = 'Soyez parmi les premiers à cartographier votre point de départ.';
+      else if(n === 1) el.textContent = '1 personne a déjà cartographié son point de départ.';
+      else el.textContent = n + ' personnes ont déjà cartographié leur point de départ.';
+    }
+  } catch(e) {
+    const el = document.getElementById('pf-social-count');
+    if(el) el.textContent = 'Rejoignez la cartographie collective.';
+  }
+}
+
+function pfCheckAccess(){
+  const code = document.getElementById('pf-access-code').value.trim().toUpperCase();
+  const codes = {RELAY:'equipe',TRIVIUM:'pilotage',OCTOGO26:'octogo'};
+  const level = codes[code];
+  document.getElementById('pf-access-error').style.display = 'none';
+  
+  if(level === 'equipe'){
+    pfLoadEquipe();
+    pfGo('pf-sc-equipe');
+  } else if(level === 'pilotage'){
+    pfLoadPilotage();
+    pfGo('pf-sc-pilotage');
+  } else if(level === 'octogo'){
+    pfLoadOctogo();
+    pfGo('pf-sc-octogo');
+  } else {
+    document.getElementById('pf-access-error').style.display = 'block';
+  }
+}
+
+function pfLoadEquipe(){
+  const ct = document.getElementById('pf-dash-equipe');
+  try {
+    const local = localStorage.getItem('runway_platform_v1');
+    const recs = local ? JSON.parse(local) : [];
+    if(!recs.length){
+      ct.innerHTML = '<div style="text-align:center;padding:2rem;color:#999;font-size:13px;">Aucune donnée.</div>';
+      return;
+    }
+    const ag = recs.filter(r=>r.role==='agent');
+    const sp = recs.filter(r=>r.role==='superviseur');
+    const avg = arr => arr.length ? Math.round(arr.reduce((s,r)=>s+r.scores.IPA,0)/arr.length) : null;
+    const avgD = (arr,d2) => {const v=arr.filter(r=>r.scores[d2]!==undefined); return v.length ? Math.round(v.reduce((s,r)=>s+(r.scores[d2]||0),0)/v.length) : null;};
+    ct.innerHTML = `<div style="background:#f8f9fa;border-radius:10px;padding:12px;margin-bottom:1rem;font-size:12px;color:#666;">${ag.length+sp.length} répondants terrain · ${new Date().toLocaleDateString('fr-FR')}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1rem;">
+        <div style="background:#E6F1FB;border-radius:10px;padding:1rem;text-align:center;"><div style="font-size:26px;font-weight:700;color:#185FA5;">${avg(ag)!==null?avg(ag):'—'}</div><div style="font-size:11px;color:#185FA5;margin-top:3px;">Agents IPA moy.<br>(${ag.length} éval.)</div></div>
+        <div style="background:#E1F5EE;border-radius:10px;padding:1rem;text-align:center;"><div style="font-size:26px;font-weight:700;color:#0F6E56;">${avg(sp)!==null?avg(sp):'—'}</div><div style="font-size:11px;color:#0F6E56;margin-top:3px;">Superviseurs IPA moy.<br>(${sp.length} éval.)</div></div>
+        <div style="background:#EEEDFE;border-radius:10px;padding:1rem;text-align:center;"><div style="font-size:26px;font-weight:700;color:#534AB7;">${ag.length&&avgD(ag,'L0')!==null?avgD(ag,'L0'):'—'}</div><div style="font-size:11px;color:#534AB7;margin-top:3px;">Le Souffle (L.0)<br>agents</div></div>
+      </div>
+      ${['B','A','N','I'].map(d2=>{const aV=avgD(ag,d2); const sV=avgD(sp,d2); const dm=PF_DIMS[d2]||{c:'#185FA5',l:d2}; return`<div style="border-left:3px solid ${dm.c};padding:8px 14px;margin-bottom:8px;border-radius:0 8px 8px 0;background:#f8f9fa;"><div style="font-size:12px;font-weight:600;color:${dm.c}">${dm.l}</div><div style="font-size:12px;color:#666;margin-top:4px;">Agents : ${aV!==null?aV+'/100':'—'} &nbsp;·&nbsp; Superviseurs : ${sV!==null?sV+'/100':'—'}</div></div>`;}).join('')}`;
+  } catch(e){
+    ct.innerHTML = '<div style="color:#A32D2D;font-size:13px;padding:1rem;">Erreur de chargement.</div>';
+  }
+}
+
+function pfLoadPilotage(){
+  const ct = document.getElementById('pf-dash-pilotage');
+  try {
+    const local = localStorage.getItem('runway_platform_v1');
+    const recs = local ? JSON.parse(local) : [];
+    if(!recs.length){
+      ct.innerHTML = '<div style="text-align:center;padding:2rem;color:#999;font-size:13px;">Aucune donnée.</div>';
+      return;
+    }
+    const ag = recs.filter(r=>r.role==='agent');
+    const sp = recs.filter(r=>r.role==='superviseur');
+    const mg = recs.filter(r=>r.role&&r.role.startsWith('mgt'));
+    const avg = arr => arr.length ? Math.round(arr.reduce((s,r)=>s+r.scores.IPA,0)/arr.length) : null;
+    const aV = avg(ag), sV = avg(sp), mV = avg(mg);
+    const iepAll = [...ag,...sp].map(r=>r.scores.I).filter(v=>v!==undefined).concat(mg.map(r=>r.scores.E).filter(v=>v!==undefined));
+    const iepMoy = iepAll.length ? Math.round(iepAll.reduce((s,v)=>s+v,0)/iepAll.length) : null;
+    ct.innerHTML = `<div style="background:#f8f9fa;border-radius:10px;padding:12px;margin-bottom:1rem;font-size:12px;color:#666;">${recs.length} évaluations · ${ag.length} agents · ${sp.length} superviseurs · ${mg.length} management</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+        <div style="border:1px solid #185FA5;background:#E6F1FB;border-radius:12px;padding:14px;text-align:center;"><div style="font-size:10px;font-weight:600;color:#185FA5;text-transform:uppercase;margin-bottom:6px;">Voie 1 · Agents</div><div style="font-size:30px;font-weight:700;color:#185FA5;">${aV!==null?aV:'—'}</div><div style="font-size:11px;color:#185FA5;">/100 · ${ag.length} éval.</div></div>
+        <div style="border:1px solid #0F6E56;background:#E1F5EE;border-radius:12px;padding:14px;text-align:center;"><div style="font-size:10px;font-weight:600;color:#0F6E56;text-transform:uppercase;margin-bottom:6px;">Voie 2 · Superviseurs</div><div style="font-size:30px;font-weight:700;color:#0F6E56;">${sV!==null?sV:'—'}</div><div style="font-size:11px;color:#0F6E56;">/100 · ${sp.length} éval.</div></div>
+        <div style="border:1px solid #854F0B;background:#FAEEDA;border-radius:12px;padding:14px;text-align:center;"><div style="font-size:10px;font-weight:600;color:#854F0B;text-transform:uppercase;margin-bottom:6px;">Voie 3 · Management</div><div style="font-size:30px;font-weight:700;color:#854F0B;">${mV!==null?mV:'—'}</div><div style="font-size:11px;color:#854F0B;">/100 · ${mg.length} éval.</div></div>
+      </div>
+      ${iepMoy!==null?`<div style="background:${iepMoy>=67?'#E1F5EE':iepMoy>=40?'#FAEEDA':'#FCEBEB'};border:1px solid ${iepMoy>=67?'#0F6E56':iepMoy>=40?'#BA7517':'#A32D2D'};border-radius:10px;padding:12px 14px;margin-bottom:12px;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:${iepMoy>=67?'#0F6E56':iepMoy>=40?'#BA7517':'#A32D2D'};margin-bottom:4px;">Ce que votre environnement fait de vos efforts <span style="font-size:9px;opacity:.6;">IEP collectif</span></div><div style="font-size:24px;font-weight:700;color:${iepMoy>=67?'#0F6E56':iepMoy>=40?'#BA7517':'#A32D2D'};">${iepMoy}/100</div><p style="font-size:12px;margin:4px 0 0;color:#555;line-height:1.5;">${iepMoy>=67?'Environnement porteur — les acquis de RUNWAY peuvent se consolider.':iepMoy>=40?'Partiellement porteur — des ajustements sont recommandés.':'Contraignant — sans amélioration des conditions, les acquis risquent de s\'éroder.'}</p></div>`:''}
+      ${recs.slice().reverse().map(r=>{const cfg=pfGetCfg(r.scores.IPA,r.role); const rM={agent:'Agent',superviseur:'Superviseur','mgt-strat':'Dir.Gen.','mgt-inter':'Mgt Int.','mgt-prox':'Mgt Prox.'}; return`<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #eee;"><div><div style="font-size:13px;font-weight:600;color:#333;">${r.agent.name}</div><div style="font-size:11px;color:#999;">${rM[r.role]||r.role} · ${new Date(r.timestamp).toLocaleDateString('fr-FR')}</div></div><span style="font-size:18px;font-weight:700;color:${cfg.c};">${r.scores.IPA}</span></div>`;}).join('')}`;
+  } catch(e){}
+}
+
+function pfLoadOctogo(){
+  pfLoadPilotage();
+  const ct = document.getElementById('pf-dash-pilotage');
+  const otVoies = document.getElementById('ot-voies');
+  if(otVoies) otVoies.innerHTML = ct.innerHTML;
+  const otTous = document.getElementById('ot-tous');
+  if(otTous){
+    try {
+      const local = localStorage.getItem('runway_platform_v1');
+      const recs = local ? JSON.parse(local) : [];
+      if(!recs.length){
+        otTous.innerHTML = '<div style="text-align:center;padding:2rem;color:#999;font-size:13px;">Aucune donnée.</div>';
+        return;
+      }
+      const rM = {agent:'Agent',superviseur:'Superviseur','mgt-strat':'Dir.Gen.','mgt-inter':'Mgt Int.','mgt-prox':'Mgt Prox.'};
+      const aM = {tunis:'Tunis',monastir:'Monastir',djerba:'Djerba',handling:'Handling',dt:'Dir.Tech.',dg:'DG',siege:'Siège'};
+      otTous.innerHTML = recs.slice().reverse().map(r=>{const cfg=pfGetCfg(r.scores.IPA,r.role); const rc=PF_RC[r.role]||{m:'#185FA5',bg:'#E6F1FB'}; return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee;"><div><div style="font-size:14px;font-weight:600;color:#333;">${r.agent.name}</div><div style="font-size:12px;color:#999;">${rM[r.role]||r.role} · ${aM[r.agent.airport]||r.agent.airport} · ${new Date(r.timestamp).toLocaleDateString('fr-FR')}</div></div><div style="display:flex;align-items:center;gap:6px;"><span style="font-size:20px;font-weight:700;color:${cfg.c};">${r.scores.IPA}</span><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:${rc.bg};color:${rc.m};">${rM[r.role]||r.role}</span></div></div>`;}).join('');
+    } catch(e){}
+  }
+  pfRenderTriv();
+}
+
+function pfRenderTriv(){
+  const ct = document.getElementById('ot-triv');
+  if(!ct) return;
+  try {
+    const local = localStorage.getItem('runway_platform_v1');
+    const recs = local ? JSON.parse(local) : [];
+    if(!recs.length){
+      ct.innerHTML = '<div style="text-align:center;padding:2rem;color:#999;font-size:13px;">Aucune donnée.</div>';
+      return;
+    }
+    const ag = recs.filter(r=>r.role==='agent');
+    const sp = recs.filter(r=>r.role==='superviseur');
+    const mg = recs.filter(r=>r.role&&r.role.startsWith('mgt'));
+    const ms = recs.filter(r=>r.role==='mgt-strat');
+    const mi = recs.filter(r=>r.role==='mgt-inter');
+    const mp = recs.filter(r=>r.role==='mgt-prox');
+    const avg = arr => arr.length ? Math.round(arr.reduce((s,r)=>s+r.scores.IPA,0)/arr.length) : null;
+    const aV = avg(ag), sV = avg(sp), mV = avg(mg);
+    const msV = avg(ms), miV = avg(mi), mpV = avg(mp);
+    const hasAll = aV!==null && sV!==null && mV!==null;
+    function calcOm(H,S,M){const a=H/100,b=S/100,c=M/100; const n=Math.sqrt(a*a)+Math.sqrt(b*b)+Math.sqrt(c*c); return n>0?Math.min(100,Math.round(Math.sqrt(Math.pow(a+b+c,2))/n*100)):0;}
+    const omega = hasAll ? calcOm(aV,sV,mV) : null;
+    function getHolo(o){
+      if(o>=75) return {l:'Hologramme Cohérent',c:'#0F6E56',bg:'#E1F5EE',desc:'Les trois voies convergent. RUNWAY peut produire ses effets complets.'};
+      if(o>=50) return {l:'Hologramme Créateur',c:'#185FA5',bg:'#E6F1FB',desc:'Tension productive — zone optimale pour la transformation réelle.'};
+      if(o>=30) return {l:'Hologramme Latent',c:'#BA7517',bg:'#FAEEDA',desc:'Un ou plusieurs corps en inertie. Travail d\'alignement préalable recommandé.'};
+      return {l:'Hologramme Fragmenté',c:'#A32D2D',bg:'#FCEBEB',desc:'Interférences destructives. Recadrage prioritaire avant le Jour 1.'};
+    }
+    const holo = omega!==null ? getHolo(omega) : null;
+    ct.innerHTML = `<div style="background:#f8f9fa;border-radius:10px;padding:12px;margin-bottom:1rem;font-size:12px;color:#666;">${recs.length} évaluations · ${ag.length} agents · ${sp.length} superviseurs · ${mg.length} management</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;">
+        <div style="border:1px solid #185FA5;background:#E6F1FB;border-radius:12px;padding:12px;text-align:center;"><div style="font-size:10px;font-weight:600;color:#185FA5;text-transform:uppercase;margin-bottom:4px;">Voie 1</div><div style="font-size:30px;font-weight:700;color:#185FA5;">${aV!==null?aV:'—'}</div><div style="font-size:10px;color:#185FA5;">ΨH</div></div>
+        <div style="border:1px solid #0F6E56;background:#E1F5EE;border-radius:12px;padding:12px;text-align:center;"><div style="font-size:10px;font-weight:600;color:#0F6E56;text-transform:uppercase;margin-bottom:4px;">Voie 2</div><div style="font-size:30px;font-weight:700;color:#0F6E56;">${sV!==null?sV:'—'}</div><div style="font-size:10px;color:#0F6E56;">Triade</div></div>
+        <div style="border:1px solid #854F0B;background:#FAEEDA;border-radius:12px;padding:12px;text-align:center;"><div style="font-size:10px;font-weight:600;color:#854F0B;text-transform:uppercase;margin-bottom:4px;">Voie 3</div><div style="font-size:30px;font-weight:700;color:#854F0B;">${mV!==null?mV:'—'}</div><div style="font-size:10px;color:#854F0B;">ΨE</div></div>
+      </div>
+      ${(msV!==null||miV!==null||mpV!==null)?`<div style="background:#f8f9fa;border-radius:10px;padding:12px;margin-bottom:10px;">${msV!==null?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="font-size:12px;min-width:140px;color:#6B3FA0;">Direction générale</span><span style="font-size:13px;font-weight:600;color:#6B3FA0;min-width:36px;text-align:right;">${msV}</span><div style="flex:1;height:4px;background:#eee;border-radius:2px;"><div style="width:${msV}%;height:4px;background:#6B3FA0;border-radius:2px;"></div></div></div>`:''}${miV!==null?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="font-size:12px;min-width:140px;color:#854F0B;">Mgt intermédiaire</span><span style="font-size:13px;font-weight:600;color:#854F0B;min-width:36px;text-align:right;">${miV}</span><div style="flex:1;height:4px;background:#eee;border-radius:2px;"><div style="width:${miV}%;height:4px;background:#854F0B;border-radius:2px;"></div></div></div>`:''}${mpV!==null?`<div style="display:flex;align-items:center;gap:8px;"><span style="font-size:12px;min-width:140px;color:#8B1A1A;">Mgt de proximité</span><span style="font-size:13px;font-weight:600;color:#8B1A1A;min-width:36px;text-align:right;">${mpV}</span><div style="flex:1;height:4px;background:#eee;border-radius:2px;"><div style="width:${mpV}%;height:4px;background:#8B1A1A;border-radius:2px;"></div></div></div>`:''}</div>`:''}
+      <div style="text-align:center;font-size:16px;color:#ccc;margin:8px 0;">↘ ↓ ↙</div>
+      ${hasAll&&holo?`<div style="background:${holo.bg};border:1px solid ${holo.c};border-radius:12px;padding:1.5rem;text-align:center;margin-bottom:1rem;"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:${holo.c};">Élan collectif <span style="font-size:9px;opacity:.6;">· Conatus Collectif Ω</span></div><div style="font-size:52px;font-weight:700;color:${holo.c};line-height:1;">${omega}%</div><div style="font-size:15px;font-weight:600;color:${holo.c};margin-top:8px;">${holo.l}</div><p style="margin-top:8px;margin-bottom:0;font-size:13px;line-height:1.65;color:#555;">${holo.desc}</p></div>`:`<div style="background:#f8f9fa;border-radius:10px;padding:1rem;font-size:13px;color:#666;">Données manquantes —${!aV?' Voie 1':''} ${!sV?' Voie 2':''} ${!mV?' Voie 3':''}. Complétez les trois voies.</div>`}`;
+  } catch(e){}
+}
+
     </script>
 
 </body>
