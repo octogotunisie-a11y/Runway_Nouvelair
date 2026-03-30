@@ -179,11 +179,24 @@
         /* LAYOUT */
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            width: 100%;
-        }
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 12px;
+    }
+    body, .section-lead, p {
+        font-size: 15px !important;
+    }
+    .section-title {
+        font-size: 24px !important;
+    }
+}
+
         /* TOPBAR */
         
         .topbar {
@@ -3785,10 +3798,35 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
 
 /* Responsive */
 @media (max-width: 768px) {
-    html, body { font-size: 15px !important; }
-    h1 { font-size: 28px !important; }
-    h2 { font-size: 22px !important; }
+    .hero-inner, .container, .profiles-grid-large, .rec2-grid, .stats-grid {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    
+    .section-title, h2 {
+        text-align: left !important;
+    }
+    
+    .section-lead {
+        text-align: left !important;
+        font-size: 15px !important;
+    }
+    
+    .hero-title {
+        font-size: 28px !important;
+        text-align: left !important;
+    }
+    
+    .hero-stats, .stats-grid, .rec2-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .profile-detail-card {
+        grid-template-columns: 1fr !important;
+    }
 }
+
     /* ── REMPLACEMENT GRIS → HAUTE LISIBILITE ─────────────────── */
     /* Slate (#8A96A8) → Blanc doux lumineux */
     :root { --slate: #C8D5E3 !important; }
@@ -7901,14 +7939,29 @@ const primaryBtn=color=>({padding:"10px 22px",borderRadius:9,fontSize:12,fontWei
     // ── Mount controller ─────────────────────────────────────
     let _trainMounted = false;
     function openTrainApp() {
-      document.getElementById('train-overlay').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      if (!_trainMounted) {
-        _trainMounted = true;
-        const root2 = ReactDOM.createRoot(document.getElementById('train-root'));
-        root2.render(h(RunwayTrainApp, null));
-      }
+    console.log("openTrainApp called");
+    var overlay = document.getElementById('train-overlay');
+    if (!overlay) return;
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Vérifier si React est chargé
+    if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
+        console.error("React non chargé");
+        return;
     }
+    
+    var rootEl = document.getElementById('train-root');
+    if (rootEl && !window._trainMounted) {
+        window._trainMounted = true;
+        try {
+            var root = ReactDOM.createRoot(rootEl);
+            root.render(React.createElement(RunwayTrainApp, null));
+        } catch(e) {
+            console.error("Erreur montage React:", e);
+        }
+    }
+}
     function closeTrainApp() {
       document.getElementById('train-overlay').style.display = 'none';
       _trainMounted = false;
