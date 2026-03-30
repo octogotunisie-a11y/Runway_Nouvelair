@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0060)https://octogotunisie-a11y.github.io/Runway_Nouvelair/RUNWAY -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>RUNWAY — Offre Nouvelair · OCTOGO</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1664,7 +1664,41 @@ section > .container {
             gap: 3px;
             margin-top: 60px;
         }
-        
+        #rwy-decideur-modal {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+#rwy-decideur-modal .rwy-modal-topbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 20 !important;
+    background: rgba(10,13,22,0.98) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+#rwy-decideur-modal .rwy-modal-body {
+    padding: 20px 16px 40px !important;
+}
+
+@media (max-width: 768px) {
+    #rwy-decideur-modal .rwy-modal-body {
+        padding: 16px 12px 30px !important;
+    }
+    
+    /* Les stats en 2 colonnes sur tablette, 1 colonne sur mobile */
+    #rwy-decideur-modal [style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    /* Ajuster les tableaux de benchmark */
+    #rwy-decideur-modal [style*="display: grid"][style*="grid-template-columns: 1fr 80px 1fr"] {
+        grid-template-columns: 1fr 70px 1fr !important;
+        gap: 4px !important;
+        font-size: 10px !important;
+    }
+}
         .stat-card {
             background: rgba(255, 255, 255, .03);
             border: 1px solid rgba(184, 151, 90, .12);
@@ -2208,7 +2242,28 @@ section > .container {
                 text-align: center;
             }
         }
-        
+        body {
+    padding-top: 70px !important;  /* Important : crée un espace pour la topbar */
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px !important;  /* 60px pour mobile, correspond à la hauteur de la topbar */
+    }
+    
+    /* Correction de la topbar pour qu'elle ne superpose pas le contenu */
+    .topbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 200 !important;
+        height: 60px !important;
+        padding: 0 12px !important;
+        background: rgba(14, 17, 23, 0.96) !important;
+        backdrop-filter: blur(14px) !important;
+    }
+}
         /* Neuro badge strip */
         
         .neuro-strip {
@@ -5266,52 +5321,63 @@ function rwyRender(sec) {
       <p style="font-size:14px;color:rgba(245,240,232,.5);margin-top:10px;font-family:'DM Mono',monospace;letter-spacing:.08em;">Le Seuil — Protocole T0 →</p>
     </div>
     <!-- CARTOGRAPHIE T0 -->
-  <section id="cartographie" style="background:var(--navy);padding:80px 0 60px;border-top:1px solid rgba(184,151,90,.15);">
-  <div class="container">
-    <div class="section-eyebrow reveal" style="justify-content:center;"><span></span>Le Seuil <span style="font-size:10px;font-family:'DM Mono',monospace;opacity:.6;">· Protocole T0 · TRIVIUM</span></div>
-    <h2 class="reveal visible" style="text-align:center;font-size:clamp(28px,4vw,42px);color:var(--cream);margin-bottom:16px;">Avant le Jour 1, <em style="color:var(--gold);">cartographier le réel.</em></h2>
-    <p class="reveal visible" style="text-align:center;color:var(--slate);max-width:640px;margin:0 auto 48px;font-size:16px;line-height:1.8;">RUNWAY ne démarre pas le Jour 1 avec des hypothèses. Il démarre avec une cartographie précise de l'état de départ — trois voies simultanées, un point de convergence, une baseline qui permettra de mesurer la transformation réelle.</p>
+  <section id="cartographie" style="background:var(--navy);padding:60px 0 60px;border-top:1px solid rgba(184,151,90,.15);">
+    <div class="container">
+        <div class="section-eyebrow reveal" style="justify-content:center;">
+            <span></span>Le Seuil <span style="font-size:10px;font-family:'DM Mono',monospace;opacity:.6;">· Protocole T0 · TRIVIUM</span>
+        </div>
+        <h2 class="reveal visible" style="text-align:center;font-size:clamp(28px,4vw,42px);color:var(--cream);margin-bottom:16px;">
+            Avant le Jour 1, <em style="color:var(--gold);">cartographier le réel.</em>
+        </h2>
+        <p class="reveal visible" style="text-align:center;color:var(--slate);max-width:640px;margin:0 auto 48px;font-size:clamp(14px,4vw,16px);line-height:1.8;">
+            RUNWAY ne démarre pas le Jour 1 avec des hypothèses. Il démarre avec une cartographie précise de l'état de départ — trois voies simultanées, un point de convergence, une baseline qui permettra de mesurer la transformation réelle.
+        </p>
 
-    <div class="reveal visible" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;">
-      <div style="background:rgba(24,95,165,.12);border:1px solid rgba(24,95,165,.3);border-radius:16px;padding:24px;text-align:center;">
-        <div style="font-size:32px;margin-bottom:12px;">👤</div>
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#378ADD;font-weight:600;margin-bottom:8px;">Voie 1</div>
-        <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Agents</div>
-        <div style="font-size:13px;color:var(--slate);line-height:1.6;">Le Souffle · Robustesse · Savoir à quoi s'attendre · Lire le passager · Sens</div>
-        <div style="margin-top:12px;font-size:11px;color:#378ADD;">13 questions · 6 min</div>
-      </div>
-      <div style="background:rgba(15,110,86,.12);border:1px solid rgba(15,110,86,.3);border-radius:16px;padding:24px;text-align:center;">
-        <div style="font-size:32px;margin-bottom:12px;">👥</div>
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#1D9E75;font-weight:600;margin-bottom:8px;">Voie 2</div>
-        <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Superviseurs</div>
-        <div style="font-size:13px;color:var(--slate);line-height:1.6;">Dimensions agents + posture RELAY · Variable de stabilité de la triade</div>
-        <div style="margin-top:12px;font-size:11px;color:#1D9E75;">16 questions · 8 min</div>
-      </div>
-      <div style="background:rgba(133,79,11,.12);border:1px solid rgba(133,79,11,.3);border-radius:16px;padding:24px;text-align:center;">
-        <div style="font-size:32px;margin-bottom:12px;">🏛</div>
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#BA7517;font-weight:600;margin-bottom:8px;">Voie 3</div>
-        <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Management</div>
-        <div style="font-size:13px;color:var(--slate);line-height:1.6;">Direction générale · Management intermédiaire · Management de proximité</div>
-        <div style="margin-top:12px;font-size:11px;color:#BA7517;">10 questions · 7 min</div>
-      </div>
-    </div>
+        <!-- LES 3 VOIES (RESPONSIVE) -->
+        <div class="reveal visible" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;margin-bottom:48px;">
+            <div style="background:rgba(24,95,165,.12);border:1px solid rgba(24,95,165,.3);border-radius:16px;padding:24px;text-align:center;">
+                <div style="font-size:32px;margin-bottom:12px;">👤</div>
+                <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#378ADD;font-weight:600;margin-bottom:8px;">Voie 1</div>
+                <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Agents</div>
+                <div style="font-size:13px;color:var(--slate);line-height:1.6;">Le Souffle · Robustesse · Savoir à quoi s'attendre · Lire le passager · Sens</div>
+                <div style="margin-top:12px;font-size:11px;color:#378ADD;">13 questions · 6 min</div>
+            </div>
+            <div style="background:rgba(15,110,86,.12);border:1px solid rgba(15,110,86,.3);border-radius:16px;padding:24px;text-align:center;">
+                <div style="font-size:32px;margin-bottom:12px;">👥</div>
+                <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#1D9E75;font-weight:600;margin-bottom:8px;">Voie 2</div>
+                <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Superviseurs</div>
+                <div style="font-size:13px;color:var(--slate);line-height:1.6;">Dimensions agents + posture RELAY · Variable de stabilité de la triade</div>
+                <div style="margin-top:12px;font-size:11px;color:#1D9E75;">16 questions · 8 min</div>
+            </div>
+            <div style="background:rgba(133,79,11,.12);border:1px solid rgba(133,79,11,.3);border-radius:16px;padding:24px;text-align:center;">
+                <div style="font-size:32px;margin-bottom:12px;">🏛</div>
+                <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#BA7517;font-weight:600;margin-bottom:8px;">Voie 3</div>
+                <div style="font-size:16px;font-weight:600;color:var(--cream);margin-bottom:8px;">Management</div>
+                <div style="font-size:13px;color:var(--slate);line-height:1.6;">Direction générale · Management intermédiaire · Management de proximité</div>
+                <div style="margin-top:12px;font-size:11px;color:#BA7517;">10 questions · 7 min</div>
+            </div>
+        </div>
 
-    <div class="reveal visible" style="background:rgba(184,151,90,.06);border:1px solid rgba(184,151,90,.2);border-radius:16px;padding:28px;margin-bottom:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:240px;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:8px;">Ce que votre environnement fait de vos efforts <span style="font-size:11px;font-family:'DM Mono',monospace;opacity:.6;">IEP</span></div>
-        <p style="color:var(--slate);font-size:14px;margin:0;line-height:1.7;">Mesure la qualité des conditions organisationnelles créées à chaque niveau. Un programme de formation produit des effets durables uniquement si l'environnement soutient leur application. L'IEP est calculé simultanément pour les trois voies.</p>
-      </div>
-      <div style="text-align:center;min-width:120px;">
-        <div style="font-size:48px;font-weight:700;color:var(--gold);line-height:1;">Ω</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;">Élan collectif<br><span style="font-size:10px;font-family:'DM Mono',monospace;opacity:.6;">Conatus Collectif Ω · Point TRIVIUM</span></div>
-      </div>
-    </div>
+        <!-- BLOC IEP -->
+        <div class="reveal visible" style="background:rgba(184,151,90,.06);border:1px solid rgba(184,151,90,.2);border-radius:16px;padding:28px;margin-bottom:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:240px;">
+                <div style="font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:8px;">
+                    Ce que votre environnement fait de vos efforts <span style="font-size:11px;font-family:'DM Mono',monospace;opacity:.6;">IEP</span>
+                </div>
+                <p style="color:var(--slate);font-size:14px;margin:0;line-height:1.7;">Mesure la qualité des conditions organisationnelles créées à chaque niveau. Un programme de formation produit des effets durables uniquement si l'environnement soutient leur application. L'IEP est calculé simultanément pour les trois voies.</p>
+            </div>
+            <div style="text-align:center;min-width:120px;">
+                <div style="font-size:48px;font-weight:700;color:var(--gold);line-height:1;">Ω</div>
+                <div style="font-size:12px;color:var(--slate);margin-top:4px;">Élan collectif<br><span style="font-size:10px;font-family:'DM Mono',monospace;opacity:.6;">Conatus Collectif Ω · Point TRIVIUM</span></div>
+            </div>
+        </div>
 
-    <div class="reveal visible" style="text-align:center;">
-      <button onclick="openPlatform()" style="background:var(--gold);color:var(--ink);border:none;border-radius:12px;padding:16px 36px;font-size:16px;font-weight:600;cursor:pointer;letter-spacing:.02em;">Démarrer la cartographie T0 →</button>
-      <p style="color:var(--slate);font-size:12px;margin-top:12px;">Accès sécurisé · Données confidentielles · Résultats instantanés</p>
+        <!-- BOUTON -->
+        <div class="reveal visible" style="text-align:center;">
+            <button onclick="openPlatform()" style="background:var(--gold);color:var(--ink);border:none;border-radius:12px;padding:16px 36px;font-size:16px;font-weight:600;cursor:pointer;letter-spacing:.02em;">Démarrer la cartographie T0 →</button>
+            <p style="color:var(--slate);font-size:12px;margin-top:12px;">Accès sécurisé · Données confidentielles · Résultats instantanés</p>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════
