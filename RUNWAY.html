@@ -1299,7 +1299,6 @@ section > .container {
         height: 71px !important;  /* 50 × 1.414 = 70.7 */
     }
 }
-        
         /* ══ SITUATIONS ════════════════════════════════════════════════════════ */
         
         .sit-section {
@@ -1795,12 +1794,12 @@ section > .container {
         }
         
         .deploy-panel {
-            display: none;
-        }
-        
-        .deploy-panel.active {
-            display: block;
-        }
+    display: none;
+}
+
+.deploy-panel.active {
+    display: block;
+}
         /* Timeline */
         
         .timeline {
@@ -9229,16 +9228,32 @@ function HomeApp(){
             });
         }
 
-        function switchDeploy(id) {
-            document.querySelectorAll('.deploy-tab').forEach((t, i) => {
-                t.classList.toggle('active', ['superviseurs', 'agents'][i] === id);
-            });
-            document.querySelectorAll('.deploy-panel').forEach(p => {
-                p.classList.toggle('active', p.id === 'panel-' + id);
-            });
+function switchDeploy(id) {
+    // Mettre à jour les onglets
+    document.querySelectorAll('.deploy-tab').forEach(function(tab) {
+        const onclickAttr = tab.getAttribute('onclick') || '';
+        if (onclickAttr.includes("'" + id + "'")) {
+            tab.classList.add('active');
+            tab.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
+            tab.style.color = '#06122a';
+        } else {
+            tab.classList.remove('active');
+            tab.style.background = 'rgba(15,23,42,0.5)';
+            tab.style.color = 'rgba(255,255,255,0.6)';
         }
+    });
 
-
+    // Mettre à jour les panels
+    document.querySelectorAll('.deploy-panel').forEach(function(panel) {
+        if (panel.id === 'panel-' + id) {
+            panel.style.display = 'block';
+            panel.classList.add('active');
+        } else {
+            panel.style.display = 'none';
+            panel.classList.remove('active');
+        }
+    });
+}
 // Mount home
 const shell=document.getElementById('nav-shell');
 if(shell) ReactDOM.createRoot(shell).render(h(HomeApp));
