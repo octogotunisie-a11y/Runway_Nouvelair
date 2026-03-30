@@ -1796,7 +1796,6 @@ section > .container {
         .deploy-panel {
     display: none;
 }
-
 .deploy-panel.active {
     display: block;
 }
@@ -4882,10 +4881,10 @@ function rwyRender(sec) {
             <p class="section-lead reveal visible" style="transition-delay: 200ms;">RUNWAY n'est pas une formation en salle suivie d'un retour au poste. C'est un système de transformation opérationnel qui s'installe dans la réalité du terrain via des points de contact séquencés conçus pour modifier durablement les automatismes
                 de réponse.</p>
 
-            <div class="deploy-tabs reveal visible" style="transition-delay: 300ms;">
-                <button class="deploy-tab active" onclick="switchDeploy('superviseurs')">Superviseurs</button>
-                <button class="deploy-tab" onclick="switchDeploy('agents')">Agents</button>
-            </div>
+       <div class="deploy-tabs reveal visible" style="transition-delay: 300ms;">
+    <button class="deploy-tab active" data-deploy="superviseurs" onclick="switchDeploy('superviseurs')">Superviseurs</button>
+    <button class="deploy-tab" data-deploy="agents" onclick="switchDeploy('agents')">Agents</button>
+</div>
 
             <!-- SUPERVISEURS -->
             <div class="deploy-panel active" id="panel-superviseurs">
@@ -9228,32 +9227,90 @@ function HomeApp(){
             });
         }
 
-function switchDeploy(id) {
-    // Mettre à jour les onglets
-    document.querySelectorAll('.deploy-tab').forEach(function(tab) {
-        const onclickAttr = tab.getAttribute('onclick') || '';
-        if (onclickAttr.includes("'" + id + "'")) {
-            tab.classList.add('active');
-            tab.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
-            tab.style.color = '#06122a';
-        } else {
-            tab.classList.remove('active');
-            tab.style.background = 'rgba(15,23,42,0.5)';
-            tab.style.color = 'rgba(255,255,255,0.6)';
+// Fonction pour basculer entre les onglets Déploiement
+function switchDeploy(type) {
+    const superviseurPanel = document.getElementById('panel-superviseurs');
+    const agentPanel = document.getElementById('panel-agents');
+    const superviseurBtn = document.querySelector('.deploy-tab[data-deploy="superviseurs"]');
+    const agentBtn = document.querySelector('.deploy-tab[data-deploy="agents"]');
+    
+    if (type === 'superviseurs') {
+        // Afficher le panel superviseurs
+        if (superviseurPanel) superviseurPanel.style.display = 'block';
+        if (agentPanel) agentPanel.style.display = 'none';
+        
+        // Style du bouton superviseurs (actif)
+        if (superviseurBtn) {
+            superviseurBtn.classList.add('active');
+            superviseurBtn.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
+            superviseurBtn.style.color = '#06122a';
         }
-    });
-
-    // Mettre à jour les panels
-    document.querySelectorAll('.deploy-panel').forEach(function(panel) {
-        if (panel.id === 'panel-' + id) {
-            panel.style.display = 'block';
-            panel.classList.add('active');
-        } else {
-            panel.style.display = 'none';
-            panel.classList.remove('active');
+        
+        // Style du bouton agents (inactif)
+        if (agentBtn) {
+            agentBtn.classList.remove('active');
+            agentBtn.style.background = 'rgba(15,23,42,0.5)';
+            agentBtn.style.color = 'rgba(255,255,255,0.6)';
         }
-    });
+        
+    } else if (type === 'agents') {
+        // Afficher le panel agents
+        if (agentPanel) agentPanel.style.display = 'block';
+        if (superviseurPanel) superviseurPanel.style.display = 'none';
+        
+        // Style du bouton agents (actif)
+        if (agentBtn) {
+            agentBtn.classList.add('active');
+            agentBtn.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
+            agentBtn.style.color = '#06122a';
+        }
+        
+        // Style du bouton superviseurs (inactif)
+        if (superviseurBtn) {
+            superviseurBtn.classList.remove('active');
+            superviseurBtn.style.background = 'rgba(15,23,42,0.5)';
+            superviseurBtn.style.color = 'rgba(255,255,255,0.6)';
+        }
+    }
 }
+if (typeof switchDeploy === 'function') {
+    // Surcharger la fonction existante
+    window.switchDeploy = function(id) {
+        const superviseurPanel = document.getElementById('panel-superviseurs');
+        const agentPanel = document.getElementById('panel-agents');
+        
+        if (id === 'superviseurs') {
+            superviseurPanel.style.display = 'block';
+            agentPanel.style.display = 'none';
+            document.querySelectorAll('.deploy-tab').forEach(tab => {
+                if (tab.textContent === 'Superviseurs') {
+                    tab.classList.add('active');
+                    tab.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
+                    tab.style.color = '#06122a';
+                } else {
+                    tab.classList.remove('active');
+                    tab.style.background = 'rgba(15,23,42,0.5)';
+                    tab.style.color = 'rgba(255,255,255,0.6)';
+                }
+            });
+        } else if (id === 'agents') {
+            agentPanel.style.display = 'block';
+            superviseurPanel.style.display = 'none';
+            document.querySelectorAll('.deploy-tab').forEach(tab => {
+                if (tab.textContent === 'Agents') {
+                    tab.classList.add('active');
+                    tab.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
+                    tab.style.color = '#06122a';
+                } else {
+                    tab.classList.remove('active');
+                    tab.style.background = 'rgba(15,23,42,0.5)';
+                    tab.style.color = 'rgba(255,255,255,0.6)';
+                }
+            });
+        }
+    };
+}
+
 // Mount home
 const shell=document.getElementById('nav-shell');
 if(shell) ReactDOM.createRoot(shell).render(h(HomeApp));
