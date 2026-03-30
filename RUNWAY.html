@@ -1200,8 +1200,7 @@ section > .container {
         }
         
        .profile-detail-item img {
-    aspect-ratio: 1 / 1.414;
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: auto;
 }
@@ -1222,8 +1221,7 @@ section > .container {
 }
 
 #profile-display-area .profile-detail-item img {
-    aspect-ratio: 1 / 1.414;
-    object-fit: cover;
+    object-fit: contain;
 }
       @media (max-width: 768px) {
     .relay-section .container {
@@ -1274,16 +1272,34 @@ section > .container {
     }
 }
   
-        /* Responsive pour la grille des profils */
-        @media(max-width: 1100px) {
-            .profiles-grid-large { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        }
-        @media(max-width: 700px) {
-            .profiles-grid-large { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        }
-        @media(max-width: 500px) {
-            .profiles-grid-large { grid-template-columns: 1fr; }
-        }
+      /* FORCER LE FORMAT A4 POUR LES MINIATURES HERO */
+.profiles-grid-compact .profile-card-compact > div {
+    width: 80px !important;
+    height: 113px !important;  /* 80 × 1.414 = 113.12 */
+    border-radius: 8px !important;
+}
+
+ .profiles-grid-compact .profile-card-compact img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+}
+
+/* Version responsive pour mobile */
+@media (max-width: 768px) {
+    .profiles-grid-compact .profile-card-compact > div {
+        width: 60px !important;
+        height: 85px !important;  /* 60 × 1.414 = 84.84 */
+    }
+}
+
+@media (max-width: 480px) {
+    .profiles-grid-compact .profile-card-compact > div {
+        width: 50px !important;
+        height: 71px !important;  /* 50 × 1.414 = 70.7 */
+    }
+}
         
         /* ══ SITUATIONS ════════════════════════════════════════════════════════ */
         
@@ -2682,7 +2698,117 @@ section > .container {
       color: rgba(255,255,255,0.8) !important;
       font-size: 0.95rem !important;
     }
+/* ═══════════════════════════════════════════════════════════════════
+   BANDE HERO - RESPONSIVE POUR MOBILE
+   ═══════════════════════════════════════════════════════════════════ */
 
+/* Conteneur principal des 6 profils hero */
+.profiles-grid-compact {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 12px !important;
+    margin: 20px auto 30px !important;
+    max-width: 100% !important;
+    padding: 0 12px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+}
+
+/* Style des cartes individuelles */
+.profile-card-compact {
+    flex-shrink: 0 !important;
+    min-width: 70px !important;
+    text-align: center !important;
+}
+
+/* Conteneur image */
+.profile-card-compact > div {
+    width: 70px !important;
+    height: 99px !important; /* 70 × 1.414 = 99 */
+    margin: 0 auto !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* Images */
+.profile-card-compact img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Labels sous les images */
+.profile-card-compact > div + div {
+    font-size: 9px !important;
+    margin-top: 6px !important;
+}
+
+/* ─── RESPONSIVE MOBILE (< 768px) ───────────────────────────────── */
+@media (max-width: 768px) {
+    .profiles-grid-compact {
+        grid-template-columns: repeat(6, auto) !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        padding: 0 8px 8px !important;
+        scroll-snap-type: x mandatory !important;
+    }
+    
+    .profile-card-compact {
+        scroll-snap-align: start !important;
+        flex: 0 0 auto !important;
+        width: 70px !important;
+    }
+    
+    .profile-card-compact > div {
+        width: 60px !important;
+        height: 85px !important; /* 60 × 1.414 = 84.84 */
+        border-width: 2px !important;
+    }
+    
+    .profile-card-compact > div + div {
+        font-size: 8px !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+    }
+}
+
+/* ─── TRÈS PETIT MOBILE (< 480px) ───────────────────────────────── */
+@media (max-width: 480px) {
+    .profile-card-compact {
+        width: 60px !important;
+    }
+    
+    .profile-card-compact > div {
+        width: 50px !important;
+        height: 71px !important; /* 50 × 1.414 = 70.7 */
+    }
+    
+    .profile-card-compact > div + div {
+        font-size: 7px !important;
+    }
+}
+
+/* ─── SCROLLBAR CACHÉE MAIS FONCTIONNELLE ───────────────────────── */
+@media (max-width: 768px) {
+    .profiles-grid-compact::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .profiles-grid-compact::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.1);
+        border-radius: 3px;
+    }
+    
+    .profiles-grid-compact::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 3px;
+    }
+}
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        8. APPLICATION TERRAIN — COCKPIT MODE
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -4058,40 +4184,46 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     </div>
 
     <!-- BANDE 6 PROFILS HERO -->
-  <div class="profiles-grid-compact" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin: 20px 0 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+  <div class="profiles-grid-compact" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin: 20px 0 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+    <!-- P1 - Contrôleur -->
     <div class="profile-card-compact" data-profile="1" style="cursor: pointer; text-align: center;">
-        <div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid #ef4444; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; background: #000;">
-            <img src="p/p111.jpeg" alt="Contrôleur" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="width: 80px; height: 113px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 3px solid #ef4444; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; background: #000;">
+            <img src="p/p111.jpeg" alt="Contrôleur" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
         <div style="margin-top: 8px; font-size: 10px; font-weight: 600; color: #ef4444;">P1 · Contrôleur</div>
     </div>
+    <!-- P2 - Inquiet -->
     <div class="profile-card-compact" data-profile="2" style="cursor: pointer; text-align: center;">
-        <div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid #f97316; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
-            <img src="p/p222.jpeg" alt="Inquiet" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="width: 80px; height: 113px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 3px solid #f97316; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
+            <img src="p/p222.jpeg" alt="Inquiet" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
         <div style="margin-top: 8px; font-size: 10px; font-weight: 600; color: #f97316;">P2 · Inquiet</div>
     </div>
+    <!-- P3 - Silencieux -->
     <div class="profile-card-compact" data-profile="3" style="cursor: pointer; text-align: center;">
-        <div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid #a855f7; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
-            <img src="p/p333.jpeg" alt="Silencieux" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="width: 80px; height: 113px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 3px solid #a855f7; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
+            <img src="p/p333.jpeg" alt="Silencieux" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
         <div style="margin-top: 8px; font-size: 10px; font-weight: 600; color: #a855f7;">P3 · Silencieux</div>
     </div>
+    <!-- P4 - Statutaire -->
     <div class="profile-card-compact" data-profile="4" style="cursor: pointer; text-align: center;">
-        <div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid #3b82f6; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
-            <img src="p/p444.jpeg" alt="Statutaire" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="width: 80px; height: 113px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 3px solid #3b82f6; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
+            <img src="p/p444.jpeg" alt="Statutaire" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
         <div style="margin-top: 8px; font-size: 10px; font-weight: 600; color: #3b82f6;">P4 · Statutaire</div>
     </div>
+    <!-- P5 - Impulsif -->
     <div class="profile-card-compact" data-profile="5" style="cursor: pointer; text-align: center;">
-        <div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid #e11d48; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
-            <img src="p/p555.jpeg" alt="Impulsif" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="width: 80px; height: 113px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 3px solid #e11d48; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
+            <img src="p/p555.jpeg" alt="Impulsif" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
         <div style="margin-top: 8px; font-size: 10px; font-weight: 600; color: #e11d48;">P5 · Impulsif</div>
     </div>
+    <!-- P6 - Coopératif -->
     <div class="profile-card-compact" data-profile="6" style="cursor: pointer; text-align: center;">
-        <div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid #10b981; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
-            <img src="p/p666.jpeg" alt="Coopératif" style="width: 100%; height: 100%; object-fit: cover;">
+        <div style="width: 80px; height: 113px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 3px solid #10b981; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s;">
+            <img src="p/p666.jpeg" alt="Coopératif" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
         <div style="margin-top: 8px; font-size: 10px; font-weight: 600; color: #10b981;">P6 · Coopératif</div>
     </div>
@@ -4821,13 +4953,14 @@ function rwyRender(sec) {
     </section>
 
     <!-- DÉPLOIEMENT -->
-    <section class="deploy-section" id="deploiement">
+     <section class="deploy-section" id="deploiement">
         <div class="container">
             <div class="section-eyebrow reveal visible">Scénarios de déploiement</div>
-            <h2 class="section-title reveal visible">Un dispositif <em>intégré</em> — salle, terrain, application, ancrage.</h2>
-            <p class="section-lead reveal visible">RUNWAY n'est pas une formation en salle suivie d'un retour au poste. C'est un système de transformation opérationnel qui s'installe dans la réalité du terrain via des points de contact séquencés conçus pour modifier durablement les automatismes de réponse.</p>
+            <h2 class="section-title reveal visible" style="transition-delay: 100ms;">Un dispositif <em>intégré</em> — salle, terrain, application, ancrage.</h2>
+            <p class="section-lead reveal visible" style="transition-delay: 200ms;">RUNWAY n'est pas une formation en salle suivie d'un retour au poste. C'est un système de transformation opérationnel qui s'installe dans la réalité du terrain via des points de contact séquencés conçus pour modifier durablement les automatismes
+                de réponse.</p>
 
-            <div class="deploy-tabs reveal visible">
+            <div class="deploy-tabs reveal visible" style="transition-delay: 300ms;">
                 <button class="deploy-tab active" onclick="switchDeploy('superviseurs')">Superviseurs</button>
                 <button class="deploy-tab" onclick="switchDeploy('agents')">Agents</button>
             </div>
@@ -4836,29 +4969,294 @@ function rwyRender(sec) {
             <div class="deploy-panel active" id="panel-superviseurs">
                 <div class="timeline">
                     <div class="timeline-spine"></div>
-                    <div class="timeline-item"><div class="timeline-card timeline-card-left"><div class="tl-eyebrow"><i class="fas fa-chalkboard-teacher"></i> Présentiel · Jour 1</div><div class="tl-title">Fondements neuroscientifiques &amp; lecture de la triade</div><ul class="tl-items"><li>Cerveau prédictif, énergie libre et erreurs de prédiction (Friston)</li><li>Les 6 profils passagers : dynamiques profondes (L.1 à L.10)</li><li>La triade Passager–Agent–Superviseur : rôles et positionnements</li><li>Diagnostic superviseur : lire la dynamique relationnelle à distance</li><li>Le Souffle (L.0) — autorégulation superviseur : ancrage physiologique</li></ul><div class="tl-badge"><i class="fas fa-mobile-alt"></i> Activation de l'application RUNWAY</div></div><div class="timeline-center"><div class="timeline-dot"></div><div class="timeline-day">Jour 1<br>Présentiel</div></div><div></div></div>
-                    <div class="timeline-item"><div></div><div class="timeline-center"><div class="timeline-dot"></div><div class="timeline-day">Jour 2<br>Présentiel</div></div><div class="timeline-card timeline-card-right"><div class="tl-eyebrow"><i class="fas fa-route"></i> Présentiel · Jour 2</div><div class="tl-title">Protocole RELAY &amp; pratique intensive</div><ul class="tl-items"><li>Protocole RELAY complet : Régulation → Entrée → Lecture → Action → Yield</li><li>Scripts superviseur × 6 profils × 3 niveaux : Persuadeur / Corrigeur / Prise en charge</li><li>Scénarios de simulation filmés : agent compétent, à corriger, prise en charge directe</li><li>Débriefing superviseur : grille d'analyse post-intervention</li><li>Rituels de briefing d'équipe : structures et séquences opérationnelles</li></ul><div class="tl-badge tl-badge-app"><i class="fas fa-tablet-alt"></i> Prise en main complète des modules superviseur</div></div></div>
-                    <div class="timeline-item"><div class="timeline-card timeline-card-left"><div class="tl-eyebrow"><i class="fas fa-users-cog"></i> Présentiel · Jour 3</div><div class="tl-title">Leadership régulateur &amp; ancrage organisationnel</div><ul class="tl-items"><li>Posture du superviseur régulateur : différencier accompagnement et contrôle</li><li>Créer une culture de sécurité psychologique dans l'équipe terrain</li><li>Rituel de briefing matin et débriefing soir : format opérationnel</li><li>Identification des agents à risque : signaux précoces et interventions</li><li>Plan d'ancrage mémoriel individuel via l'application RUNWAY</li></ul><div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Certification superviseur RUNWAY</div></div><div class="timeline-center"><div class="timeline-dot"></div><div class="timeline-day">Jour 3<br>Présentiel</div></div><div></div></div>
-                    <div class="timeline-item"><div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--gold-l);box-shadow:0 0 0 2px var(--gold-l);"></div><div class="timeline-day">J+1<br>à J+6</div></div><div class="timeline-card timeline-card-right" style="border-color:rgba(184,151,90,.3);"><div class="tl-eyebrow" style="color:var(--gold-d);"><i class="fas fa-mobile-alt"></i> Ancrage mémoriel — Application RUNWAY</div><div class="tl-title">Consolidation quotidienne entre J+1 et J+6</div><ul class="tl-items"><li>Accès aux fiches profil complètes (L.1–L.10) en version superviseur</li><li>Scripts superviseur × situations consultables en temps réel sur le terrain</li><li>Exercice de régulation physiologique guidé (respiration cohérente 4–6)</li><li>Rappels mémoriels quotidiens ciblés : protocoles RELAY et REC²</li><li>Journal de bord superviseur : cas terrain notés et analysés</li></ul><div class="tl-badge tl-badge-app"><i class="fas fa-clock"></i> 5–10 min / jour · 6 jours consécutifs</div></div></div>
-                    <div class="timeline-item"><div class="timeline-card timeline-card-left" style="border-color:rgba(15,118,110,.25);"><div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-walking"></i> Supervision terrain · J+7</div><div class="tl-title">Première journée de suivi terrain</div><div class="tl-body">Présence d'un formateur OCTOGO sur le terrain aux côtés du superviseur. Observation des interactions réelles, feedback immédiat, ajustement des automatismes. Débrief structuré en fin de shift.</div><ul class="tl-items"><li>Observation de 4 à 6 interactions superviseur / agent / passager</li><li>Feedback en temps réel et corrections dans le flux opérationnel</li><li>Identification des points d'ancrage à renforcer</li><li>Débrief individuel : forces acquises et axes de développement</li></ul><div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Rapport de suivi transmis à J+8</div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div><div class="timeline-day">J+7<br>Terrain</div></div><div></div></div>
-                    <div class="timeline-item"><div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div><div class="timeline-day">J+15<br>Terrain</div></div><div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);"><div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-flag-checkered"></i> Supervision terrain · J+15</div><div class="tl-title">Validation de l'ancrage &amp; plan de pérennisation</div><div class="tl-body">Journée conclusive. Évaluation de la solidité des automatismes sous pression réelle. Construction du plan de pérennisation propre à chaque superviseur.</div><ul class="tl-items"><li>Évaluation terrain en conditions réelles (grille RUNWAY)</li><li>Validation de la posture régulateur dans le contexte de l'équipe</li><li>Ritualisation du briefing / débriefing dans le format d'équipe</li><li>Plan de mentorat : transmission aux agents nouvellement recrutés</li></ul><div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Clôture du dispositif superviseur · Rapport final</div></div></div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left">
+                            <div class="tl-eyebrow"><i class="fas fa-chalkboard-teacher"></i> Présentiel · Jour 1</div>
+                            <div class="tl-title">Fondements neuroscientifiques & lecture de la triade</div>
+                            <ul class="tl-items">
+                                <li>Cerveau prédictif, énergie libre et erreurs de prédiction (Friston)</li>
+                                <li>Les 6 profils passagers : dynamiques profondes (L.1 à L.10)</li>
+                                <li>La triade Passager–Agent–Superviseur : rôles et positionnements</li>
+                                <li>Diagnostic superviseur : lire la dynamique relationnelle à distance</li>
+                                <li>Autorégulation de niveau superviseur (L.0) : ancrage physiologique</li>
+                            </ul>
+                            <div class="tl-badge"><i class="fas fa-mobile-alt"></i> Activation de l'application RUNWAY</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 1<br>Présentiel</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 2<br>Présentiel</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right">
+                            <div class="tl-eyebrow"><i class="fas fa-route"></i> Présentiel · Jour 2</div>
+                            <div class="tl-title">Protocole RELAY & pratique intensive</div>
+                            <ul class="tl-items">
+                                <li>Protocole RELAY complet : Régulation → Entrée → Lecture → Action → Yield</li>
+                                <li>Scripts superviseur × 6 profils × 3 niveaux : Persuadeur / Corrigeur / Prise en charge</li>
+                                <li>Scénarios de simulation filmés : agent compétent, à corriger, prise en charge directe</li>
+                                <li>Débriefing superviseur : grille d'analyse post-intervention</li>
+                                <li>Rituels de briefing d'équipe : structures et séquences opérationnelles</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-tablet-alt"></i> Prise en main complète des modules superviseur</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left">
+                            <div class="tl-eyebrow"><i class="fas fa-users-cog"></i> Présentiel · Jour 3</div>
+                            <div class="tl-title">Leadership régulateur & ancrage organisationnel</div>
+                            <ul class="tl-items">
+                                <li>Posture du superviseur régulateur : différencier accompagnement et contrôle</li>
+                                <li>Créer une culture de sécurité psychologique dans l'équipe terrain</li>
+                                <li>Rituel de briefing matin et débriefing soir : format opérationnel</li>
+                                <li>Identification des agents à risque : signaux précoces et interventions</li>
+                                <li>Plan d'ancrage mémoriel individuel via l'application RUNWAY</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Certification superviseur RUNWAY</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 3<br>Présentiel</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--gold-l);box-shadow:0 0 0 2px var(--gold-l);"></div>
+                            <div class="timeline-day">J+1<br>à J+6</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(184,151,90,.3);">
+                            <div class="tl-eyebrow" style="color:var(--gold-d);"><i class="fas fa-mobile-alt"></i> Ancrage mémoriel — Application RUNWAY</div>
+                            <div class="tl-title">Consolidation quotidienne entre J+1 et J+6</div>
+                            <ul class="tl-items">
+                                <li>Accès aux fiches profil complètes (L.1–L.10) en version superviseur</li>
+                                <li>Scripts superviseur × situations consultables en temps réel sur le terrain</li>
+                                <li>Exercice de régulation physiologique guidé (respiration cohérente 4–6)</li>
+                                <li>Rappels mémoriels quotidiens ciblés : protocoles RELAY et REC²</li>
+                                <li>Journal de bord superviseur : cas terrain notés et analysés</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-clock"></i> 5–10 min / jour · 6 jours consécutifs</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-walking"></i> Supervision terrain · J+7</div>
+                            <div class="tl-title">Première journée de suivi terrain</div>
+                            <div class="tl-body">Présence d'un formateur OCTOGO sur le terrain aux côtés du superviseur. Observation des interactions réelles, feedback immédiat, ajustement des automatismes. Débrief structuré en fin de shift.</div>
+                            <ul class="tl-items">
+                                <li>Observation de 4 à 6 interactions superviseur / agent / passager</li>
+                                <li>Feedback en temps réel et corrections dans le flux opérationnel</li>
+                                <li>Identification des points d'ancrage à renforcer</li>
+                                <li>Débrief individuel : forces acquises et axes de développement</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Rapport de suivi transmis à J+8</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+7<br>Terrain</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+15<br>Terrain</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-flag-checkered"></i> Supervision terrain · J+15</div>
+                            <div class="tl-title">Validation de l'ancrage & plan de pérennisation</div>
+                            <div class="tl-body">Journée conclusive. Évaluation de la solidité des automatismes sous pression réelle. Construction du plan de pérennisation propre à chaque superviseur.</div>
+                            <ul class="tl-items">
+                                <li>Évaluation terrain en conditions réelles (grille RUNWAY)</li>
+                                <li>Validation de la posture régulateur dans le contexte de l'équipe</li>
+                                <li>Ritualisation du briefing / débriefing dans le format d'équipe</li>
+                                <li>Plan de mentorat : transmission aux agents nouvellement recrutés</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Clôture du dispositif superviseur · Rapport final</div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="deploy-summary"><div class="deploy-sum-item"><div class="deploy-sum-n">3 j</div><div class="deploy-sum-label">Formation présentielle</div></div><div class="deploy-sum-item"><div class="deploy-sum-n">6 j</div><div class="deploy-sum-label">Ancrage applicatif quotidien</div></div><div class="deploy-sum-item"><div class="deploy-sum-n">2 j</div><div class="deploy-sum-label">Supervision terrain J+7 / J+15</div></div><div class="deploy-sum-item"><div class="deploy-sum-n">11 j</div><div class="deploy-sum-label">Dispositif total sur 15 jours</div></div></div>
+                <div class="deploy-summary">
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">3 j</div>
+                        <div class="deploy-sum-label">Formation présentielle</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">6 j</div>
+                        <div class="deploy-sum-label">Ancrage applicatif quotidien</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">2 j</div>
+                        <div class="deploy-sum-label">Supervision terrain J+7 / J+15</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">11 j</div>
+                        <div class="deploy-sum-label">Dispositif total sur 15 jours</div>
+                    </div>
+                </div>
             </div>
 
             <!-- AGENTS -->
-           <div class="deploy-panel" id="panel-agents">
+            <div class="deploy-panel" id="panel-agents">
                 <div class="timeline">
                     <div class="timeline-spine"></div>
-                    <div class="timeline-item"><div class="timeline-card timeline-card-left"><div class="tl-eyebrow"><i class="fas fa-chalkboard-teacher"></i> Présentiel · Jour 1</div><div class="tl-title">Cerveau prédictif, profils passagers &amp; autorégulation</div><ul class="tl-items"><li>Introduction au modèle prédictif : comprendre les tensions autrement</li><li>Les 6 profils passagers : signaux observables, dynamiques profondes</li><li>Diagnostic rapide terrain : lire un profil en moins de 10 secondes</li><li>Le Souffle (L.0) — autorégulation agent : techniques physiologiques d'urgence</li><li>Protocole REC² — Reconnaître, Expliquer, Choisir, Co-construire</li></ul><div class="tl-badge"><i class="fas fa-mobile-alt"></i> Activation de l'application RUNWAY</div></div><div class="timeline-center"><div class="timeline-dot"></div><div class="timeline-day">Jour 1<br>Présentiel</div></div><div></div></div>
-                    <div class="timeline-item"><div></div><div class="timeline-center"><div class="timeline-dot"></div><div class="timeline-day">Jour 2<br>Présentiel</div></div><div class="timeline-card timeline-card-right"><div class="tl-eyebrow"><i class="fas fa-theater-masks"></i> Présentiel · Jour 2</div><div class="tl-title">Protocole RELAY &amp; mise en situation intensive</div><ul class="tl-items"><li>Protocole RELAY complet : R → E → L → A → Y</li><li>Scripts terrain × 6 profils × 6 situations (excédent, retard, surbooking…)</li><li>Jeux de rôle filmés : analyse des micro-signaux et feedback immédiat</li><li>Pratique de la respiration cohérente 4–6 en condition de stress simulé</li><li>Prise en main complète de l'application RUNWAY terrain</li></ul><div class="tl-badge tl-badge-app"><i class="fas fa-tablet-alt"></i> Maîtrise complète de l'outil RUNWAY</div></div></div>
-                    <div class="timeline-item"><div class="timeline-card timeline-card-left" style="border-color:rgba(184,151,90,.3);"><div class="tl-eyebrow" style="color:var(--gold-d);"><i class="fas fa-mobile-alt"></i> Ancrage mémoriel — Application RUNWAY</div><div class="tl-title">Consolidation quotidienne dès J+1</div><ul class="tl-items"><li>Fiches profils consultables en contexte réel (avant chaque shift)</li><li>Scripts REC² × situation disponibles en 3 secondes</li><li>Exercice de régulation guidé : 4 minutes avant chaque prise de poste</li><li>Rappels mémoriels ciblés sur les points de fragilité individuels</li><li>Diagnostic rapide passager : outil interactif d'identification profil</li></ul><div class="tl-badge tl-badge-app"><i class="fas fa-clock"></i> 5 min / jour · Accès permanent</div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--gold-l);box-shadow:0 0 0 2px var(--gold-l);"></div><div class="timeline-day">J+1<br>à J+2</div></div><div></div></div>
-                    <div class="timeline-item"><div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div><div class="timeline-day">J+3<br>Terrain</div></div><div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);"><div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-walking"></i> Supervision terrain · J+3</div><div class="tl-title">Première immersion terrain accompagnée</div><div class="tl-body">Le formateur OCTOGO accompagne l'agent sur son poste réel. Observation directe, feedback dans l'instant, correction des réflexes d'activation. Débrief structuré en fin de session.</div><ul class="tl-items"><li>Observation de 3 à 5 interactions en conditions réelles</li><li>Correction des automatismes en temps réel (micro-signaux, prosodie, posture)</li><li>Renforcement des protocoles REC² et RELAY dans le flux terrain</li><li>Débrief individuel : ancrage des acquisitions et plan J+7</li></ul><div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Note de suivi transmise au superviseur</div></div></div>
-                    <div class="timeline-item"><div class="timeline-card timeline-card-left" style="border-color:rgba(15,118,110,.25);"><div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-chart-line"></i> Supervision terrain · J+7</div><div class="tl-title">Consolidation des automatismes sous pression</div><div class="tl-body">Deuxième journée terrain. L'agent opère en autonomie, le formateur observe. Les automatismes sont évalués dans leur solidité réelle sous charge émotionnelle.</div><ul class="tl-items"><li>Évaluation de la disponibilité des protocoles en conditions de flux intense</li><li>Ajustement des scripts terrain selon les situations rencontrées</li><li>Identification des profils passagers les plus activants pour cet agent</li><li>Prescription personnalisée de modules applicatifs de renforcement</li></ul><div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Rapport intermédiaire transmis J+8</div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div><div class="timeline-day">J+7<br>Terrain</div></div><div></div></div>
-                    <div class="timeline-item"><div></div><div class="timeline-center"><div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div><div class="timeline-day">J+15<br>Terrain</div></div><div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);"><div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-flag-checkered"></i> Supervision terrain · J+15</div><div class="tl-title">Validation finale &amp; ancrage à long terme</div><div class="tl-body">Journée conclusive. Évaluation de la solidité des automatismes à 15 jours. Validation de la transformation opérationnelle. Remise du plan d'ancrage individuel.</div><ul class="tl-items"><li>Évaluation terrain sur grille RUNWAY complète (protocoles + régulation)</li><li>Validation de la gestion autonome des 6 profils passagers</li><li>Score d'ancrage mémoriel via l'application (indicateur rétention J+15)</li><li>Plan individuel de maintenance : fréquence app, rituels de régulation</li></ul><div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Clôture du dispositif agent · Rapport final</div></div></div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left">
+                            <div class="tl-eyebrow"><i class="fas fa-chalkboard-teacher"></i> Présentiel · Jour 1</div>
+                            <div class="tl-title">Cerveau prédictif, profils passagers & autorégulation</div>
+                            <ul class="tl-items">
+                                <li>Introduction au modèle prédictif : comprendre les tensions autrement</li>
+                                <li>Les 6 profils passagers : signaux observables, dynamiques profondes</li>
+                                <li>Diagnostic rapide terrain : lire un profil en moins de 10 secondes</li>
+                                <li>Autorégulation agent (L.0) : techniques physiologiques d'urgence</li>
+                                <li>Protocole REC² — Reconnaître, Expliquer, Choisir, Co-construire</li>
+                            </ul>
+                            <div class="tl-badge"><i class="fas fa-mobile-alt"></i> Activation de l'application RUNWAY</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 1<br>Présentiel</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-day">Jour 2<br>Présentiel</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right">
+                            <div class="tl-eyebrow"><i class="fas fa-theater-masks"></i> Présentiel · Jour 2</div>
+                            <div class="tl-title">Protocole RELAY & mise en situation intensive</div>
+                            <ul class="tl-items">
+                                <li>Protocole RELAY complet : R → E → L → A → Y</li>
+                                <li>Scripts terrain × 6 profils × 6 situations (excédent, retard, surbooking…)</li>
+                                <li>Jeux de rôle filmés : analyse des micro-signaux et feedback immédiat</li>
+                                <li>Pratique de la respiration cohérente 4–6 en condition de stress simulé</li>
+                                <li>Prise en main complète de l'application RUNWAY terrain</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-tablet-alt"></i> Maîtrise complète de l'outil RUNWAY</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left" style="border-color:rgba(184,151,90,.3);">
+                            <div class="tl-eyebrow" style="color:var(--gold-d);"><i class="fas fa-mobile-alt"></i> Ancrage mémoriel — Application RUNWAY</div>
+                            <div class="tl-title">Consolidation quotidienne dès J+1</div>
+                            <ul class="tl-items">
+                                <li>Fiches profils consultables en contexte réel (avant chaque shift)</li>
+                                <li>Scripts REC² × situation disponibles en 3 secondes</li>
+                                <li>Exercice de régulation guidé : 4 minutes avant chaque prise de poste</li>
+                                <li>Rappels mémoriels ciblés sur les points de fragilité individuels</li>
+                                <li>Diagnostic rapide passager : outil interactif d'identification profil</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-app"><i class="fas fa-clock"></i> 5 min / jour · Accès permanent</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--gold-l);box-shadow:0 0 0 2px var(--gold-l);"></div>
+                            <div class="timeline-day">J+1<br>à J+2</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+3<br>Terrain</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-walking"></i> Supervision terrain · J+3</div>
+                            <div class="tl-title">Première immersion terrain accompagnée</div>
+                            <div class="tl-body">Le formateur OCTOGO accompagne l'agent sur son poste réel. Observation directe, feedback dans l'instant, correction des réflexes d'activation. Débrief structuré en fin de session.</div>
+                            <ul class="tl-items">
+                                <li>Observation de 3 à 5 interactions en conditions réelles</li>
+                                <li>Correction des automatismes en temps réel (micro-signaux, prosodie, posture)</li>
+                                <li>Renforcement des protocoles REC² et RELAY dans le flux terrain</li>
+                                <li>Débrief individuel : ancrage des acquisitions et plan J+7</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Note de suivi transmise au superviseur</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card timeline-card-left" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-chart-line"></i> Supervision terrain · J+7</div>
+                            <div class="tl-title">Consolidation des automatismes sous pression</div>
+                            <div class="tl-body">Deuxième journée terrain. L'agent opère en autonomie, le formateur observe. Les automatismes sont évalués dans leur solidité réelle sous charge émotionnelle.</div>
+                            <ul class="tl-items">
+                                <li>Évaluation de la disponibilité des protocoles en conditions de flux intense</li>
+                                <li>Ajustement des scripts terrain selon les situations rencontrées</li>
+                                <li>Identification des profils passagers les plus activants pour cet agent</li>
+                                <li>Prescription personnalisée de modules applicatifs de renforcement</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-clipboard-check"></i> Rapport intermédiaire transmis J+8</div>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+7<br>Terrain</div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal);"></div>
+                            <div class="timeline-day">J+15<br>Terrain</div>
+                        </div>
+                        <div class="timeline-card timeline-card-right" style="border-color:rgba(15,118,110,.25);">
+                            <div class="tl-eyebrow" style="color:var(--teal);"><i class="fas fa-flag-checkered"></i> Supervision terrain · J+15</div>
+                            <div class="tl-title">Validation finale & ancrage à long terme</div>
+                            <div class="tl-body">Journée conclusive. Évaluation de la solidité des automatismes à 15 jours. Validation de la transformation opérationnelle. Remise du plan d'ancrage individuel.</div>
+                            <ul class="tl-items">
+                                <li>Évaluation terrain sur grille RUNWAY complète (protocoles + régulation)</li>
+                                <li>Validation de la gestion autonome des 6 profils passagers</li>
+                                <li>Score d'ancrage mémoriel via l'application (indicateur rétention J+15)</li>
+                                <li>Plan individuel de maintenance : fréquence app, rituels de régulation</li>
+                            </ul>
+                            <div class="tl-badge tl-badge-follow"><i class="fas fa-award"></i> Clôture du dispositif agent · Rapport final</div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="deploy-summary"><div class="deploy-sum-item"><div class="deploy-sum-n">2 j</div><div class="deploy-sum-label">Formation présentielle</div></div><div class="deploy-sum-item"><div class="deploy-sum-n">∞</div><div class="deploy-sum-label">Accès applicatif continu</div></div><div class="deploy-sum-item"><div class="deploy-sum-n">3 j</div><div class="deploy-sum-label">Supervisions terrain J+3 / J+7 / J+15</div></div><div class="deploy-sum-item"><div class="deploy-sum-n">17 j</div><div class="deploy-sum-label">Dispositif total sur 15 jours</div></div></div>
+                <div class="deploy-summary">
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">2 j</div>
+                        <div class="deploy-sum-label">Formation présentielle</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">∞</div>
+                        <div class="deploy-sum-label">Accès applicatif continu</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">3 j</div>
+                        <div class="deploy-sum-label">Supervisions terrain J+3 / J+7 / J+15</div>
+                    </div>
+                    <div class="deploy-sum-item">
+                        <div class="deploy-sum-n">17 j</div>
+                        <div class="deploy-sum-label">Dispositif total sur 15 jours</div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -8887,39 +9285,24 @@ function HomeApp(){
     h('div',{style:{height:60}})
   );
 }
-function switchSit(id) {
-    const keys = ['excedent', 'retard', 'surbooking', 'document', 'siege', 'annonce'];
-    // Opérer sur la vue nav si active, sinon sur le document complet
-    const view = document.getElementById('rwy-view');
-    const scope = view || document;
-    scope.querySelectorAll('.sit-tab').forEach((t, i) => {
-        t.classList.toggle('active', keys[i] === id);
-    });
-    scope.querySelectorAll('.sit-panel').forEach(p => {
-        // Supprimer le préfixe 'v-' ajouté par le clonage nav
-        const panelId = p.id.replace(/^v-/, '');
-        p.classList.toggle('active', panelId === 'sit-' + id);
-    });
-}
+ function switchSit(id) {
+            document.querySelectorAll('.sit-tab').forEach((t, i) => {
+                const keys = ['excedent', 'retard', 'surbooking', 'document', 'siege', 'annonce'];
+                t.classList.toggle('active', keys[i] === id);
+            });
+            document.querySelectorAll('.sit-panel').forEach(p => {
+                p.classList.toggle('active', p.id === 'sit-' + id);
+            });
+        }
 
-function switchDeploy(type) {
-    const superviseurPanel = document.getElementById('panel-superviseurs');
-    const agentPanel = document.getElementById('panel-agents');
-    const superviseurBtn = document.querySelector('.deploy-tab:first-child');
-    const agentBtn = document.querySelector('.deploy-tab:last-child');
-    
-    if (type === 'superviseurs') {
-        superviseurPanel.classList.add('active');
-        agentPanel.classList.remove('active');
-        superviseurBtn.classList.add('active');
-        agentBtn.classList.remove('active');
-    } else {
-        agentPanel.classList.add('active');
-        superviseurPanel.classList.remove('active');
-        agentBtn.classList.add('active');
-        superviseurBtn.classList.remove('active');
-    }
-}
+        function switchDeploy(id) {
+            document.querySelectorAll('.deploy-tab').forEach((t, i) => {
+                t.classList.toggle('active', ['superviseurs', 'agents'][i] === id);
+            });
+            document.querySelectorAll('.deploy-panel').forEach(p => {
+                p.classList.toggle('active', p.id === 'panel-' + id);
+            });
+        }
 
 
 // Mount home
