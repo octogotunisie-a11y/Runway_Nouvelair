@@ -10016,7 +10016,7 @@ window.rwyBreathTechs  = BREATH_TECHS;
 </script>
 <script>
 // ═══════════════════════════════════════════════════════════════════════════
-// SCRIPT UNIFIÉ - PROFILS RUNWAY (ANIMATION + WALLPAPER + FORMAT A4)
+// SCRIPT UNIFIÉ - PROFILS RUNWAY (CORRIGÉ POUR MOBILE)
 // ═══════════════════════════════════════════════════════════════════════════
 
 (function() {
@@ -10028,150 +10028,52 @@ window.rwyBreathTechs  = BREATH_TECHS;
     }
 
     function initAll() {
-        console.log("🚀 Initialisation des profils avec animations");
+        console.log("🚀 Initialisation des profils");
         
-        // 1. Initialiser la section principale avec animation "from centre"
+        // 1. Initialiser la section principale
         initMainProfileSection();
         
         // 2. Initialiser les cartes REC² (accueil)
         initRec2Cards();
         
-        // 3. Observer les changements pour React
+        // 3. Initialiser les cartes de la bande hero
+        initHeroProfiles();
+        
+        // 4. Observer les changements pour React
         const observer = new MutationObserver(function() {
             initRec2Cards();
+            initHeroProfiles();
         });
         observer.observe(document.body, { childList: true, subtree: true });
     }
 
     // ═══════════════════════════════════════════════════════════════════════
-    // FONCTIONS UTILITAIRES
+    // BANDE HERO - 6 petits profils
     // ═══════════════════════════════════════════════════════════════════════
-    
-    // --- 1. Animation "From Centre" ---
-    function animateFromCentre(element) {
-        if (!element) return;
-        // On prépare l'élément pour l'animation
-        element.style.opacity = '0';
-        element.style.transform = 'scale(0)';
-        element.style.transition = 'opacity 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+    function initHeroProfiles() {
+        const heroProfiles = document.querySelectorAll('.profiles-grid-compact .profile-card-compact');
         
-        // Forcer un reflow pour que la transition s'applique
-        void element.offsetWidth;
+        heroProfiles.forEach(card => {
+            // Supprimer l'ancien onclick s'il existe
+            card.removeAttribute('onclick');
+            
+            // Ajouter un écouteur tactile/click
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const profileNum = this.getAttribute('data-profile');
+                if (profileNum) {
+                    openProfileDrawer(parseInt(profileNum));
+                }
+            });
+            
+            // Ajouter un style pour indiquer que c'est cliquable
+            card.style.cursor = 'pointer';
+        });
         
-        // Appliquer l'animation
-        element.style.opacity = '1';
-        element.style.transform = 'scale(1)';
+        console.log(`✅ ${heroProfiles.length} profils hero configurés`);
     }
 
-    // --- 2. Définir une image comme fond d'écran (wallpaper) de la page ---
-    function setAsWallpaper(imageSrc) {
-        // Créer un overlay temporaire pour le message de confirmation
-        const messageDiv = document.createElement('div');
-        messageDiv.innerHTML = `
-            <div style="
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background: rgba(0,0,0,0.8);
-                backdrop-filter: blur(8px);
-                color: #fff;
-                padding: 12px 24px;
-                border-radius: 50px;
-                font-family: 'DM Sans', sans-serif;
-                font-size: 14px;
-                z-index: 10000;
-                border-left: 4px solid #B8975A;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-                pointer-events: none;
-                animation: fadeOut 2s ease forwards;
-            ">
-                🖼️ Fond d'écran changé ! 
-            </div>
-            <style>
-                @keyframes fadeOut {
-                    0% { opacity: 1; transform: translateY(0); }
-                    70% { opacity: 1; transform: translateY(0); }
-                    100% { opacity: 0; transform: translateY(-20px); visibility: hidden; }
-                }
-            </style>
-        `;
-        document.body.appendChild(messageDiv);
-        
-        // Supprimer le message après l'animation
-        setTimeout(() => {
-            if (messageDiv && messageDiv.parentNode) {
-                messageDiv.remove();
-            }
-        }, 2000);
-        
-        // Modifier le style de la page
-        document.body.style.backgroundImage = `url('${imageSrc}')`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundPosition = 'center';
-        document.body.style.backgroundAttachment = 'fixed';
-        
-        // Ajouter une classe pour garder la lisibilité du texte (overlay sombre)
-        let overlay = document.getElementById('wallpaper-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'wallpaper-overlay';
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.65);
-                pointer-events: none;
-                z-index: -1;
-            `;
-            document.body.insertBefore(overlay, document.body.firstChild);
-        }
-        
-        // S'assurer que le contenu reste lisible
-        document.body.style.backgroundColor = 'transparent';
-        
-        console.log(`Wallpaper changé pour: ${imageSrc}`);
-    }
-    
-    // --- 3. Ouvrir une image en mode plein écran avec format A4 (horizontal) ---
-    function openImageFullscreen(imgSrc, isA4Format = false) {
-        const modal = document.getElementById('image-modal');
-        const modalImg = document.getElementById('modal-image');
-        if (modal && modalImg) {
-            // Appliquer un style spécifique pour le format A4
-            if (isA4Format) {
-                modalImg.style.maxWidth = 'min(90vw, 1200px)';
-                modalImg.style.width = 'auto';
-                modalImg.style.height = 'auto';
-                modalImg.style.objectFit = 'contain';
-                modalImg.style.borderRadius = '8px';
-                modalImg.style.boxShadow = '0 0 30px rgba(0,0,0,0.5)';
-                modalImg.style.backgroundColor = '#fff';
-                modalImg.style.padding = '8px';
-                // Ajouter un effet de cadre pour simuler un format A4
-                modalImg.style.border = '2px solid #B8975A';
-            } else {
-                modalImg.style.maxWidth = '90%';
-                modalImg.style.maxHeight = '90%';
-                modalImg.style.width = 'auto';
-                modalImg.style.height = 'auto';
-                modalImg.style.objectFit = 'contain';
-                modalImg.style.border = 'none';
-                modalImg.style.padding = '0';
-                modalImg.style.backgroundColor = 'transparent';
-            }
-            modal.style.display = 'flex';
-            modalImg.src = imgSrc;
-        }
-    }
-    
-    // Fermer le modal image
-    function closeImageModal() {
-        const modal = document.getElementById('image-modal');
-        if (modal) modal.style.display = 'none';
-    }
-    
     // ═══════════════════════════════════════════════════════════════════════
     // SECTION PRINCIPALE - Les 6 grandes cartes
     // ═══════════════════════════════════════════════════════════════════════
@@ -10204,20 +10106,7 @@ window.rwyBreathTechs  = BREATH_TECHS;
             const targetContent = document.getElementById(`profile-${profileNumber}-content`);
             if (targetContent) {
                 targetContent.style.display = 'block';
-                
-                // ANIMATION "FROM CENTRE" pour les deux images
-                const images = targetContent.querySelectorAll('.profile-detail-item');
-                images.forEach((img, index) => {
-                    // Réinitialiser le style pour déclencher l'animation
-                    img.style.opacity = '0';
-                    img.style.transform = 'scale(0)';
-                    // Petite cascade pour un effet plus agréable
-                    setTimeout(() => {
-                        animateFromCentre(img);
-                    }, index * 80);
-                });
-                
-                console.log(`✅ Profil ${profileNumber} affiché avec animation`);
+                console.log(`✅ Profil ${profileNumber} affiché`);
             } else {
                 console.log(`❌ Contenu du profil ${profileNumber} non trouvé`);
             }
@@ -10238,12 +10127,12 @@ window.rwyBreathTechs  = BREATH_TECHS;
             }
         }
         
-        // Ajouter les écouteurs d'événements
+        // Ajouter les écouteurs d'événements (tactile et souris)
         profileCards.forEach(card => {
             // Supprimer l'ancien onclick s'il existe
             card.removeAttribute('onclick');
             
-            // Ajouter un nouvel écouteur
+            // Ajouter un écouteur tactile/click
             card.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -10253,7 +10142,7 @@ window.rwyBreathTechs  = BREATH_TECHS;
                 }
             });
             
-            // Effet hover
+            // Effet hover (fonctionne aussi sur mobile avec tap)
             card.addEventListener('mouseenter', function() {
                 if (this.style.opacity !== '1') {
                     this.style.transform = 'translateY(-5px)';
@@ -10266,6 +10155,9 @@ window.rwyBreathTechs  = BREATH_TECHS;
                     this.style.transform = 'scale(1)';
                 }
             });
+            
+            // Style pour indiquer que c'est cliquable
+            card.style.cursor = 'pointer';
         });
         
         // Afficher le premier profil par défaut
@@ -10282,6 +10174,7 @@ window.rwyBreathTechs  = BREATH_TECHS;
     // CARTES REC² - Les 6 cartes dans l'accueil
     // ═══════════════════════════════════════════════════════════════════════
     function initRec2Cards() {
+        // Chercher la grille des profils REC²
         const protoCols = document.querySelector('.rwy-proto-cols');
         if (!protoCols) return false;
         
@@ -10349,15 +10242,15 @@ window.rwyBreathTechs  = BREATH_TECHS;
                 card.appendChild(hint);
             }
             
-            // Ajouter l'écouteur de clic
+            // Ajouter l'écouteur de clic (tactile)
             card.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log(`🎯 Clic sur profil REC²: ${profileName} (P${profileNum})`);
-                openProfileInDrawer(profileNum);
+                openProfileDrawer(profileNum);
             });
             
-            // Effets hover
+            // Effets hover (fonctionne aussi sur mobile)
             card.addEventListener('mouseenter', () => {
                 if (hint) hint.style.opacity = '1';
                 card.style.transform = 'translateY(-3px)';
@@ -10453,7 +10346,10 @@ window.rwyBreathTechs  = BREATH_TECHS;
                 
                 img.onclick = function(e) {
                     e.stopPropagation();
-                    // Ouvrir l'image en plein écran avec le format adapté
+                    openImageFullscreen(this.src, isSecondImage);
+                };
+                img.ontouchstart = function(e) {
+                    e.stopPropagation();
                     openImageFullscreen(this.src, isSecondImage);
                 };
                 img.onmouseenter = function() { 
@@ -10471,7 +10367,7 @@ window.rwyBreathTechs  = BREATH_TECHS;
                     const btnContainer = document.createElement('div');
                     btnContainer.style.cssText = 'margin-top: 12px; text-align: center;';
                     const wallpaperBtn = document.createElement('button');
-                  
+                    wallpaperBtn.innerHTML = '🖼️ Définir comme fond d\'écran';
                     wallpaperBtn.style.cssText = `
                         background: rgba(0,0,0,0.6);
                         border: 1px solid ${prof.color};
@@ -10486,6 +10382,10 @@ window.rwyBreathTechs  = BREATH_TECHS;
                     wallpaperBtn.onmouseenter = () => { wallpaperBtn.style.background = prof.color; wallpaperBtn.style.color = '#fff'; };
                     wallpaperBtn.onmouseleave = () => { wallpaperBtn.style.background = 'rgba(0,0,0,0.6)'; wallpaperBtn.style.color = prof.color; };
                     wallpaperBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        setAsWallpaper(img.src);
+                    };
+                    wallpaperBtn.ontouchstart = (e) => {
                         e.stopPropagation();
                         setAsWallpaper(img.src);
                     };
@@ -10525,6 +10425,107 @@ window.rwyBreathTechs  = BREATH_TECHS;
         if (overlay) overlay.classList.remove('show');
     }
     
+    // Fonction pour ouvrir une image en plein écran
+    function openImageFullscreen(imgSrc, isA4Format = false) {
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-image');
+        if (modal && modalImg) {
+            if (isA4Format) {
+                modalImg.style.maxWidth = 'min(90vw, 1200px)';
+                modalImg.style.width = 'auto';
+                modalImg.style.height = 'auto';
+                modalImg.style.objectFit = 'contain';
+                modalImg.style.borderRadius = '8px';
+                modalImg.style.boxShadow = '0 0 30px rgba(0,0,0,0.5)';
+                modalImg.style.backgroundColor = '#fff';
+                modalImg.style.padding = '8px';
+                modalImg.style.border = '2px solid #B8975A';
+            } else {
+                modalImg.style.maxWidth = '90%';
+                modalImg.style.maxHeight = '90%';
+                modalImg.style.width = 'auto';
+                modalImg.style.height = 'auto';
+                modalImg.style.objectFit = 'contain';
+                modalImg.style.border = 'none';
+                modalImg.style.padding = '0';
+                modalImg.style.backgroundColor = 'transparent';
+            }
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+        }
+    }
+    
+    // Fonction pour définir une image comme fond d'écran
+    function setAsWallpaper(imageSrc) {
+        const messageDiv = document.createElement('div');
+        messageDiv.innerHTML = `
+            <div style="
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: rgba(0,0,0,0.8);
+                backdrop-filter: blur(8px);
+                color: #fff;
+                padding: 12px 24px;
+                border-radius: 50px;
+                font-family: 'DM Sans', sans-serif;
+                font-size: 14px;
+                z-index: 10000;
+                border-left: 4px solid #B8975A;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                pointer-events: none;
+                animation: fadeOut 2s ease forwards;
+            ">
+                🖼️ Fond d'écran changé ! 
+            </div>
+            <style>
+                @keyframes fadeOut {
+                    0% { opacity: 1; transform: translateY(0); }
+                    70% { opacity: 1; transform: translateY(0); }
+                    100% { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+                }
+            </style>
+        `;
+        document.body.appendChild(messageDiv);
+        
+        setTimeout(() => {
+            if (messageDiv && messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, 2000);
+        
+        document.body.style.backgroundImage = `url('${imageSrc}')`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundAttachment = 'fixed';
+        
+        let overlay = document.getElementById('wallpaper-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'wallpaper-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.65);
+                pointer-events: none;
+                z-index: -1;
+            `;
+            document.body.insertBefore(overlay, document.body.firstChild);
+        }
+        
+        document.body.style.backgroundColor = 'transparent';
+        console.log(`Wallpaper changé pour: ${imageSrc}`);
+    }
+    
+    // Fonction pour fermer le modal image
+    function closeImageModal() {
+        const modal = document.getElementById('image-modal');
+        if (modal) modal.style.display = 'none';
+    }
+    
     // Exposer les fonctions globalement
     function openProfileDrawer(n) { openProfileInDrawer(n); }
     window.openProfileDrawer = openProfileDrawer;
@@ -10555,6 +10556,10 @@ window.rwyBreathTechs  = BREATH_TECHS;
                             e.stopPropagation();
                             openProfileDrawer(parseInt(profileNum));
                         };
+                        card.ontouchstart = (e) => {
+                            e.stopPropagation();
+                            openProfileDrawer(parseInt(profileNum));
+                        };
                     }
                 });
                 drawerBody.appendChild(clone);
@@ -10573,52 +10578,15 @@ window.rwyBreathTechs  = BREATH_TECHS;
         fabBtn.onclick = function() {
             window.rwyOpenProfiles();
         };
+        fabBtn.ontouchstart = function() {
+            window.rwyOpenProfiles();
+        };
     }
     
     // Réassigner les fonctions globales existantes
     window.openFullscreen = openImageFullscreen;
     window.closeModal = closeImageModal;
     
-})();
-
-</script>
-
-
-
-</body>
-
-<!-- NEURO-NUDGE ENGINE -->
-<script>
-(function(){
-  var NUDGES = [
-    {title:"La Respiration Radar", tag:"Nerf Vague", tagColor:"#2DD4BF", desc:"Expiration prolongée (6s) pour apaiser les neurones miroirs. Inspirez 4s, expirez 6s. Le calme que vous créez en vous se transmet au passager."},
-    {title:"Ancrage Visuel", tag:"Amygdale", tagColor:"#EF4444", desc:"Regard doux, non fixe, pour désactiver la menace perçue par l'amygdale du passager. Relâchez les muscles autour des yeux."},
-    {title:"Reformulation Fréquence", tag:"Cortex Préfrontal", tagColor:"#1E5FA6", desc:"Nommer l'émotion du passager ('Je vois que c'est frustrant') pour réactiver son cortex préfrontal et reprendre le contrôle cognitif."},
-    {title:"Le Micro-Check", tag:"Cortisol", tagColor:"#f59e0b", desc:"Détendez votre mâchoire maintenant. Le serrement des mâchoires maintient le cortisol élevé. Relâcher = signal de sécurité au système nerveux."},
-    {title:"Posture Horizon", tag:"Territorialité", tagColor:"#8b5cf6", desc:"S'orienter à 45° par rapport au passager (jamais face-à-face) pour diminuer la réponse territoriale et favoriser la coopération."},
-    {title:"Synchronisation Vocale", tag:"Système Nerveux", tagColor:"#2DD4BF", desc:"Parlez 20% plus lentement que votre rythme habituel. Le système nerveux du passager se synchronise inconsciemment sur votre prosodie."},
-    {title:"Nudge de l'Objet", tag:"Sensoriel", tagColor:"#f97316", desc:"Donner un objet physique (carte d'embarquement, stylo) pour dériver l'énergie émotionnelle vers le canal sensoriel. Le toucher régule."},
-    {title:"Désamorçage par le Prénom", tag:"Circuit de Récompense", tagColor:"#22c55e", desc:"Utiliser le prénom du passager active son circuit de récompense dopaminergique. L'identité reconnue = menace réduite."},
-    {title:"Espace Vital", tag:"Fight or Flight", tagColor:"#EF4444", desc:"Libérer 60cm d'espace péripersonnel. Le rapprochement involontaire active la réponse Fight or Flight. L'espace = la sécurité."},
-    {title:"Orientation Solution", tag:"Cortex Préfrontal", tagColor:"#1E5FA6", desc:"Remplacer 'Mais' par 'Et' dans vos phrases. 'Je comprends ET voici ce qu'on peut faire' ouvre les circuits de résolution au lieu de les fermer."}
-  ];
-
-  window.generateNudge = function(targetId) {
-    var target = document.getElementById(targetId || 'neuro-nudge-content');
-    if (!target) return;
-    var n = NUDGES[Math.floor(Math.random() * NUDGES.length)];
-    target.innerHTML =
-      '<div class="nudge-label">NEURO-NUDGE TERRAIN</div>' +
-      '<div class="nudge-title">' + n.title + '</div>' +
-      '<div class="nudge-desc">' + n.desc + '</div>' +
-      '<div class="nudge-tag"><span style="width:7px;height:7px;border-radius:50%;background:' + n.tagColor + ';display:inline-block;"></span> ' + n.tag + '</div>';
-  };
-
-  // Auto-init on page load
-  document.addEventListener('DOMContentLoaded', function(){
-    var el = document.getElementById('neuro-nudge-content');
-    if (el) window.generateNudge();
-  });
 })();
 </script>
 </html>
