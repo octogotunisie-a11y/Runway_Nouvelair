@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0060)https://octogotunisie-a11y.github.io/Runway_Nouvelair/RUNWAY -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUNWAY — Offre Nouvelair · OCTOGO</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1279,12 +1279,11 @@ section > .container {
     border-radius: 8px !important;
 }
 
- .profiles-grid-compact .profile-card-compact img {
+ {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-}
+    object-fit: contain !important;
+}.profiles-grid-compact .profile-card-compact img
 
 /* Version responsive pour mobile */
 @media (max-width: 768px) {
@@ -1664,41 +1663,7 @@ section > .container {
             gap: 3px;
             margin-top: 60px;
         }
-        #rwy-decideur-modal {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-}
-
-#rwy-decideur-modal .rwy-modal-topbar {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 20 !important;
-    background: rgba(10,13,22,0.98) !important;
-    backdrop-filter: blur(12px) !important;
-}
-
-#rwy-decideur-modal .rwy-modal-body {
-    padding: 20px 16px 40px !important;
-}
-
-@media (max-width: 768px) {
-    #rwy-decideur-modal .rwy-modal-body {
-        padding: 16px 12px 30px !important;
-    }
-    
-    /* Les stats en 2 colonnes sur tablette, 1 colonne sur mobile */
-    #rwy-decideur-modal [style*="display: grid"] {
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
-    }
-    
-    /* Ajuster les tableaux de benchmark */
-    #rwy-decideur-modal [style*="display: grid"][style*="grid-template-columns: 1fr 80px 1fr"] {
-        grid-template-columns: 1fr 70px 1fr !important;
-        gap: 4px !important;
-        font-size: 10px !important;
-    }
-}
+        
         .stat-card {
             background: rgba(255, 255, 255, .03);
             border: 1px solid rgba(184, 151, 90, .12);
@@ -2242,28 +2207,7 @@ section > .container {
                 text-align: center;
             }
         }
-        body {
-    padding-top: 70px !important;  /* Important : crée un espace pour la topbar */
-}
-
-@media (max-width: 768px) {
-    body {
-        padding-top: 60px !important;  /* 60px pour mobile, correspond à la hauteur de la topbar */
-    }
-    
-    /* Correction de la topbar pour qu'elle ne superpose pas le contenu */
-    .topbar {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 200 !important;
-        height: 60px !important;
-        padding: 0 12px !important;
-        background: rgba(14, 17, 23, 0.96) !important;
-        backdrop-filter: blur(14px) !important;
-    }
-}
+        
         /* Neuro badge strip */
         
         .neuro-strip {
@@ -2373,7 +2317,41 @@ section > .container {
     .nav-view-panel #v-deploiement {
       background: var(--navy) !important;
     }
+#rwy-decideur-modal {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
 
+#rwy-decideur-modal .rwy-modal-topbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 20 !important;
+    background: rgba(10,13,22,0.98) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+#rwy-decideur-modal .rwy-modal-body {
+    padding: 20px 16px 40px !important;
+}
+
+@media (max-width: 768px) {
+    #rwy-decideur-modal .rwy-modal-body {
+        padding: 16px 12px 30px !important;
+    }
+    
+    /* Les stats en 2 colonnes sur tablette, 1 colonne sur mobile */
+    #rwy-decideur-modal [style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    /* Ajuster les tableaux de benchmark */
+    #rwy-decideur-modal [style*="display: grid"][style*="grid-template-columns: 1fr 80px 1fr"] {
+        grid-template-columns: 1fr 70px 1fr !important;
+        gap: 4px !important;
+        font-size: 10px !important;
+    }
+}
     /* ═══ TEXTES LISIBLES SUR FONDS DARK ═══ */
     /* Sections avec fond dark doivent avoir des textes clairs */
     .profiles-section .section-title,
@@ -2753,117 +2731,7 @@ section > .container {
       color: rgba(255,255,255,0.8) !important;
       font-size: 0.95rem !important;
     }
-/* ═══════════════════════════════════════════════════════════════════
-   BANDE HERO - RESPONSIVE POUR MOBILE
-   ═══════════════════════════════════════════════════════════════════ */
 
-/* Conteneur principal des 6 profils hero */
-.profiles-grid-compact {
-    display: grid !important;
-    grid-template-columns: repeat(6, 1fr) !important;
-    gap: 12px !important;
-    margin: 20px auto 30px !important;
-    max-width: 100% !important;
-    padding: 0 12px !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: thin !important;
-}
-
-/* Style des cartes individuelles */
-.profile-card-compact {
-    flex-shrink: 0 !important;
-    min-width: 70px !important;
-    text-align: center !important;
-}
-
-/* Conteneur image */
-.profile-card-compact > div {
-    width: 70px !important;
-    height: 99px !important; /* 70 × 1.414 = 99 */
-    margin: 0 auto !important;
-    border-radius: 8px !important;
-    overflow: hidden !important;
-}
-
-/* Images */
-.profile-card-compact img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-}
-
-/* Labels sous les images */
-.profile-card-compact > div + div {
-    font-size: 9px !important;
-    margin-top: 6px !important;
-}
-
-/* ─── RESPONSIVE MOBILE (< 768px) ───────────────────────────────── */
-@media (max-width: 768px) {
-    .profiles-grid-compact {
-        grid-template-columns: repeat(6, auto) !important;
-        gap: 8px !important;
-        justify-content: center !important;
-        overflow-x: auto !important;
-        white-space: nowrap !important;
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        padding: 0 8px 8px !important;
-        scroll-snap-type: x mandatory !important;
-    }
-    
-    .profile-card-compact {
-        scroll-snap-align: start !important;
-        flex: 0 0 auto !important;
-        width: 70px !important;
-    }
-    
-    .profile-card-compact > div {
-        width: 60px !important;
-        height: 85px !important; /* 60 × 1.414 = 84.84 */
-        border-width: 2px !important;
-    }
-    
-    .profile-card-compact > div + div {
-        font-size: 8px !important;
-        white-space: normal !important;
-        word-break: keep-all !important;
-    }
-}
-
-/* ─── TRÈS PETIT MOBILE (< 480px) ───────────────────────────────── */
-@media (max-width: 480px) {
-    .profile-card-compact {
-        width: 60px !important;
-    }
-    
-    .profile-card-compact > div {
-        width: 50px !important;
-        height: 71px !important; /* 50 × 1.414 = 70.7 */
-    }
-    
-    .profile-card-compact > div + div {
-        font-size: 7px !important;
-    }
-}
-
-/* ─── SCROLLBAR CACHÉE MAIS FONCTIONNELLE ───────────────────────── */
-@media (max-width: 768px) {
-    .profiles-grid-compact::-webkit-scrollbar {
-        height: 3px;
-    }
-    
-    .profiles-grid-compact::-webkit-scrollbar-track {
-        background: rgba(255,255,255,0.1);
-        border-radius: 3px;
-    }
-    
-    .profiles-grid-compact::-webkit-scrollbar-thumb {
-        background: var(--gold);
-        border-radius: 3px;
-    }
-}
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        8. APPLICATION TERRAIN — COCKPIT MODE
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
