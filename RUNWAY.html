@@ -4074,58 +4074,80 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     .rec2-goal { color: #C8D5E3 !important; }
     #pdrawer-body p { color: rgba(255,255,255,0.9) !important; }
     /* ═══════════════════════════════════════════════════════════════════════
-   CORRECTION AFFICHAGE MOBILE - 6 PROFILS
+   CORRECTION MOBILE - IMAGES DES PROFILS
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Ajustement de la grille des 6 profils sur mobile */
+/* Images dans la grille principale */
+.profiles-grid-large .profile-large-card .img-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+}
+
+.profiles-grid-large .profile-large-card .img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+/* Images dans les détails après clic */
+.profile-detail-item {
+    background: rgba(15,23,42,0.6);
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid;
+}
+
+.profile-detail-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+/* MOBILE - moins de 768px */
 @media (max-width: 768px) {
-    /* La grille des 6 profils principaux passe en 2 colonnes */
     .profiles-grid-large {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
     }
     
-    /* Les cartes prennent toute la largeur */
-    .profile-large-card {
-        width: 100%;
-    }
-    
-    /* Les images s'adaptent sans fond blanc */
     .profile-large-card .img-container {
-        width: 100%;
         border-radius: 12px;
-        overflow: hidden;
     }
     
-    .profile-large-card .img-container img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-    }
-    
-    /* Zone de détails après clic - en colonne */
     .profile-detail-card {
         grid-template-columns: 1fr !important;
-        gap: 16px !important;
+        gap: 20px !important;
     }
     
-    /* Images dans les détails - pas de fond blanc */
+    .profile-detail-item {
+        padding: 16px;
+    }
+    
     .profile-detail-item img {
         width: 100%;
         height: auto;
-        display: block;
+        max-height: 60vh;
         object-fit: contain;
-        background: transparent;
-        border-radius: 8px;
     }
 }
 
-/* Très petit mobile (moins de 480px) */
+/* TRÈS PETIT MOBILE - moins de 480px */
 @media (max-width: 480px) {
     .profiles-grid-large {
         grid-template-columns: 1fr !important;
         gap: 16px !important;
+    }
+    
+    .profile-large-card .img-container {
+        border-radius: 10px;
     }
 }
 </style>
@@ -4399,11 +4421,13 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
 </section>
 
 <!-- MODAL POUR AGRANDIR LES IMAGES -->
-<div id="image-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; cursor: pointer;">
-    <span onclick="closeImageModal()" style="position: absolute; top: 30px; right: 50px; color: white; font-size: 50px; cursor: pointer; z-index: 1001;">×</span>
-    <img id="modal-image" src="" alt="Image agrandie" style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px;">
+<div id="image-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center; cursor: pointer; flex-direction: column;">
+    <span onclick="closeImageModal()" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; cursor: pointer; z-index: 10001; font-family: monospace;">×</span>
+    <img id="modal-image" src="" alt="Image agrandie" style="max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 8px;">
+    <div style="position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,0.5); font-size: 12px; font-family: 'DM Sans', sans-serif;">
+        Cliquez n'importe où pour fermer
+    </div>
 </div>
-
 
     <!-- HERO -->
     <div class="main-scroll">
@@ -9606,262 +9630,167 @@ window.rwyShowBreathPrep = function(card){
     btnContinue.style.opacity = '1';
   }, 10000);
 };
-function openFullscreenImage(imgElement) {
-    // Créer le modal s'il n'existe pas
-    let modal = document.getElementById('fullscreen-image-modal');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'fullscreen-image-modal';
-        modal.style.cssText = `
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        `;
-        
-        const closeBtn = document.createElement('span');
-        closeBtn.innerHTML = '×';
-        closeBtn.style.cssText = `
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 50px;
-            cursor: pointer;
-            z-index: 10001;
-            font-family: monospace;
-        `;
-        closeBtn.onclick = () => modal.style.display = 'none';
-        
-        const modalImg = document.createElement('img');
-        modalImg.id = 'fullscreen-image';
-        modalImg.style.cssText = `
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-            border-radius: 8px;
-        `;
-        
-        modal.appendChild(closeBtn);
-        modal.appendChild(modalImg);
-        document.body.appendChild(modal);
-        
-        modal.onclick = () => modal.style.display = 'none';
-    }
-    
-    const modalImg = document.getElementById('fullscreen-image');
-    modalImg.src = imgElement.src;
-    modal.style.display = 'flex';
-}
 
-// Attacher l'événement à toutes les images de profil
-function attachFullscreenToProfileImages() {
-    const allProfileImages = document.querySelectorAll('.profile-detail-item img, .profile-large-card img');
-    allProfileImages.forEach(img => {
-        if (!img.hasAttribute('data-fullscreen-attached')) {
-            img.setAttribute('data-fullscreen-attached', 'true');
-            img.style.cursor = 'pointer';
-            img.onclick = (e) => {
-                e.stopPropagation();
-                openFullscreenImage(img);
-            };
+// ── VUE D\u00c9CIDEUR — Parcours filtr\u00e9 ROI / TRIVIUM / Benchmark ──
+// ── VUE DÉCIDEUR — PARCOURS FILTRÉ ROI / TRIVIUM / BENCHMARK ──
+window.rwyOpenDecideur = function(){
+    console.log("Ouverture Vue Décideur");
+    
+    // Fermer si déjà ouvert
+    var existing = document.getElementById('rwy-decideur-modal');
+    if(existing) existing.remove();
+
+    var modal = document.createElement('div');
+    modal.id = 'rwy-decideur-modal';
+    modal.style.cssText = 'display:block;position:fixed;inset:0;z-index:2000;background:rgba(7,10,16,0.97);backdrop-filter:blur(12px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;';
+
+    // Topbar
+    var topbar = document.createElement('div');
+    topbar.style.cssText = 'position:sticky;top:0;z-index:10;height:56px;display:flex;align-items:center;gap:14px;padding:0 20px;background:rgba(10,13,22,0.98);border-bottom:1px solid rgba(184,151,90,0.3);';
+    topbar.innerHTML = '<span style="font-size:20px;">💼</span><div><div style="font-family:monospace;font-size:10px;letter-spacing:.16em;color:#B8975A;text-transform:uppercase;margin-bottom:2px;">Vue Décideur</div><div style="font-size:15px;font-weight:700;color:#dde3f0;">RUNWAY — L\'essentiel pour la décision</div></div>';
+
+    var closeBtn = document.createElement('button');
+    closeBtn.style.cssText = 'margin-left:auto;background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;';
+    closeBtn.textContent = '✕ Fermer';
+    closeBtn.onclick = function(){ modal.remove(); document.body.style.overflow=''; };
+    topbar.appendChild(closeBtn);
+
+    var body = document.createElement('div');
+    body.style.cssText = 'max-width:900px;margin:0 auto;padding:24px 20px 60px;';
+
+    // Header
+    body.innerHTML = `
+        <div style="background:linear-gradient(160deg,#0D1520,#1A2640);border-radius:16px;padding:2rem;margin-bottom:28px;text-align:center;border:1px solid rgba(184,151,90,0.2);">
+            <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,151,90,.7);margin-bottom:16px;">RUNWAY × OCTOGO × NOUVELAIR</div>
+            <h2 style="font-size:26px;font-weight:700;color:#dde3f0;margin:0 0 12px;">Programme de transformation neuro-relationnelle</h2>
+            <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;">Métriques de performance mesurées en conditions réelles · ROI démontrable · Convergence organisationnelle TRIVIUM</p>
+        </div>
+        
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(184,151,90,.7);margin-bottom:14px;">MÉTRIQUES CLÉS — RÉSULTATS MESURÉS</div>
+        
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:32px;">
+            <div style="background:rgba(163,45,45,0.1);border-radius:12px;padding:20px;border-left:3px solid #A32D2D;">
+                <div style="font-size:32px;font-weight:700;color:#A32D2D;">−61%</div>
+                <div style="font-size:14px;color:#dde3f0;font-weight:600;">Escalades superviseur</div>
+                <div style="font-size:11px;color:#B8975A;">Benchmark: 15-25%</div>
+            </div>
+            <div style="background:rgba(15,110,86,0.1);border-radius:12px;padding:20px;border-left:3px solid #0F6E56;">
+                <div style="font-size:32px;font-weight:700;color:#0F6E56;">+34 pts</div>
+                <div style="font-size:14px;color:#dde3f0;font-weight:600;">Satisfaction client (NPS)</div>
+                <div style="font-size:11px;color:#B8975A;">Benchmark: +8 à +15 pts</div>
+            </div>
+            <div style="background:rgba(24,95,165,0.1);border-radius:12px;padding:20px;border-left:3px solid #185FA5;">
+                <div style="font-size:32px;font-weight:700;color:#185FA5;">89%</div>
+                <div style="font-size:14px;color:#dde3f0;font-weight:600;">Rétention protocoles J+90</div>
+                <div style="font-size:11px;color:#B8975A;">Benchmark: 15-25%</div>
+            </div>
+            <div style="background:rgba(186,117,23,0.1);border-radius:12px;padding:20px;border-left:3px solid #BA7517;">
+                <div style="font-size:32px;font-weight:700;color:#BA7517;">×2,8</div>
+                <div style="font-size:14px;color:#dde3f0;font-weight:600;">Vitesse résolution terrain</div>
+                <div style="font-size:11px;color:#B8975A;">Benchmark: 1.3-1.8x</div>
+            </div>
+        </div>
+        
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(184,151,90,.7);margin-bottom:14px;">COMPARAISON SECTORIELLE IATA / ACI</div>
+        
+        <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:16px;margin-bottom:32px;">
+            <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:6px;font-size:10px;font-family:'DM Mono',monospace;color:rgba(255,255,255,.4);padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:8px;">
+                <span>Métrique</span><span style="text-align:center;">RUNWAY</span><span>Industrie</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:6px;padding:8px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.03);">
+                <span style="color:#dde3f0;font-weight:600;">−61% escalades</span>
+                <span style="text-align:center;color:#0F6E56;">RUNWAY</span>
+                <span style="color:rgba(255,255,255,.5);">15-25%</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:6px;padding:8px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.03);">
+                <span style="color:#dde3f0;font-weight:600;">+34 pts NPS</span>
+                <span style="text-align:center;color:#0F6E56;">RUNWAY</span>
+                <span style="color:rgba(255,255,255,.5);">+8 à +15 pts</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:6px;padding:8px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.03);">
+                <span style="color:#dde3f0;font-weight:600;">−44% stress (PSS-10)</span>
+                <span style="text-align:center;color:#0F6E56;">RUNWAY</span>
+                <span style="color:rgba(255,255,255,.5);">20-30%</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:6px;padding:8px 0;font-size:12px;">
+                <span style="color:#dde3f0;font-weight:600;">89% rétention J+90</span>
+                <span style="text-align:center;color:#0F6E56;">RUNWAY</span>
+                <span style="color:rgba(255,255,255,.5);">15-25%</span>
+            </div>
+        </div>
+        
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(184,151,90,.7);margin-bottom:14px;">CONVERGENCE TRIVIUM — ALIGNEMENT STRATÉGIQUE</div>
+        
+        <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:24px;margin-bottom:32px;border:1px solid rgba(30,95,166,0.2);text-align:center;">
+            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+                <div style="background:rgba(83,74,183,0.1);border-radius:10px;padding:12px 16px;border:1px solid rgba(83,74,183,0.3);min-width:100px;">
+                    <div style="font-size:24px;">👤</div>
+                    <div style="font-size:10px;color:#534AB7;">VOIE 1</div>
+                    <div style="font-size:9px;">Agents ΨH</div>
+                </div>
+                <div style="font-size:20px;color:rgba(184,151,90,.4);">→</div>
+                <div style="background:rgba(15,110,86,0.1);border-radius:10px;padding:12px 16px;border:1px solid rgba(15,110,86,0.3);min-width:100px;">
+                    <div style="font-size:24px;">🛡️</div>
+                    <div style="font-size:10px;color:#0F6E56;">VOIE 2</div>
+                    <div style="font-size:9px;">Superviseurs ΨE</div>
+                </div>
+                <div style="font-size:20px;color:rgba(184,151,90,.4);">→</div>
+                <div style="background:rgba(30,95,166,0.1);border-radius:10px;padding:12px 16px;border:1px solid rgba(30,95,166,0.3);min-width:100px;">
+                    <div style="font-size:24px;">🏛️</div>
+                    <div style="font-size:10px;color:#185FA5;">VOIE 3</div>
+                    <div style="font-size:9px;">Management Ω</div>
+                </div>
+                <div style="font-size:20px;color:rgba(184,151,90,.4);">→</div>
+                <div style="background:rgba(184,151,90,0.1);border-radius:10px;padding:12px 18px;border:1.5px solid rgba(184,151,90,0.4);">
+                    <div style="font-size:24px;">Ω</div>
+                    <div style="font-size:10px;color:#B8975A;">TRIVIUM</div>
+                    <div style="font-size:9px;">Élan Collectif</div>
+                </div>
+            </div>
+            <p style="font-size:13px;color:rgba(255,255,255,.55);margin:0;">Les trois voies convergent vers un point unique : l'Élan Collectif Ω. RUNWAY mesure simultanément les agents, superviseurs et le management pour aligner l'ensemble de l'organisation.</p>
+        </div>
+        
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(184,151,90,.7);margin-bottom:14px;">LEXIQUE BÉNÉFICES DÉCIDEURS</div>
+        
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:32px;">
+            <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border-left:3px solid rgba(184,151,90,0.4);border-radius:8px;">
+                <div><span style="font-family:'DM Mono',monospace;color:#B8975A;font-weight:600;">IPA</span> <span style="font-size:11px;color:rgba(255,255,255,0.4);">Indice de Puissance d'Agir</span></div>
+                <div style="font-size:12px;color:#dde3f0;">Capacité opérationnelle à générer satisfaction client sous pression</div>
+                <div style="font-size:10px;color:#B8975A;">→ Corrélé au NPS et à la réduction des escalades</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border-left:3px solid rgba(184,151,90,0.4);border-radius:8px;">
+                <div><span style="font-family:'DM Mono',monospace;color:#B8975A;font-weight:600;">REC²</span> <span style="font-size:11px;color:rgba(255,255,255,0.4);">Reconnaître · Expliquer · Choisir · Co-construire</span></div>
+                <div style="font-size:12px;color:#dde3f0;">Protocole de résolution autonome agent</div>
+                <div style="font-size:10px;color:#B8975A;">→ −61% escalades = réduction coût superviseur</div>
+            </div>
+            <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border-left:3px solid rgba(184,151,90,0.4);border-radius:8px;">
+                <div><span style="font-family:'DM Mono',monospace;color:#B8975A;font-weight:600;">TRIVIUM</span> <span style="font-size:11px;color:rgba(255,255,255,0.4);">Convergence 3 voies</span></div>
+                <div style="font-size:12px;color:#dde3f0;">Alignement stratégique organisation-terrain</div>
+                <div style="font-size:10px;color:#B8975A;">→ ROI mesurable sur NPS, réclamations</div>
+            </div>
+        </div>
+        
+        <div style="text-align:center;padding:24px;background:linear-gradient(160deg,#0D1520,#1A2640);border-radius:14px;border:1px solid rgba(184,151,90,0.2);">
+            <div style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:12px;">Prêt à démarrer la transformation ?</div>
+            <div style="font-size:16px;font-weight:700;color:#B8975A;">OCTOGO Formation et Conseil</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:4px;">contact@octogo.tn · www.octogo.tn · Sousse, Tunisie</div>
+        </div>
+    `;
+
+    modal.appendChild(topbar);
+    modal.appendChild(body);
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+    
+    // Fermer avec escape
+    modal.addEventListener('keydown', function(e) {
+        if(e.key === 'Escape') {
+            modal.remove();
+            document.body.style.overflow = '';
         }
     });
-}
-
-// Exécuter après chargement
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attachFullscreenToProfileImages);
-} else {
-    attachFullscreenToProfileImages();
-}
-
-// Observer les nouveaux ajouts (pour le drawer)
-const fullscreenObserver = new MutationObserver(() => {
-    attachFullscreenToProfileImages();
-});
-fullscreenObserver.observe(document.body, { childList: true, subtree: true });
-// ── VUE D\u00c9CIDEUR — Parcours filtr\u00e9 ROI / TRIVIUM / Benchmark ──
-window.rwyOpenDecideur = function(){
-  var existing = document.getElementById('rwy-decideur-modal');
-  if(existing) existing.remove();
-
-  var modal = document.createElement('div');
-  modal.id = 'rwy-decideur-modal';
-  modal.style.cssText = 'display:block;position:fixed;inset:0;z-index:2000;background:rgba(7,10,16,0.97);backdrop-filter:blur(12px);overflow-y:auto;overscroll-behavior:contain;';
-
-  // Topbar
-  var topbar = document.createElement('div');
-  topbar.style.cssText = 'position:sticky;top:0;z-index:10;height:54px;display:flex;align-items:center;gap:14px;padding:0 22px;background:rgba(10,13,22,0.98);border-bottom:1px solid rgba(184,151,90,0.3);';
-  topbar.innerHTML = '<span style="font-size:18px">\uD83D\uDCBC</span><div><div style="font-family:monospace;font-size:9px;letter-spacing:.18em;color:#B8975A;text-transform:uppercase;margin-bottom:2px;">Vue D\u00e9cideur</div><div style="font-size:14px;font-weight:700;color:#dde3f0;">RUNWAY \u2014 L\'essentiel pour la d\u00e9cision</div></div>';
-
-  var closeBtn = document.createElement('button');
-  closeBtn.style.cssText = 'margin-left:auto;background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);padding:6px 14px;border-radius:7px;cursor:pointer;font-size:13px;';
-  closeBtn.textContent = '\u2715 Fermer';
-  closeBtn.onclick = function(){ modal.remove(); document.body.style.overflow=''; };
-  topbar.appendChild(closeBtn);
-
-  var body = document.createElement('div');
-  body.style.cssText = 'max-width:860px;margin:0 auto;padding:32px 20px 60px;';
-
-  // Header
-  var header = document.createElement('div');
-  header.style.cssText = 'background:linear-gradient(160deg,#0D1520,#1A2640);border-radius:16px;padding:2.5rem 2rem;margin-bottom:28px;text-align:center;border:1px solid rgba(184,151,90,0.2);';
-  header.innerHTML = '<div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(184,151,90,.7);margin-bottom:16px;font-family:\'DM Mono\',monospace;">RUNWAY \u00d7 OCTOGO \u00d7 NOUVELAIR</div>' +
-    '<h2 style="font-size:24px;font-weight:700;color:#dde3f0;margin:0 0 12px;font-family:\'DM Sans\',sans-serif;">Programme de transformation neuro-relationnelle</h2>' +
-    '<p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin:0;">M\u00e9triques de performance mesur\u00e9es en conditions r\u00e9elles \u00b7 ROI d\u00e9montrable \u00b7 Convergence organisationnelle TRIVIUM</p>';
-  body.appendChild(header);
-
-  // Stats ROI
-  var statsLabel = document.createElement('div');
-  statsLabel.style.cssText = 'font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:.18em;color:rgba(184,151,90,.7);text-transform:uppercase;margin-bottom:14px;';
-  statsLabel.textContent = 'M\u00e9triques cl\u00e9s — R\u00e9sultats mesur\u00e9s';
-  body.appendChild(statsLabel);
-
-  var statsData = [
-    {n:'\u221261%',label:'Escalades superviseur',bench:'Industrie : 15-25%',color:'#A32D2D'},
-    {n:'+34 pts',label:'Satisfaction client (NPS)',bench:'IATA : +8 \u00e0 +15 pts',color:'#0F6E56'},
-    {n:'89%',label:'R\u00e9tention protocoles J+90',bench:'Standard : 15-25%',color:'#185FA5'},
-    {n:'\u00d72,8',label:'Vitesse r\u00e9solution terrain',bench:'ACI : 1.3-1.8x',color:'#BA7517'}
-  ];
-
-  var statsGrid = document.createElement('div');
-  statsGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:32px;';
-  statsData.forEach(function(s){
-    var card = document.createElement('div');
-    card.style.cssText = 'background:rgba(255,255,255,0.03);border-radius:12px;padding:20px 18px;border-left:3px solid '+s.color+';';
-    card.innerHTML = '<div style="font-size:28px;font-weight:700;color:'+s.color+';margin-bottom:4px;">'+s.n+'</div>' +
-      '<div style="font-size:13px;color:#dde3f0;font-weight:600;margin-bottom:6px;">'+s.label+'</div>' +
-      '<div style="font-size:10px;font-family:\'DM Mono\',monospace;color:rgba(184,151,90,.6);letter-spacing:.06em;"><span style="text-transform:uppercase;">Benchmark</span> '+s.bench+'</div>';
-    statsGrid.appendChild(card);
-  });
-  body.appendChild(statsGrid);
-
-  // Benchmarks detail
-  var benchLabel = document.createElement('div');
-  benchLabel.style.cssText = 'font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:.18em;color:rgba(184,151,90,.7);text-transform:uppercase;margin-bottom:14px;';
-  benchLabel.textContent = 'Comparaison sectorielle IATA / ACI';
-  body.appendChild(benchLabel);
-
-  var benchData = [
-    {metric:'\u221261% escalades',runway:'RUNWAY',industrie:'15-25% (soft-skills classiques)'},
-    {metric:'+34 pts NPS',runway:'RUNWAY',industrie:'+8 \u00e0 +15 pts (formation CX standard)'},
-    {metric:'\u221244% stress (PSS-10)',runway:'RUNWAY',industrie:'20-30% (bien-\u00eatre au travail)'},
-    {metric:'89% r\u00e9tention J+90',runway:'RUNWAY',industrie:'15-25% sans ancrage'},
-    {metric:'\u00d72.8 r\u00e9solution',runway:'RUNWAY',industrie:'1.3-1.8x post-formation'},
-    {metric:'\u221238% r\u00e9clamations',runway:'RUNWAY',industrie:'10-20% post-formation CX'}
-  ];
-
-  var benchTable = document.createElement('div');
-  benchTable.style.cssText = 'background:rgba(255,255,255,0.03);border-radius:12px;padding:16px 18px;margin-bottom:32px;';
-  benchTable.innerHTML = '<div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:8px;font-size:10px;font-family:\'DM Mono\',monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.3);padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:8px;">' +
-    '<span>M\u00e9trique</span><span style="text-align:center;">RUNWAY</span><span>Industrie</span></div>';
-  benchData.forEach(function(b){
-    var row = document.createElement('div');
-    row.style.cssText = 'display:grid;grid-template-columns:1fr 80px 1fr;gap:8px;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.03);';
-    row.innerHTML = '<span style="color:#dde3f0;font-weight:600;">'+b.metric+'</span>' +
-      '<span style="text-align:center;color:#0F6E56;font-weight:700;">'+b.runway+'</span>' +
-      '<span style="color:rgba(255,255,255,.4);font-style:italic;">'+b.industrie+'</span>';
-    benchTable.appendChild(row);
-  });
-  body.appendChild(benchTable);
-
-  // Timeline
-  var tlLabel = document.createElement('div');
-  tlLabel.style.cssText = 'font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:.18em;color:rgba(184,151,90,.7);text-transform:uppercase;margin-bottom:14px;';
-  tlLabel.textContent = 'Parcours de transformation T0 \u2192 J+90';
-  body.appendChild(tlLabel);
-
-  var tlWrap = document.createElement('div');
-  tlWrap.style.cssText = 'background:rgba(255,255,255,0.03);border-radius:12px;padding:24px 20px;margin-bottom:32px;';
-  var tlRow = document.createElement('div');
-  tlRow.style.cssText = 'display:flex;align-items:center;justify-content:space-between;';
-
-  var phases = typeof TIMELINE_PHASES !== 'undefined' ? TIMELINE_PHASES : [
-    {label:'T0',title:'Cartographie',color:'#534AB7',icon:'\uD83D\uDCCA'},
-    {label:'J+30',title:'Formation terrain',color:'#185FA5',icon:'\uD83C\uDFAF'},
-    {label:'J+60',title:'Ancrage & suivi',color:'#BA7517',icon:'\u2693'},
-    {label:'J+90',title:'Mesure d\'impact',color:'#0F6E56',icon:'\uD83D\uDCC8'}
-  ];
-  phases.forEach(function(p,i){
-    var node = document.createElement('div');
-    node.style.cssText = 'text-align:center;flex-shrink:0;';
-    node.innerHTML = '<div style="width:52px;height:52px;border-radius:50%;background:'+p.color+';display:flex;align-items:center;justify-content:center;margin:0 auto 8px;"><span style="font-size:18px;">'+p.icon+'</span></div>' +
-      '<div style="font-size:11px;font-weight:700;color:#dde3f0;">'+p.label+'</div>' +
-      '<div style="font-size:10px;color:rgba(255,255,255,.4);">'+p.title+'</div>';
-    tlRow.appendChild(node);
-    if(i < phases.length - 1){
-      var line = document.createElement('div');
-      line.style.cssText = 'flex:1;height:2px;background:linear-gradient(90deg,'+p.color+'66,'+phases[i+1].color+'66);margin:0 6px;margin-bottom:28px;';
-      tlRow.appendChild(line);
-    }
-  });
-  tlWrap.appendChild(tlRow);
-  body.appendChild(tlWrap);
-
-  // TRIVIUM
-  var trivLabel = document.createElement('div');
-  trivLabel.style.cssText = 'font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:.18em;color:rgba(184,151,90,.7);text-transform:uppercase;margin-bottom:14px;';
-  trivLabel.textContent = 'Convergence TRIVIUM \u2014 Alignement strat\u00e9gique';
-  body.appendChild(trivLabel);
-
-  var trivBox = document.createElement('div');
-  trivBox.style.cssText = 'background:rgba(255,255,255,0.03);border-radius:12px;padding:20px 22px;margin-bottom:32px;border:1px solid rgba(30,95,166,0.2);';
-  trivBox.innerHTML = '<div style="display:flex;justify-content:center;gap:12px;align-items:center;margin-bottom:16px;">' +
-    '<div style="text-align:center;padding:12px 16px;border-radius:10px;background:rgba(83,74,183,0.1);border:1px solid rgba(83,74,183,0.3);"><div style="font-size:18px;margin-bottom:4px;">\uD83D\uDC64</div><div style="font-size:10px;font-weight:700;color:#534AB7;font-family:\'DM Mono\',monospace;">VOIE 1</div><div style="font-size:9px;color:rgba(255,255,255,.4);">Agents \u03a8H</div></div>' +
-    '<div style="font-size:16px;color:rgba(184,151,90,.4);">\u2192</div>' +
-    '<div style="text-align:center;padding:12px 16px;border-radius:10px;background:rgba(15,110,86,0.1);border:1px solid rgba(15,110,86,0.3);"><div style="font-size:18px;margin-bottom:4px;">\uD83D\uDEE1\uFE0F</div><div style="font-size:10px;font-weight:700;color:#0F6E56;font-family:\'DM Mono\',monospace;">VOIE 2</div><div style="font-size:9px;color:rgba(255,255,255,.4);">Superviseurs \u03a8E</div></div>' +
-    '<div style="font-size:16px;color:rgba(184,151,90,.4);">\u2192</div>' +
-    '<div style="text-align:center;padding:12px 16px;border-radius:10px;background:rgba(30,95,166,0.1);border:1px solid rgba(30,95,166,0.3);"><div style="font-size:18px;margin-bottom:4px;">\uD83C\uDFDB\uFE0F</div><div style="font-size:10px;font-weight:700;color:#185FA5;font-family:\'DM Mono\',monospace;">VOIE 3</div><div style="font-size:9px;color:rgba(255,255,255,.4);">Management \u03a9</div></div>' +
-    '<div style="font-size:16px;color:rgba(184,151,90,.4);">\u2192</div>' +
-    '<div style="text-align:center;padding:12px 18px;border-radius:10px;background:rgba(184,151,90,0.1);border:1.5px solid rgba(184,151,90,0.4);"><div style="font-size:18px;margin-bottom:4px;">\u03a9</div><div style="font-size:10px;font-weight:700;color:#B8975A;font-family:\'DM Mono\',monospace;">TRIVIUM</div><div style="font-size:9px;color:rgba(255,255,255,.4);">\u00c9lan Collectif</div></div>' +
-  '</div>' +
-  '<p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;text-align:center;margin:0;">Les trois voies convergent vers un point unique : l\'\u00c9lan Collectif \u03a9. RUNWAY mesure simultan\u00e9ment les agents, superviseurs et le management pour aligner l\'ensemble de l\'organisation.</p>';
-  body.appendChild(trivBox);
-
-  // Lexique
-  var lexLabel = document.createElement('div');
-  lexLabel.style.cssText = 'font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:.18em;color:rgba(184,151,90,.7);text-transform:uppercase;margin-bottom:14px;';
-  lexLabel.textContent = 'Lexique b\u00e9n\u00e9fices d\u00e9cideurs';
-  body.appendChild(lexLabel);
-
-  var lexWrap = document.createElement('div');
-  lexWrap.style.cssText = 'display:flex;flex-direction:column;gap:6px;margin-bottom:32px;';
-  if(typeof LEXIQUE_DECIDEUR !== 'undefined'){
-    LEXIQUE_DECIDEUR.forEach(function(item,i){
-      var row = document.createElement('div');
-      row.style.cssText = 'padding:14px 16px;border-radius:10px;' + (i%2===0?'background:rgba(255,255,255,0.03);':'') + 'border-left:3px solid rgba(184,151,90,0.3);';
-      row.innerHTML = '<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">' +
-        '<span style="font-family:\'DM Mono\',monospace;font-size:12px;font-weight:700;color:#B8975A;">'+item.terme+'</span>' +
-        '<span style="font-size:11px;color:rgba(255,255,255,0.35);font-style:italic;">'+item.runway+'</span></div>' +
-        '<div style="font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:4px;">'+item.decideur+'</div>' +
-        '<div style="font-size:11px;color:rgba(255,255,255,0.4);">\u2192 '+item.impact+'</div>';
-      lexWrap.appendChild(row);
-    });
-  }
-  body.appendChild(lexWrap);
-
-  // CTA
-  var cta = document.createElement('div');
-  cta.style.cssText = 'text-align:center;padding:24px;background:linear-gradient(160deg,#0D1520,#1A2640);border-radius:14px;border:1px solid rgba(184,151,90,0.2);';
-  cta.innerHTML = '<div style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:12px;">Pr\u00eat \u00e0 d\u00e9marrer la transformation ?</div>' +
-    '<div style="font-size:16px;font-weight:700;color:#B8975A;margin-bottom:6px;">OCTOGO Formation et Conseil</div>' +
-    '<div style="font-size:13px;color:rgba(255,255,255,.45);">contact@octogo.tn \u00b7 www.octogo.tn \u00b7 Sousse, Tunisie</div>';
-  body.appendChild(cta);
-
-  modal.appendChild(topbar);
-  modal.appendChild(body);
-  document.body.appendChild(modal);
-  document.body.style.overflow = 'hidden';
+    modal.focus();
 };
-
 
 /* rwyOpenProfiles: défini ci-dessous */;
 window.rwyCloseProfiles=function(){
