@@ -1748,58 +1748,85 @@ section > .container {
                 padding: 24px 20px;
             }
         }
+
+     /* ══ DÉPLOIEMENT ════════════════════════════════════════════════════════ */
         
-        /* ══ DÉPLOIEMENT ════════════════════════════════════════════════════════ */
-        
-        .deploy-section {
-            background: var(--navy);
-        }
-        
-        .deploy-tabs {
-            display: flex;
-            gap: 0;
-            margin-top: 48px;
-            border: 1px solid rgba(184, 151, 90, .2);
-            overflow: hidden;
-        }
-        
-        .deploy-tab {
-            flex: 1;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: var(--slate);
-            background: transparent;
-            border: none;
-            border-right: 1px solid rgba(184, 151, 90, .15);
-            transition: all .2s;
-        }
-        
-        .deploy-tab:last-child {
-            border-right: none;
-        }
-        
-        .deploy-tab.active {
-            background: var(--ink);
-            color: var(--gold);
-        }
-        
-        .deploy-tab:hover:not(.active) {
-            color: var(--gold);
-            background: rgba(184, 151, 90, .05);
-        }
-        
-        .deploy-panel {
+.deploy-section {
+    background: var(--navy);
+    overflow: visible !important;
+}
+
+.deploy-tabs {
+    display: flex !important;
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid rgba(184, 151, 90, .2);
+    overflow: visible !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 70px !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* Forcer l'affichage de la classe reveal */
+.deploy-tabs.reveal,
+.deploy-tabs.reveal.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    display: flex !important;
+    visibility: visible !important;
+}
+
+.deploy-tab {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(184, 151, 90, .15);
+    transition: all .2s;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 60px !important;
+    position: relative !important;
+    z-index: 101 !important;
+    pointer-events: auto !important;
+}
+
+.deploy-tab:last-child {
+    border-right: none;
+}
+
+.deploy-tab.active {
+    background: var(--ink);
+    color: var(--gold);
+}
+
+.deploy-tab:hover:not(.active) {
+    color: var(--gold);
+    background: rgba(184, 151, 90, .05);
+    cursor: pointer !important;
+}
+
+/* RÈGLES SIMPLES POUR LES PANELS */
+.deploy-panel {
     display: none;
+    width: 100%;
+    overflow: visible;
 }
 
 .deploy-panel.active {
-    display: block;
+    display: block !important;
 }
+
         /* Timeline */
         
         .timeline {
@@ -5024,10 +5051,10 @@ function rwyRender(sec) {
             <p class="section-lead reveal visible" style="transition-delay: 200ms;">RUNWAY n'est pas une formation en salle suivie d'un retour au poste. C'est un système de transformation opérationnel qui s'installe dans la réalité du terrain via des points de contact séquencés conçus pour modifier durablement les automatismes
                 de réponse.</p>
 
-       <div class="deploy-tabs reveal visible" style="transition-delay: 300ms;">
-    <button class="deploy-tab active" data-deploy="superviseurs" onclick="switchDeploy('superviseurs')">Superviseurs</button>
-    <button class="deploy-tab" data-deploy="agents" onclick="switchDeploy('agents')">Agents</button>
-</div>
+        <div class="deploy-tabs reveal visible" style="transition-delay: 300ms;">
+            <button class="deploy-tab active" data-deploy="superviseurs" onclick="switchDeploy('superviseurs')">Superviseurs</button>
+            <button class="deploy-tab" data-deploy="agents" onclick="switchDeploy('agents')">Agents</button>
+         </div>
 
             <!-- SUPERVISEURS -->
             <div class="deploy-panel active" id="panel-superviseurs">
@@ -5176,7 +5203,7 @@ function rwyRender(sec) {
             </div>
 
             <!-- AGENTS -->
-            <div class="deploy-panel" id="panel-agents">
+            <div class="deploy-panel" id="panel-agents">  
                 <div class="timeline">
                     <div class="timeline-spine"></div>
 
@@ -9371,88 +9398,62 @@ function HomeApp(){
         }
 
 // Fonction pour basculer entre les onglets Déploiement
-function switchDeploy(type) {
-    const superviseurPanel = document.getElementById('panel-superviseurs');
-    const agentPanel = document.getElementById('panel-agents');
-    const superviseurBtn = document.querySelector('.deploy-tab[data-deploy="superviseurs"]');
-    const agentBtn = document.querySelector('.deploy-tab[data-deploy="agents"]');
-    
-    if (type === 'superviseurs') {
-        // Afficher le panel superviseurs
-        if (superviseurPanel) superviseurPanel.style.display = 'block';
-        if (agentPanel) agentPanel.style.display = 'none';
+(function() {
+    window.switchDeploy = function(type) {
+        console.log("🔵 switchDeploy appelé avec:", type);
         
-        // Style du bouton superviseurs (actif)
-        if (superviseurBtn) {
-            superviseurBtn.classList.add('active');
-            superviseurBtn.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
-            superviseurBtn.style.color = '#06122a';
-        }
-        
-        // Style du bouton agents (inactif)
-        if (agentBtn) {
-            agentBtn.classList.remove('active');
-            agentBtn.style.background = 'rgba(15,23,42,0.5)';
-            agentBtn.style.color = 'rgba(255,255,255,0.6)';
-        }
-        
-    } else if (type === 'agents') {
-        // Afficher le panel agents
-        if (agentPanel) agentPanel.style.display = 'block';
-        if (superviseurPanel) superviseurPanel.style.display = 'none';
-        
-        // Style du bouton agents (actif)
-        if (agentBtn) {
-            agentBtn.classList.add('active');
-            agentBtn.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
-            agentBtn.style.color = '#06122a';
-        }
-        
-        // Style du bouton superviseurs (inactif)
-        if (superviseurBtn) {
-            superviseurBtn.classList.remove('active');
-            superviseurBtn.style.background = 'rgba(15,23,42,0.5)';
-            superviseurBtn.style.color = 'rgba(255,255,255,0.6)';
-        }
-    }
-}
-if (typeof switchDeploy === 'function') {
-    // Surcharger la fonction existante
-    window.switchDeploy = function(id) {
         const superviseurPanel = document.getElementById('panel-superviseurs');
         const agentPanel = document.getElementById('panel-agents');
         
-        if (id === 'superviseurs') {
-            superviseurPanel.style.display = 'block';
-            agentPanel.style.display = 'none';
-            document.querySelectorAll('.deploy-tab').forEach(tab => {
-                if (tab.textContent === 'Superviseurs') {
-                    tab.classList.add('active');
-                    tab.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
-                    tab.style.color = '#06122a';
-                } else {
-                    tab.classList.remove('active');
-                    tab.style.background = 'rgba(15,23,42,0.5)';
-                    tab.style.color = 'rgba(255,255,255,0.6)';
-                }
-            });
-        } else if (id === 'agents') {
-            agentPanel.style.display = 'block';
-            superviseurPanel.style.display = 'none';
-            document.querySelectorAll('.deploy-tab').forEach(tab => {
-                if (tab.textContent === 'Agents') {
-                    tab.classList.add('active');
-                    tab.style.background = 'linear-gradient(135deg, #F5C800, #d4a800)';
-                    tab.style.color = '#06122a';
-                } else {
-                    tab.classList.remove('active');
-                    tab.style.background = 'rgba(15,23,42,0.5)';
-                    tab.style.color = 'rgba(255,255,255,0.6)';
-                }
-            });
+        if (!superviseurPanel || !agentPanel) {
+            console.error("❌ Panneaux non trouvés !");
+            return;
         }
+        
+        // Version SIMPLE - juste gérer les classes
+        if (type === 'superviseurs') {
+            superviseurPanel.classList.add('active');
+            agentPanel.classList.remove('active');
+            console.log("✅ Panel superviseurs affiché");
+            console.log("Classes superviseur:", superviseurPanel.className);
+            console.log("Classes agent:", agentPanel.className);
+        } 
+        else if (type === 'agents') {
+            agentPanel.classList.add('active');
+            superviseurPanel.classList.remove('active');
+            console.log("✅ Panel agents affiché");
+            console.log("Classes agent:", agentPanel.className);
+            console.log("Classes superviseur:", superviseurPanel.className);
+        }
+        
+        // Mettre à jour le style des boutons
+        const tabs = document.querySelectorAll('.deploy-tab');
+        tabs.forEach(tab => {
+            const tabType = tab.getAttribute('data-deploy');
+            
+            if (tabType === type) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+        
+        // Debug - vérifier les styles calculés
+        setTimeout(() => {
+            console.log("Style calculé superviseur:", window.getComputedStyle(superviseurPanel).display);
+            console.log("Style calculé agent:", window.getComputedStyle(agentPanel).display);
+        }, 50);
     };
-}
+    
+    // Initialisation
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            window.switchDeploy('superviseurs');
+        });
+    } else {
+        window.switchDeploy('superviseurs');
+    }
+})();
 
 // Mount home
 const shell=document.getElementById('nav-shell');
@@ -9945,7 +9946,6 @@ window.rwyCloseProfiles=function(){
 };
 
 // Map le bouton FAB → rwyOpenProfiles
-document.getElementById('pfab-btn').onclick=rwyOpenProfiles;
 
 // Escape
 document.addEventListener('keydown',function(e){
@@ -10727,11 +10727,7 @@ function closeModal() {
 }
 
 // Fermer le modal avec la touche Échap
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-});
+
   // Fermer avec Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('open')) {
@@ -11140,11 +11136,11 @@ window.rwyBreathTechs  = BREATH_TECHS;
                 
                 img.onclick = function(e) {
                     e.stopPropagation();
-                    openImageFullscreen(this.src, isSecondImage);
+                    openImageFullscreen(this.imgSrc);
                 };
                 img.ontouchstart = function(e) {
                     e.stopPropagation();
-                    openImageFullscreen(this.src, isSecondImage);
+                    openImageFullscreen(this.src);
                 };
                 img.onmouseenter = function() { 
                     this.style.transform = 'scale(1.02)';
@@ -11329,42 +11325,45 @@ window.rwyBreathTechs  = BREATH_TECHS;
     window.setAsWallpaper = setAsWallpaper;
     
     // Redéfinir rwyOpenProfiles (bouton FAB)
-    window.rwyOpenProfiles = function() {
-        const drawerBody = document.getElementById('pdrawer-body');
-        if (drawerBody) { drawerBody.innerHTML = ''; }
-        if (drawerBody && drawerBody.childElementCount === 0) {
-            const sec = document.getElementById('profils');
-            if (sec) {
-                const clone = sec.cloneNode(true);
-                clone.id = 'pd-profils';
-                clone.querySelectorAll('[id]').forEach(el => { el.id = 'pd-' + el.id; });
-                clone.style.cssText = 'display:block !important';
-                clone.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-                
-                // Ajouter les écouteurs pour les cartes dans le drawer
-                clone.querySelectorAll('.profile-large-card').forEach(card => {
-                    const profileNum = card.getAttribute('data-profile');
-                    if (profileNum) {
-                        card.style.cursor = 'pointer';
-                        card.onclick = (e) => {
-                            e.stopPropagation();
-                            openProfileDrawer(parseInt(profileNum));
-                        };
-                        card.ontouchstart = (e) => {
-                            e.stopPropagation();
-                            openProfileDrawer(parseInt(profileNum));
-                        };
-                    }
-                });
-                drawerBody.appendChild(clone);
-            }
+window.rwyOpenProfiles = function() {
+    const drawerBody = document.getElementById('pdrawer-body');
+    if (drawerBody) { drawerBody.innerHTML = ''; }
+    if (drawerBody && drawerBody.childElementCount === 0) {
+        const sec = document.getElementById('profils');
+        if (sec) {
+            const clone = sec.cloneNode(true);
+            clone.id = 'pd-profils';
+            clone.querySelectorAll('[id]').forEach(el => { el.id = 'pd-' + el.id; });
+            clone.style.cssText = 'display:block !important';
+            clone.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+            
+            clone.querySelectorAll('.profile-large-card').forEach(card => {
+                const profileNum = card.getAttribute('data-profile');
+                if (profileNum) {
+                    card.style.cursor = 'pointer';
+                    card.onclick = (e) => {
+                        e.stopPropagation();
+                        openProfileDrawer(parseInt(profileNum));
+                    };
+                }
+            });
+            drawerBody.appendChild(clone);
         }
-        
-        const drawer = document.getElementById('pdrawer');
-        const overlay = document.getElementById('pdrawer-overlay');
-        if (drawer) drawer.classList.add('open');
-        if (overlay) overlay.classList.add('show');
-    };
+    }
+    
+    const drawer = document.getElementById('pdrawer');
+    const overlay = document.getElementById('pdrawer-overlay');
+    if (drawer) drawer.classList.add('open');
+    if (overlay) overlay.classList.add('show');
+};
+
+window.rwyCloseProfiles = function() {
+    document.getElementById('pdrawer').classList.remove('open');
+    document.getElementById('pdrawer-overlay').classList.remove('show');
+};
+
+// MAINTENANT assigner le onclick
+document.getElementById('pfab-btn').onclick = window.rwyOpenProfiles;
     
     // Réassigner le bouton FAB
     const fabBtn = document.getElementById('pfab-btn');
@@ -11382,5 +11381,18 @@ window.rwyBreathTechs  = BREATH_TECHS;
     window.closeModal = closeImageModal;
     
 })();
+document.addEventListener('DOMContentLoaded', () => {
+    const fabBtn = document.getElementById('pfab-btn');
+    
+    // Only attempt assignment if the element actually exists
+    if (fabBtn) {
+        fabBtn.onclick = () => window.rwyOpenProfiles();
+        fabBtn.ontouchstart = () => window.rwyOpenProfiles();
+    }
+
+    window.openFullscreen = openImageFullscreen;
+    window.closeModal = closeImageModal;
+});
+
 </script>
 </html>
