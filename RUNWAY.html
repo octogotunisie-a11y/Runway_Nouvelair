@@ -4073,26 +4073,9 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     .nudge-body { color: rgba(255,255,255,0.88) !important; }
     .rec2-goal { color: #C8D5E3 !important; }
     #pdrawer-body p { color: rgba(255,255,255,0.9) !important; }
-    /* ═══════════════════════════════════════════════════════════════════════
-   CORRECTION MOBILE - IMAGES DES PROFILS
+ /* ═══════════════════════════════════════════════════════════════════════
+   CORRECTION DÉFINITIVE - IMAGES PROFILS MOBILE
    ═══════════════════════════════════════════════════════════════════════ */
-
-/* Images dans la grille principale */
-.profiles-grid-large .profile-large-card .img-container {
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #000;
-    position: relative;
-}
-
-.profiles-grid-large .profile-large-card .img-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-}
 
 /* Images dans les détails après clic */
 .profile-detail-item {
@@ -4100,6 +4083,7 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     border-radius: 20px;
     padding: 20px;
     border: 2px solid;
+    overflow: hidden;
 }
 
 .profile-detail-item img {
@@ -4109,19 +4093,11 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     border-radius: 12px;
     cursor: pointer;
     object-fit: contain;
+    max-width: 100%;
 }
 
 /* MOBILE - moins de 768px */
 @media (max-width: 768px) {
-    .profiles-grid-large {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-    }
-    
-    .profile-large-card .img-container {
-        border-radius: 12px;
-    }
-    
     .profile-detail-card {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
@@ -4129,6 +4105,7 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     
     .profile-detail-item {
         padding: 16px;
+        margin-bottom: 0;
     }
     
     .profile-detail-item img {
@@ -4136,19 +4113,31 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
         height: auto;
         max-height: 60vh;
         object-fit: contain;
+        margin: 0 auto;
     }
 }
 
 /* TRÈS PETIT MOBILE - moins de 480px */
 @media (max-width: 480px) {
-    .profiles-grid-large {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+    .profile-detail-item {
+        padding: 12px;
     }
     
-    .profile-large-card .img-container {
-        border-radius: 10px;
+    .profile-detail-item img {
+        max-height: 50vh;
     }
+}
+
+/* Pour le drawer (popup) */
+#pdrawer .profile-detail-item {
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+#pdrawer .profile-detail-item img {
+    max-height: 70vh;
+    width: auto;
+    margin: 0 auto;
 }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
