@@ -1796,6 +1796,7 @@ section > .container {
         .deploy-panel {
     display: none;
 }
+
 .deploy-panel.active {
     display: block;
 }
@@ -4072,13 +4073,68 @@ h3 { font-size: clamp(18px, 3vw, 24px) !important; }
     .nudge-body { color: rgba(255,255,255,0.88) !important; }
     .rec2-goal { color: #C8D5E3 !important; }
     #pdrawer-body p { color: rgba(255,255,255,0.9) !important; }
+    /* ═══════════════════════════════════════════════════════════════════════
+   CORRECTION AFFICHAGE MOBILE - 6 PROFILS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Ajustement de la grille des 6 profils sur mobile */
+@media (max-width: 768px) {
+    /* La grille des 6 profils principaux passe en 2 colonnes */
+    .profiles-grid-large {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    /* Les cartes prennent toute la largeur */
+    .profile-large-card {
+        width: 100%;
+    }
+    
+    /* Les images s'adaptent sans fond blanc */
+    .profile-large-card .img-container {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .profile-large-card .img-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+    
+    /* Zone de détails après clic - en colonne */
+    .profile-detail-card {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    
+    /* Images dans les détails - pas de fond blanc */
+    .profile-detail-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        background: transparent;
+        border-radius: 8px;
+    }
+}
+
+/* Très petit mobile (moins de 480px) */
+@media (max-width: 480px) {
+    .profiles-grid-large {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 </head>
 
-<body class="nav-mode">
+<body >
 
     <!-- TOPBAR -->
     <header class="topbar">
@@ -9550,7 +9606,88 @@ window.rwyShowBreathPrep = function(card){
     btnContinue.style.opacity = '1';
   }, 10000);
 };
+function openFullscreenImage(imgElement) {
+    // Créer le modal s'il n'existe pas
+    let modal = document.getElementById('fullscreen-image-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'fullscreen-image-modal';
+        modal.style.cssText = `
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        `;
+        
+        const closeBtn = document.createElement('span');
+        closeBtn.innerHTML = '×';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 10001;
+            font-family: monospace;
+        `;
+        closeBtn.onclick = () => modal.style.display = 'none';
+        
+        const modalImg = document.createElement('img');
+        modalImg.id = 'fullscreen-image';
+        modalImg.style.cssText = `
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+        `;
+        
+        modal.appendChild(closeBtn);
+        modal.appendChild(modalImg);
+        document.body.appendChild(modal);
+        
+        modal.onclick = () => modal.style.display = 'none';
+    }
+    
+    const modalImg = document.getElementById('fullscreen-image');
+    modalImg.src = imgElement.src;
+    modal.style.display = 'flex';
+}
 
+// Attacher l'événement à toutes les images de profil
+function attachFullscreenToProfileImages() {
+    const allProfileImages = document.querySelectorAll('.profile-detail-item img, .profile-large-card img');
+    allProfileImages.forEach(img => {
+        if (!img.hasAttribute('data-fullscreen-attached')) {
+            img.setAttribute('data-fullscreen-attached', 'true');
+            img.style.cursor = 'pointer';
+            img.onclick = (e) => {
+                e.stopPropagation();
+                openFullscreenImage(img);
+            };
+        }
+    });
+}
+
+// Exécuter après chargement
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachFullscreenToProfileImages);
+} else {
+    attachFullscreenToProfileImages();
+}
+
+// Observer les nouveaux ajouts (pour le drawer)
+const fullscreenObserver = new MutationObserver(() => {
+    attachFullscreenToProfileImages();
+});
+fullscreenObserver.observe(document.body, { childList: true, subtree: true });
 // ── VUE D\u00c9CIDEUR — Parcours filtr\u00e9 ROI / TRIVIUM / Benchmark ──
 window.rwyOpenDecideur = function(){
   var existing = document.getElementById('rwy-decideur-modal');
@@ -10949,7 +11086,7 @@ window.rwyBreathTechs  = BREATH_TECHS;
                     const btnContainer = document.createElement('div');
                     btnContainer.style.cssText = 'margin-top: 12px; text-align: center;';
                     const wallpaperBtn = document.createElement('button');
-                    wallpaperBtn.innerHTML = '🖼️ Définir comme fond d\'écran';
+                    
                     wallpaperBtn.style.cssText = `
                         background: rgba(0,0,0,0.6);
                         border: 1px solid ${prof.color};
