@@ -9634,62 +9634,108 @@ function HomeApp(){
         }
 
 // Fonction pour basculer entre les onglets Déploiement
-(function() {
-    window.switchDeploy = function(type) {
-        console.log("🔵 switchDeploy appelé avec:", type);
-        
-        const superviseurPanel = document.getElementById('panel-superviseurs');
-        const agentPanel = document.getElementById('panel-agents');
-        
-        if (!superviseurPanel || !agentPanel) {
-            console.error("❌ Panneaux non trouvés !");
-            return;
-        }
-        
-        // Version SIMPLE - juste gérer les classes
-        if (type === 'superviseurs') {
-            superviseurPanel.classList.add('active');
-            agentPanel.classList.remove('active');
-            console.log("✅ Panel superviseurs affiché");
-            console.log("Classes superviseur:", superviseurPanel.className);
-            console.log("Classes agent:", agentPanel.className);
-        } 
-        else if (type === 'agents') {
-            agentPanel.classList.add('active');
-            superviseurPanel.classList.remove('active');
-            console.log("✅ Panel agents affiché");
-            console.log("Classes agent:", agentPanel.className);
-            console.log("Classes superviseur:", superviseurPanel.className);
-        }
-        
-        // Mettre à jour le style des boutons
-        const tabs = document.querySelectorAll('.deploy-tab');
-        tabs.forEach(tab => {
-            const tabType = tab.getAttribute('data-deploy');
-            
-            if (tabType === type) {
-                tab.classList.add('active');
-            } else {
-                tab.classList.remove('active');
-            }
-        });
-        
-        // Debug - vérifier les styles calculés
-        setTimeout(() => {
-            console.log("Style calculé superviseur:", window.getComputedStyle(superviseurPanel).display);
-            console.log("Style calculé agent:", window.getComputedStyle(agentPanel).display);
-        }, 50);
-    };
+window.switchDeploy = function(type) {
+    console.log("🔵 switchDeploy appelé avec:", type);
     
-    // Initialisation
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            window.switchDeploy('superviseurs');
+    // Cibler TOUS les panneaux superviseurs et agents dans la page
+    const allSuperviseurPanels = document.querySelectorAll('#panel-superviseurs, [id*="panel-superviseurs"]');
+    const allAgentPanels = document.querySelectorAll('#panel-agents, [id*="panel-agents"]');
+    
+    console.log(`📊 Panneaux trouvés: superviseurs=${allSuperviseurPanels.length}, agents=${allAgentPanels.length}`);
+    
+    // Masquer tous les panneaux superviseurs
+    allSuperviseurPanels.forEach(panel => {
+        panel.style.display = 'none';
+        panel.classList.remove('active');
+    });
+    
+    // Masquer tous les panneaux agents
+    allAgentPanels.forEach(panel => {
+        panel.style.display = 'none';
+        panel.classList.remove('active');
+    });
+    
+    // Afficher uniquement ceux du type sélectionné
+    if (type === 'superviseurs') {
+        allSuperviseurPanels.forEach(panel => {
+            panel.style.display = 'block';
+            panel.classList.add('active');
         });
-    } else {
-        window.switchDeploy('superviseurs');
+        console.log("✅ Tous les panels superviseurs affichés");
+    } 
+    else if (type === 'agents') {
+        allAgentPanels.forEach(panel => {
+            panel.style.display = 'block';
+            panel.classList.add('active');
+        });
+        console.log("✅ Tous les panels agents affichés");
     }
-})();
+    
+    // Mettre à jour les boutons (cibler tous les boutons)
+    const allTabs = document.querySelectorAll('.deploy-tab');
+    allTabs.forEach(tab => {
+        const tabType = tab.getAttribute('data-deploy');
+        if (tabType === type) {
+            tab.classList.add('active');
+            tab.style.background = "var(--ink)";
+            tab.style.color = "var(--gold)";
+        } else {
+            tab.classList.remove('active');
+            tab.style.background = "transparent";
+            tab.style.color = "var(--slate)";
+        }
+    });
+};
+
+// Initialisation
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        window.switchDeploy('superviseurs');
+    });
+} else {
+    window.switchDeploy('superviseurs');
+}
+console.log("Nombre de sections deploiement:", document.querySelectorAll('#deploiement, .deploy-section').length);
+document.querySelectorAll('#deploiement, .deploy-section').forEach((el, i) => {
+    console.log(`Section ${i}:`, el.id, el.className);
+    console.log("  Panneaux superviseurs:", el.querySelectorAll('#panel-superviseurs, [id*="superviseur"]').length);
+    console.log("  Panneaux agents:", el.querySelectorAll('#panel-agents, [id*="agent"]').length);
+});
+// Nettoyer les doublons de la section déploiement
+function cleanupDuplicateDeploy() {
+    const allDeploySections = document.querySelectorAll('.deploy-section');
+    if (allDeploySections.length > 1) {
+        console.log(`⚠️ ${allDeploySections.length} sections deploiement trouvées, nettoyage...`);
+        // Garder la première, supprimer les autres
+        for (let i = 1; i < allDeploySections.length; i++) {
+            allDeploySections[i].remove();
+            console.log(`🗑️ Suppression de la section dupliquée #${i}`);
+        }
+    }
+    
+    // Nettoyer aussi les panneaux dupliqués
+    const allSuperPanels = document.querySelectorAll('#panel-superviseurs');
+    if (allSuperPanels.length > 1) {
+        for (let i = 1; i < allSuperPanels.length; i++) {
+            allSuperPanels[i].remove();
+        }
+    }
+    
+    const allAgentPanels = document.querySelectorAll('#panel-agents');
+    if (allAgentPanels.length > 1) {
+        for (let i = 1; i < allAgentPanels.length; i++) {
+            allAgentPanels[i].remove();
+        }
+    }
+}
+
+// Exécuter le nettoyage avant d'initialiser
+cleanupDuplicateDeploy();
+
+// Puis initialiser
+window.switchDeploy('superviseurs');
+
+
 
 // Mount home
 const shell=document.getElementById('nav-shell');
