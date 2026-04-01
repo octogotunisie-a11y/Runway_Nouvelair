@@ -2799,7 +2799,19 @@ section > .container {
       margin-top: 14px !important;
       letter-spacing: 0.06em;
     }
-
+@media (max-width: 768px) {
+    /* Cibler spécifiquement le bloc des 6 profils juste après le hero */
+    #hero-tagline + .profiles-grid-compact {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 12px !important;
+    }
+    #hero-tagline + .profiles-grid-compact > div {
+        width: 60px !important; /* Ajustez selon vos besoins */
+        margin-bottom: 8px !important;
+    }
+}
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        6. SECTION HERO & PROFILS
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
