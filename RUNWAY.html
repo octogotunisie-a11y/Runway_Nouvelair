@@ -205,110 +205,169 @@
 
         /* TOPBAR */
         
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 200;
-            background: rgba(14, 17, 23, .96);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(184, 151, 90, .18);
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 48px;
-        }
+       /* TOPBAR - BASE (Desktop) */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: rgba(14, 17, 23, .96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(184, 151, 90, .18);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+}
 
-        @media (max-width: 768px) {
-            .topbar {
-                padding: 0 16px !important;
-                height: 60px !important;
-            }
-        }
-        
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .topbar-logo {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
-        
-        .topbar-logo-nv {
-            height: 17px;
-            width: auto;
-            display: block;
-            filter: brightness(0) invert(1);
-        }
-        
-        .topbar-sep {
-            width: 1px;
-            height: 32px;
-            background: rgba(184, 151, 90, .3);
-        }
-        
-        .topbar-tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 13px;
-            font-style: italic;
-            color: rgba(245, 240, 232, .45);
-            letter-spacing: .04em;
-        }
-        
-        .topbar-nav {
-            display: flex;
-            gap: 36px;
-        }
-        
-        .topbar-nav a {
-            font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: rgba(245, 240, 232, .5);
-            text-decoration: none;
-            transition: color .2s;
-        }
-        
-        .topbar-nav a:hover {
-            color: var(--gold);
-        }
-        
-        .topbar-cta {
-            font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            padding: 12px 24px;
-            background: var(--gold);
-            color: var(--ink);
-            border: none;
-            cursor: pointer;
-            transition: background .2s;
-        }
-        
-        .topbar-cta:hover {
-            background: var(--gold-l);
-        }
-        
-        @media (max-width: 768px) {
-            .topbar-nav {
-                display: none;
-            }
-            .topbar-cta {
-                padding: 8px 16px;
-                font-size: 11px;
-            }
-            .topbar-tagline, .topbar-sep {
-                display: none;
-            }
-        }
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0; /* Empêche le rétrécissement */
+}
+
+.topbar-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.topbar-logo-nv {
+    height: 17px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.topbar-sep {
+    width: 1px;
+    height: 32px;
+    background: rgba(184, 151, 90, .3);
+    margin: 0 4px;
+}
+
+.topbar-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(245, 240, 232, .45);
+    letter-spacing: .04em;
+    white-space: nowrap; /* Empêche le retour à la ligne */
+}
+
+.topbar-nav {
+    display: flex;
+    gap: 36px;
+    margin: 0 auto; /* Centrage naturel */
+}
+
+.topbar-nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, .5);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.topbar-nav a:hover {
+    color: var(--gold);
+}
+
+.topbar-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    cursor: pointer;
+    transition: background .2s;
+    flex-shrink: 0; /* Empêche le rétrécissement */
+}
+
+.topbar-cta:hover {
+    background: var(--gold-l);
+}
+
+/* ========== RESPONSIVE MOBILE - VERSION CORRIGÉE ========== */
+@media (max-width: 768px) {
+    .topbar {
+        height: 56px !important;
+        padding: 0 16px !important;
+    }
+    
+    /* Cacher la navigation et le séparateur en mobile */
+    .topbar-nav {
+        display: none !important;
+    }
+    
+    .topbar-sep {
+        display: none !important;
+    }
+    
+    /* Ajuster le groupe gauche */
+    .topbar-left {
+        gap: 10px !important;
+        flex: 0 0 auto !important; /* Ne pas s'étirer */
+    }
+    
+    /* Logos plus petits */
+    .topbar-logo {
+        height: 32px !important;
+    }
+    
+    .topbar-logo-nv {
+        height: 14px !important;
+    }
+    
+    /* Cacher la tagline en mobile (optionnel - peut être conservée) */
+    .topbar-tagline {
+        display: none !important;
+    }
+    
+    /* Style CTA mobile optimisé */
+    .topbar-cta {
+        padding: 8px 16px !important;
+        font-size: 11px !important;
+        white-space: nowrap !important;
+        border-radius: 8px !important;
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Assurer que le conteneur principal reste propre */
+    .hero {
+        padding-top: 56px !important;
+    }
+}
+
+/* Support pour très petits écrans (< 480px) */
+@media (max-width: 480px) {
+    .topbar {
+        height: 52px !important;
+        padding: 0 12px !important;
+    }
+    
+    .topbar-logo {
+        height: 28px !important;
+    }
+    
+    .topbar-logo-nv {
+        height: 12px !important;
+    }
+    
+    .topbar-cta {
+        padding: 6px 12px !important;
+        font-size: 10px !important;
+    }
+}
         
         /* HERO */
         
@@ -10629,7 +10688,166 @@ class BreathWidget {
     this.render();
     this.bindEvents();
   }
+// ============================================================
+// FONCTIONS UTILITAIRES POUR TOPBAR MOBILE
+// ============================================================
 
+/**
+ * Gère le comportement du topbar au scroll en mobile
+ * Réduit la hauteur du topbar lors du défilement vers le bas
+ */
+function initTopbarScrollBehavior() {
+    const topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+    
+    let lastScrollTop = 0;
+    const isMobile = window.innerWidth <= 768;
+    
+    if (!isMobile) return;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Défilement vers le bas - réduction
+            topbar.style.transform = 'translateY(-100%)';
+            topbar.style.transition = 'transform 0.3s ease';
+        } else {
+            // Défilement vers le haut - réapparition
+            topbar.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+}
+
+/**
+ * Détecte l'orientation de l'écran et ajuste le topbar
+ */
+function handleOrientationChange() {
+    const topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+    
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile && isLandscape) {
+        topbar.style.height = '48px';
+        document.querySelector('.hero')?.style.setProperty('padding-top', '48px');
+    } else if (isMobile) {
+        topbar.style.height = '56px';
+        document.querySelector('.hero')?.style.setProperty('padding-top', '56px');
+    }
+}
+
+/**
+ * Gère les clics sur les liens du topbar en mobile
+ * Ferme automatiquement les menus déroulants si existants
+ */
+function handleTopbarLinks() {
+    const links = document.querySelectorAll('.topbar-nav a');
+    const isMobile = window.innerWidth <= 768;
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (isMobile) {
+                // Optionnel : fermer un menu burger si vous en ajoutez un
+                // closeMobileMenu();
+                
+                // Scroll fluide vers la section
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Vérifie et corrige les conflits de style en temps réel
+ * Utile si le topbar est modifié dynamiquement
+ */
+function fixTopbarConflicts() {
+    const topbar = document.querySelector('.topbar');
+    const isMobile = window.innerWidth <= 768;
+    
+    if (!topbar) return;
+    
+    // S'assurer que les bonnes classes sont appliquées
+    if (isMobile) {
+        topbar.classList.add('topbar-mobile');
+        topbar.classList.remove('topbar-desktop');
+    } else {
+        topbar.classList.add('topbar-desktop');
+        topbar.classList.remove('topbar-mobile');
+    }
+    
+    // Vérifier les éléments masqués
+    const nav = document.querySelector('.topbar-nav');
+    const tagline = document.querySelector('.topbar-tagline');
+    const sep = document.querySelector('.topbar-sep');
+    
+    if (isMobile) {
+        if (nav) nav.style.display = 'none';
+        if (tagline) tagline.style.display = 'none';
+        if (sep) sep.style.display = 'none';
+    } else {
+        if (nav) nav.style.display = 'flex';
+        if (tagline) tagline.style.display = 'block';
+        if (sep) sep.style.display = 'block';
+    }
+}
+
+/**
+ * Initialisation complète du topbar pour mobile
+ */
+function initMobileTopbar() {
+    // Attendre que le DOM soit chargé
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            fixTopbarConflicts();
+            initTopbarScrollBehavior();
+            handleTopbarLinks();
+            handleOrientationChange();
+            
+            // Écouter les changements d'orientation
+            window.addEventListener('resize', () => {
+                fixTopbarConflicts();
+                handleOrientationChange();
+            });
+            
+            window.addEventListener('orientationchange', () => {
+                setTimeout(handleOrientationChange, 100);
+            });
+        });
+    } else {
+        fixTopbarConflicts();
+        initTopbarScrollBehavior();
+        handleTopbarLinks();
+        handleOrientationChange();
+        
+        window.addEventListener('resize', () => {
+            fixTopbarConflicts();
+            handleOrientationChange();
+        });
+        
+        window.addEventListener('orientationchange', () => {
+            setTimeout(handleOrientationChange, 100);
+        });
+    }
+}
+
+// Lancer l'initialisation
+initMobileTopbar();
+
+// Exposer les fonctions globalement si besoin
+window.initMobileTopbar = initMobileTopbar;
+window.fixTopbarConflicts = fixTopbarConflicts;
   // Nettoyage explicite — à appeler avant suppression du DOM
   destroy() {
     this.stopBreath();
