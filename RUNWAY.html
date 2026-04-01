@@ -3389,7 +3389,97 @@ section > .container {
       .topbar-logo { height: 26px !important; }
       #pdrawer { max-height: 100vh !important; }
     }
+@media (max-width: 768px) {
+    #pdrawer {
+        width: 95vw !important;
+        max-height: 90vh !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) scale(0.95) !important;
+    }
+    
+    #pdrawer.open {
+        transform: translate(-50%, -50%) scale(1) !important;
+    }
+    
+    #pdrawer-body {
+        padding: 0 !important;
+    }
+    
+    /* Header du drawer */
+    #pdrawer-head {
+        padding: 12px 16px !important;
+    }
+    
+    #pdrawer-head span {
+        font-size: 11px !important;
+    }
+    
+    /* Contenu du drawer */
+    .profile-detail-card {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    .profile-detail-item {
+        padding: 16px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .profile-detail-item img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 50vh !important;
+        object-fit: contain !important;
+    }
+    
+    .profile-detail-header {
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+    }
+    
+    .profile-detail-header .icon {
+        width: 44px !important;
+        height: 44px !important;
+    }
+    
+    .profile-detail-header .icon i {
+        font-size: 22px !important;
+    }
+    
+    .profile-detail-header h3 {
+        font-size: 16px !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+    
+    .profile-detail-header p {
+        font-size: 11px !important;
+        white-space: normal !important;
+    }
+    
+    /* Bouton fermer */
+    #pdrawer-head button {
+        padding: 5px 12px !important;
+        font-size: 11px !important;
+    }
+}
 
+@media (max-width: 480px) {
+    #pdrawer {
+        width: 98vw !important;
+        max-height: 92vh !important;
+    }
+    
+    .profile-detail-item img {
+        max-height: 45vh !important;
+    }
+    
+    .profile-detail-header h3 {
+        font-size: 14px !important;
+    }
+}
     /* ══════════════════════════════════════════════════════════════════
        TOUCH DEVICES — Accessibilité tactile
        ══════════════════════════════════════════════════════════════════ */
@@ -11211,161 +11301,147 @@ window.rwyBreathTechs  = BREATH_TECHS;
     // ═══════════════════════════════════════════════════════════════════════
     // OUVERTURE DU DRAWER AVEC UN PROFIL SPÉCIFIQUE
     // ═══════════════════════════════════════════════════════════════════════
-    function openProfileInDrawer(profileNumber) {
-        console.log(`📂 Ouverture du drawer pour le profil ${profileNumber}`);
-        
-        const drawerBody = document.getElementById('pdrawer-body');
-        if (!drawerBody) {
-            console.log("❌ Drawer non trouvé");
-            return;
-        }
-        
-        // Données des profils
-        const profileData = {
-            1: { name: 'CONTRÔLEUR', color: '#ef4444', icon: 'fa-gavel', bg: 'rgba(239,68,68,0.15)', 
-                desc: 'Besoin de contrôle · Structure · Règles claires' },
-            2: { name: 'INQUIET', color: '#f97316', icon: 'fa-question-circle', bg: 'rgba(249,115,22,0.15)', 
-                desc: 'Besoin de réassurance · Étape par étape · Clarté' },
-            3: { name: 'SILENCIEUX', color: '#a855f7', icon: 'fa-volume-mute', bg: 'rgba(168,85,247,0.15)', 
-                desc: 'Besoin d\'espace · Discrétion · Temps' },
-            4: { name: 'STATUTAIRE', color: '#3b82f6', icon: 'fa-crown', bg: 'rgba(59,130,246,0.15)', 
-                desc: 'Besoin de reconnaissance · Traitement prioritaire' },
-            5: { name: 'IMPULSIF', color: '#e11d48', icon: 'fa-bolt', bg: 'rgba(225,29,72,0.15)', 
-                desc: 'Besoin d\'action rapide · Solutions immédiates' },
-            6: { name: 'COOPÉRATIF', color: '#10b981', icon: 'fa-handshake', bg: 'rgba(16,185,129,0.15)', 
-                desc: 'Collaboration · Échange · Solutions mutuelles' }
-        };
-        
-        const prof = profileData[profileNumber] || profileData[1];
-        
-        // Construire le contenu du drawer
-        drawerBody.innerHTML = `
-            <div style="padding: 20px;">
-                <div style="background: linear-gradient(135deg, #0A0F18, #0D1520); border-radius: 20px; overflow: hidden; border: 1px solid ${prof.color}40;">
-                    <div style="position: sticky; top: 0; background: #0D1520; padding: 16px 20px; border-bottom: 2px solid ${prof.color}; display: flex; align-items: center; justify-content: space-between;">
-                        <div style="display: flex; align-items: center; gap: 14px;">
-                            <div style="width: 48px; height: 48px; background: ${prof.bg}; border-radius: 14px; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas ${prof.icon}" style="color: ${prof.color}; font-size: 24px;"></i>
-                            </div>
-                            <div>
-                                <div style="font-family: 'DM Mono', monospace; font-size: 11px; color: ${prof.color};">PROFIL ${profileNumber}</div>
-                                <div style="font-size: 20px; font-weight: 700; color: #dde3f0;">Le ${prof.name}</div>
-                                <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px;">${prof.desc}</div>
-                            </div>
+ function openProfileInDrawer(profileNumber) {
+    console.log(`📂 Ouverture du drawer pour le profil ${profileNumber}`);
+    
+    const drawerBody = document.getElementById('pdrawer-body');
+    if (!drawerBody) {
+        console.log("❌ Drawer non trouvé");
+        return;
+    }
+    
+    // Données des profils
+    const profileData = {
+        1: { name: 'CONTRÔLEUR', color: '#ef4444', icon: 'fa-gavel', bg: 'rgba(239,68,68,0.15)', 
+            desc: 'Besoin de contrôle · Structure · Règles claires' },
+        2: { name: 'INQUIET', color: '#f97316', icon: 'fa-question-circle', bg: 'rgba(249,115,22,0.15)', 
+            desc: 'Besoin de réassurance · Étape par étape · Clarté' },
+        3: { name: 'SILENCIEUX', color: '#a855f7', icon: 'fa-volume-mute', bg: 'rgba(168,85,247,0.15)', 
+            desc: 'Besoin d\'espace · Discrétion · Temps' },
+        4: { name: 'STATUTAIRE', color: '#3b82f6', icon: 'fa-crown', bg: 'rgba(59,130,246,0.15)', 
+            desc: 'Besoin de reconnaissance · Traitement prioritaire' },
+        5: { name: 'IMPULSIF', color: '#e11d48', icon: 'fa-bolt', bg: 'rgba(225,29,72,0.15)', 
+            desc: 'Besoin d\'action rapide · Solutions immédiates' },
+        6: { name: 'COOPÉRATIF', color: '#10b981', icon: 'fa-handshake', bg: 'rgba(16,185,129,0.15)', 
+            desc: 'Collaboration · Échange · Solutions mutuelles' }
+    };
+    
+    const prof = profileData[profileNumber] || profileData[1];
+    
+    // Construire le contenu du drawer - VERSION CORRIGÉE
+    drawerBody.innerHTML = `
+        <div style="padding: 16px;">
+            <div style="background: linear-gradient(135deg, #0A0F18, #0D1520); border-radius: 20px; overflow: hidden; border: 1px solid ${prof.color}40;">
+                <!-- HEADER STICKY -->
+                <div style="position: sticky; top: 0; background: #0D1520; padding: 14px 16px; border-bottom: 2px solid ${prof.color}; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: nowrap; z-index: 10;">
+                    <div style="display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1;">
+                        <div style="width: 44px; height: 44px; background: ${prof.bg}; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i class="fas ${prof.icon}" style="color: ${prof.color}; font-size: 22px;"></i>
                         </div>
-                        <button onclick="closeProfileDrawer()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 12px;">
-                            ✕ Fermer
-                        </button>
+                        <div style="min-width: 0; flex: 1;">
+                            <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: ${prof.color};">PROFIL ${profileNumber}</div>
+                            <div style="font-size: 18px; font-weight: 700; color: #dde3f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Le ${prof.name}</div>
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${prof.desc}</div>
+                        </div>
                     </div>
-                    <div id="drawer-content" style="padding: 24px; min-height: 450px;">
-                        <div style="text-align: center; padding: 40px;">
-                            <i class="fas fa-spinner fa-spin" style="font-size: 32px; color: ${prof.color};"></i>
-                            <p style="margin-top: 16px; color: rgba(255,255,255,0.5);">Chargement du profil...</p>
-                        </div>
+                    <button onclick="closeProfileDrawer()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; flex-shrink: 0;">
+                        ✕ Fermer
+                    </button>
+                </div>
+                  <div id="drawer-content" style="padding: 20px;">
+                    <div style="text-align: center; padding: 40px;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 28px; color: ${prof.color};"></i>
+                        <p style="margin-top: 12px; color: rgba(255,255,255,0.5); font-size: 13px;">Chargement du profil...</p>
                     </div>
                 </div>
             </div>
-        `;
+        </div>
+    `;
         
-        // Récupérer le contenu original du profil
         const originalContent = document.getElementById(`profile-${profileNumber}-content`);
-        const container = document.getElementById('drawer-content');
+    const container = document.getElementById('drawer-content');
+    
+    if (originalContent && container) {
+        const clone = originalContent.cloneNode(true);
+        clone.style.display = 'block';
+        clone.style.background = 'transparent';
         
-        if (originalContent && container) {
-            const clone = originalContent.cloneNode(true);
-            clone.style.display = 'block';
-            clone.style.background = 'transparent';
+        // Ajouter les gestionnaires pour les images
+        clone.querySelectorAll('img').forEach((img, idx) => {
+            img.style.cursor = 'pointer';
+            img.style.borderRadius = '12px';
+            img.style.transition = 'transform 0.2s, box-shadow 0.2s';
+            img.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+            img.style.display = 'block';
             
-            // Ajouter les gestionnaires pour les images (plein écran + wallpaper)
-            clone.querySelectorAll('img').forEach((img, idx) => {
-                img.style.cursor = 'pointer';
-                img.style.borderRadius = '12px';
-                img.style.transition = 'transform 0.2s, box-shadow 0.2s';
-                img.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
-                
-                // Déterminer si c'est la deuxième image (format A4)
-                const isSecondImage = (idx === 1);
-                
-                img.onclick = function(e) {
-                    e.stopPropagation();
-                    openImageFullscreen(this.imgSrc);
-                };
-                img.ontouchstart = function(e) {
-                    e.stopPropagation();
-                    openImageFullscreen(this.src);
-                };
-                img.onmouseenter = function() { 
-                    this.style.transform = 'scale(1.02)';
-                    this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
-                };
-                img.onmouseleave = function() { 
-                    this.style.transform = 'scale(1)';
-                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
-                };
-                
-                // Ajouter un bouton "Définir comme fond d'écran" sous chaque image
-                const imgContainer = img.parentElement;
-                if (imgContainer && !imgContainer.querySelector('.wallpaper-btn')) {
-                    const btnContainer = document.createElement('div');
-                    btnContainer.style.cssText = 'margin-top: 12px; text-align: center;';
-                    const wallpaperBtn = document.createElement('button');
-                    
-                    wallpaperBtn.style.cssText = `
-                        background: rgba(0,0,0,0.6);
-                        border: 1px solid ${prof.color};
-                        color: ${prof.color};
-                        padding: 6px 12px;
-                        border-radius: 20px;
-                        font-size: 11px;
-                        cursor: pointer;
-                        font-family: 'DM Mono', monospace;
-                        transition: all 0.2s;
-                    `;
-                    wallpaperBtn.onmouseenter = () => { wallpaperBtn.style.background = prof.color; wallpaperBtn.style.color = '#fff'; };
-                    wallpaperBtn.onmouseleave = () => { wallpaperBtn.style.background = 'rgba(0,0,0,0.6)'; wallpaperBtn.style.color = prof.color; };
-                    wallpaperBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        setAsWallpaper(img.src);
-                    };
-                    wallpaperBtn.ontouchstart = (e) => {
-                        e.stopPropagation();
-                        setAsWallpaper(img.src);
-                    };
-                    btnContainer.appendChild(wallpaperBtn);
-                    imgContainer.appendChild(btnContainer);
-                }
-            });
-            
-            container.innerHTML = '';
-            container.appendChild(clone);
-            console.log(`✅ Profil ${profileNumber} chargé dans le drawer`);
-        } else {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 60px 20px;">
-                    <div style="font-size: 56px; margin-bottom: 20px;">📄</div>
-                    <p style="color: rgba(255,255,255,0.7); font-size: 16px;">Contenu du profil ${profileNumber} en cours de préparation</p>
-                    <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px;">
-                        Vérifiez que les images existent :<br>
-                        p/p${profileNumber}.jpeg et p/p${profileNumber}${profileNumber}.jpeg
-                    </p>
-                </div>
-            `;
-        }
+            img.onclick = function(e) {
+                e.stopPropagation();
+                openImageFullscreen(this.src);
+            };
+            img.ontouchstart = function(e) {
+                e.stopPropagation();
+                openImageFullscreen(this.src);
+            };
+            img.onmouseenter = function() { 
+                this.style.transform = 'scale(1.02)';
+                this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
+            };
+            img.onmouseleave = function() { 
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+            };
+        });
         
-        // Ouvrir le drawer
-        const drawer = document.getElementById('pdrawer');
-        const overlay = document.getElementById('pdrawer-overlay');
-        if (drawer) drawer.classList.add('open');
-        if (overlay) overlay.classList.add('show');
+        // Ajouter des styles pour les cartes de profil dans le drawer
+        clone.querySelectorAll('.profile-detail-item').forEach(item => {
+            item.style.background = 'rgba(255,255,255,0.03)';
+            item.style.borderRadius = '16px';
+            item.style.padding = '16px';
+            item.style.marginBottom = '16px';
+            item.style.border = `1px solid ${prof.color}40`;
+        });
+        
+        clone.querySelectorAll('.profile-detail-header').forEach(header => {
+            header.style.gap = '12px';
+            header.style.marginBottom = '16px';
+            header.style.flexWrap = 'wrap';
+        });
+        
+        clone.querySelectorAll('.profile-detail-header h3').forEach(h3 => {
+            h3.style.fontSize = '16px';
+            h3.style.whiteSpace = 'normal';
+            h3.style.wordBreak = 'break-word';
+        });
+        
+        clone.querySelectorAll('.profile-detail-header p').forEach(p => {
+            p.style.fontSize = '11px';
+            p.style.whiteSpace = 'normal';
+        });
+        
+        container.innerHTML = '';
+        container.appendChild(clone);
+        console.log(`✅ Profil ${profileNumber} chargé dans le drawer`);
+    } else {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 48px; margin-bottom: 16px;">📄</div>
+                <p style="color: rgba(255,255,255,0.7); font-size: 15px;">Contenu du profil ${profileNumber} en cours de préparation</p>
+                <p style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 12px;">
+                    Vérifiez que les images existent :<br>
+                    p/p${profileNumber}.jpeg et p/p${profileNumber}${profileNumber}.jpeg
+                </p>
+            </div>
+        `;
     }
     
-    // Fonction pour fermer le drawer
-    function closeProfileDrawer() {
-        const drawer = document.getElementById('pdrawer');
-        const overlay = document.getElementById('pdrawer-overlay');
-        if (drawer) drawer.classList.remove('open');
-        if (overlay) overlay.classList.remove('show');
-    }
+    // Ouvrir le drawer
+    const drawer = document.getElementById('pdrawer');
+    const overlay = document.getElementById('pdrawer-overlay');
+    if (drawer) drawer.classList.add('open');
+    if (overlay) overlay.classList.add('show');
+}
     
     // Fonction pour ouvrir une image en plein écran
     function openImageFullscreen(imgSrc, isA4Format = false) {
