@@ -377,13 +377,17 @@
         font-size: 11px !important;
         white-space: nowrap !important;
         margin-left: auto !important;
+        background: var(--gold) !important;
+        color: var(--ink) !important;
+        border-radius: 8px !important;
+        display: inline-flex !important;
+        align-items: center !important;
     }
     
     .topbar-tagline, .topbar-sep {
         display: none !important;
     }
     
-    /* Optionnel : ajuster les logos sur mobile */
     .topbar-logo {
         height: 32px !important;
     }
@@ -394,7 +398,12 @@
     
     .topbar-left {
         gap: 10px !important;
+        flex: 1 !important;
     }
+     .hero {
+        padding-top: 60px !important;
+    }
+
 }
 /* ============================================
    CORRECTIONS POUR TOUS LES TOPBARS DYNAMIQUES (MODALS)
