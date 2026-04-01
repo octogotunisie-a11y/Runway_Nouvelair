@@ -9918,8 +9918,6 @@ window.rwyShowBreathPrep = function(card){
   }, 10000);
 };
 
-// ── VUE D\u00c9CIDEUR — Parcours filtr\u00e9 ROI / TRIVIUM / Benchmark ──
-// ── VUE DÉCIDEUR — PARCOURS FILTRÉ ROI / TRIVIUM / BENCHMARK ──
 window.rwyOpenDecideur = function(){
     console.log("Ouverture Vue Décideur");
     
@@ -9931,15 +9929,29 @@ window.rwyOpenDecideur = function(){
     modal.id = 'rwy-decideur-modal';
     modal.style.cssText = 'display:block;position:fixed;inset:0;z-index:2000;background:rgba(7,10,16,0.97);backdrop-filter:blur(12px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;';
 
-    // Topbar
+    // Topbar - VERSION CORRIGÉE POUR MOBILE
     var topbar = document.createElement('div');
-    topbar.style.cssText = 'position:sticky;top:0;z-index:10;height:56px;display:flex;align-items:center;gap:14px;padding:0 20px;background:rgba(10,13,22,0.98);border-bottom:1px solid rgba(184,151,90,0.3);';
-    topbar.innerHTML = '<span style="font-size:20px;">💼</span><div><div style="font-family:monospace;font-size:10px;letter-spacing:.16em;color:#B8975A;text-transform:uppercase;margin-bottom:2px;">Vue Décideur</div><div style="font-size:15px;font-weight:700;color:#dde3f0;">RUNWAY — L\'essentiel pour la décision</div></div>';
-
+    topbar.className = 'rwy-modal-topbar';
+    topbar.style.cssText = 'position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px;background:rgba(10,13,22,0.98);border-bottom:1px solid rgba(184,151,90,0.3);';
+    
+    // Groupe gauche (icône + titre)
+    var leftGroup = document.createElement('div');
+    leftGroup.style.cssText = 'display:flex;align-items:center;gap:12px;min-width:0;flex:1;';
+    leftGroup.innerHTML = `
+        <span style="font-size:20px;flex-shrink:0;">💼</span>
+        <div style="min-width:0;">
+            <div style="font-family:monospace;font-size:10px;letter-spacing:.16em;color:#B8975A;text-transform:uppercase;margin-bottom:2px;">Vue Décideur</div>
+            <div style="font-size:15px;font-weight:700;color:#dde3f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">RUNWAY — L'essentiel pour la décision</div>
+        </div>
+    `;
+    
+    // Bouton fermer
     var closeBtn = document.createElement('button');
-    closeBtn.style.cssText = 'margin-left:auto;background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;';
+    closeBtn.style.cssText = 'background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;flex-shrink:0;';
     closeBtn.textContent = '✕ Fermer';
     closeBtn.onclick = function(){ modal.remove(); document.body.style.overflow=''; };
+    
+    topbar.appendChild(leftGroup);
     topbar.appendChild(closeBtn);
 
     var body = document.createElement('div');
