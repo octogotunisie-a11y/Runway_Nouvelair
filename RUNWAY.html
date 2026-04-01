@@ -361,6 +361,70 @@
         margin: 0 auto;
     }
 }
+@media (max-width: 768px) {
+    .topbar {
+        padding: 0 16px !important;
+        height: 60px !important;
+        justify-content: space-between !important;
+    }
+    
+    .topbar-nav {
+        display: none !important;
+    }
+    
+    .topbar-cta {
+        padding: 8px 16px !important;
+        font-size: 11px !important;
+        white-space: nowrap !important;
+        margin-left: auto !important;
+    }
+    
+    .topbar-tagline, .topbar-sep {
+        display: none !important;
+    }
+    
+    /* Optionnel : ajuster les logos sur mobile */
+    .topbar-logo {
+        height: 32px !important;
+    }
+    
+    .topbar-logo-nv {
+        height: 14px !important;
+    }
+    
+    .topbar-left {
+        gap: 10px !important;
+    }
+}
+/* Ajouter ces règles après le bloc @media existant */
+@media (max-width: 768px) {
+    /* Empêcher tout débordement horizontal */
+    body, .main-scroll {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+    
+    /* Ajuster le conteneur hero */
+    .hero-inner {
+        padding: 70px 16px 40px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ajuster le container global */
+    .container {
+        padding: 0 16px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Le bouton CTA doit rester visible */
+    .topbar-cta {
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+}
         /* HERO logo lockup */
         
         .hero-lockup {
